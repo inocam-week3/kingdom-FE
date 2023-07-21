@@ -1,0 +1,1 @@
+export const headers = `Bearer qewrqewrqewrqewaaasdfa.12341234.as1324324`
