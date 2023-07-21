@@ -1,22 +1,53 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, {useEffect, useState} from 'react'
+
 
 export function Home() {
-  useEffect(()=> {
-    async function authLogin () {
-        try {
-          const res = await axios.get(`/api/auth/login`)
-          console.log(res.headers.authorization)
-        }
-        catch (error) {
-          console.log(error.response.data.message)
-        }
+  const [HomeDataJobs, setHomeDataJobs] = useState([])
+  const [HomeDataStories, setHomeDataStories] = useState([])
+  useEffect(()=>{
+    async function getJobInfo() {
+      try{
+        const res = await axios.get(`/api/homejobs`)
+        setHomeDataJobs(res.data.info)
+      }
+      catch (error){
+        console.log("데이터를 불러오지 못함")
+      }
     }
-    authLogin()
-    },[])
+    getJobInfo()
+  },[])
+
+  useEffect(()=>{
+    async function getStoriesInfo() {
+      try {
+        const res = await axios.get(`/api/homestories`)
+        console.log(res.data.info)
+        setHomeDataStories(res.data.info)
+      } catch (error) {
+        console.log("데이터를 불러오지 못했습니다")
+      }
+    }
+    getStoriesInfo()
+  },[])
   return (
     <div>
-      Home -MSW 테스트
+      <p>HomeDataJobs</p>
+      {
+        HomeDataJobs && HomeDataJobs.map((item)=> (
+          <section key={item.id}>
+            {item.companyname}
+          </section>
+        ))
+      }
+      <hr/>
+      
+      <p>HomeDataStories</p>
+      {
+        HomeDataStories && HomeDataStories.map((item)=><div key={item.id}>
+          {item.content}</div>
+          )
+      }
     </div>
   )
 }
