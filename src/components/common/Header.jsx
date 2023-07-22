@@ -22,20 +22,21 @@ export function Header() {
     {path :'/messenger', pathName:"Messenger"},
     {path :'/signup', pathName:"signup"},
   ]
-  // useEffect(()=> {
-  //   async function authLogin () {
-  //       try {
-  //         const res = await axios.post(`/api/auth/login`, authinfo) // 로그인 성공
-  //         // const res = await axios.post(`/api/auth/login`, {...authinfo, email:"asdf"}) // 이메일이 틀렸을 때
-  //         // const res = await axios.post(`/api/auth/login`, {...authinfo, passward:"asdf"}) // 비밀번호가 틀렸을 때
-  //         console.log(res.headers.authorization)
-  //       }
-  //       catch (error) {
-  //         console.log(error.response.data.error)
-  //       }
-  //   }
-  //   authLogin()
-  //   },[])
+  useEffect(()=> {
+    async function authLogin () {
+        try {
+          const res = await axios.post(`/api/auth/login`, authinfo) // 로그인 성공
+          // const res = await axios.post(`/api/auth/login`, {...authinfo, email:"asdf"}) // 이메일이 틀렸을 때
+          // const res = await axios.post(`/api/auth/login`, {...authinfo, passward:"asdf"}) // 비밀번호가 틀렸을 때
+          document.cookie = `accessToken=${res.headers.authorization} path=/`
+          // console.log(res.headers.authorization)
+        }
+        catch (error) {
+          console.log(error.response.data.error)
+        }
+    }
+    authLogin()
+    },[])
   return (
     <>
       <TestDiv>

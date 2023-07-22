@@ -1,15 +1,20 @@
 import axios from 'axios'
-import React, {useEffect, useState} from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getHomeMorkDataJobs, getHomeMorkDataStories, selectGetHomeJobs, selectGetHomeStories } from '../redux'
 
 
 export function Home() {
-  const [HomeDataJobs, setHomeDataJobs] = useState([])
-  const [HomeDataStories, setHomeDataStories] = useState([])
+  const selectHomeJobs = useSelector(selectGetHomeJobs)
+  const selectHomeStories = useSelector(selectGetHomeStories)
+  console.log(selectHomeStories);
+  const dispatch = useDispatch()
+
   useEffect(()=>{
     async function getJobInfo() {
       try{
         const res = await axios.get(`/api/homejobs`)
-        setHomeDataJobs(res.data.info)
+        dispatch(getHomeMorkDataJobs(res.data.info))
       }
       catch (error){
         console.log("데이터를 불러오지 못함")
@@ -22,8 +27,8 @@ export function Home() {
     async function getStoriesInfo() {
       try {
         const res = await axios.get(`/api/homestories`)
-        console.log(res.data.info)
-        setHomeDataStories(res.data.info)
+        dispatch(getHomeMorkDataStories(res.data.info))
+
       } catch (error) {
         console.log("데이터를 불러오지 못했습니다")
       }
@@ -34,7 +39,7 @@ export function Home() {
     <div>
       <p>HomeDataJobs</p>
       {
-        HomeDataJobs && HomeDataJobs.map((item)=> (
+        selectHomeJobs && selectHomeJobs.map((item)=> (
           <section key={item.id}>
             {item.companyname}
           </section>
@@ -44,7 +49,7 @@ export function Home() {
       
       <p>HomeDataStories</p>
       {
-        HomeDataStories && HomeDataStories.map((item)=><div key={item.id}>
+        selectHomeStories && selectHomeStories.map((item)=><div key={item.id}>
           {item.content}</div>
           )
       }
