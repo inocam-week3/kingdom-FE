@@ -1,6 +1,6 @@
 import React from 'react'
-import { Albaicon } from './commonStyle'
+import { AlbaIcon } from './commonStyle'
 
-export function Albaicons({top, left, size}) {
-  return <Albaicon $size={size} $top={top} $left={left} children={<img src={require(`../../assets/images/albaicons.png`)} alt='albaicons'/>}/>
+export function AlbaIcons({top, left, size}) {
+  return <AlbaIcon $size={size} $top={top} $left={left} children={<img src={require(`../../assets/images/albaicons.png`)} alt='albaicons'/>}/>
   }  

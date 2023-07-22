@@ -5,6 +5,7 @@ export const theme = {
     blue : "#2e89e5", 
     lightblue:"#3396fe",
     white : "#fff",
-    black363 : "#363e4d"
+    black363 : "#363e4d",
+    blackdada : "#dadada"
   }
 }

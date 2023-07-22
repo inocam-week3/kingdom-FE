@@ -1,6 +1,14 @@
 import { createGlobalStyle, css, styled } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
   html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li, fieldset, form, label, legend, article,figure, figcaption, footer, header,nav, section {
   box-sizing: border-box;
 	margin: 0;
@@ -24,7 +32,7 @@ export const Flex = css`
   flex-direction: ${({ $fd }) => ($fd ? $fd : "row")};
   justify-content: ${({ $jc }) => ($jc ? $jc : "center")};
   align-items: ${({ $ai }) => ($ai ? $ai : "center")};
-  gap: ${({ $gap }) => ($gap ? $gap : "none")};
+  gap: ${({ $gap }) => ($gap ? `${$gap}px` : "none")};
 `;
 
 export const cursor = css`
@@ -41,4 +49,9 @@ const FlexBox = styled.div`
   ${Flex}
 `;
 
-export { FlexBox };
+const Selection = styled.section`
+  width: 100%;
+
+`
+
+export { FlexBox, Selection };

@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 import { useRoter } from '../hooks/commen'
 
 export function Resume() {
-  const {navigate} = useRoter()
+  const {onNavigate} = useRoter()
   const [resumes, setResumes] = useState([])
   useEffect(()=>{
     async function getResumeData(){
@@ -20,11 +20,11 @@ export function Resume() {
 
   return (
     <div>Resume
-      <button onClick={()=>navigate(`/`)}>HOME</button>
+      <button onClick={onNavigate(`/`)}>HOME</button>
       {
         resumes && resumes.map((item)=>
           <section key={item.id}
-            onClick={()=>navigate(`/resume/${item.id}`)}>
+            onClick={onNavigate(`/resume/${item.id}`)}>
             {item.username}
           </section>
         )

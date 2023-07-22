@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useRoter } from '../hooks/commen';
 
 export function StoryDetail() {
-  const { navigate, id } = useRoter();
+  const { onNavigate, id } = useRoter();
   const [storyDetailData, setstoryDetailData] = useState([])
 
   useEffect(()=>{
@@ -18,14 +18,14 @@ export function StoryDetail() {
       }
     }
     getStoryDetails()
-  },[])
+  },[id])
 
   const onDeleteJob = (id) => async () => {
     try {
       const res = await axios.delete(`/api/stories/${id}`);
       console.log(res);
       alert("삭제되었습니다.")
-      navigate(-1)
+      onNavigate(-1)()
     } catch (error) {
       console.log('데이터를 삭제하지 못했습니다', error);
     }
@@ -47,7 +47,7 @@ export function StoryDetail() {
         <h2>{storyDetailData.title}</h2>
         <p>작성자 : {storyDetailData.username}</p>
         <p>{storyDetailData.content}</p>
-        <img src={storyDetailData.image} /> <br />
+        {/* <img src={storyDetailData.image} /> <br /> */}
         <button onClick={onDeleteJob(storyDetailData.id)}>삭제하기</button>
         <button onClick={onUpdateJob(storyDetailData.id)}>수정하기</button>
       </section>

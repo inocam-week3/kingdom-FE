@@ -7,7 +7,6 @@ const morkHomeDataJobsSlice = createSlice({
   reducers:{
     // Home-Jobs 조회
     getHomeMorkDataJobs : (state, action) => {
-      console.log(action);
       return [...action.payload]
     }
   }

@@ -23,7 +23,7 @@ function App() {
         </Route>
         <Route path="*" element={<Pages.NotFound />} />
       </Route>
-      
+      <Route path="login" element={<Pages.Login />} />
     </Routes>
   );
 }
