@@ -4,7 +4,7 @@ import axios from "axios"
 
 export function Story() {
   const [Story, setStory] = useState([])
-  const { navigate } = useRoter()
+  const { onNavigate } = useRoter()
 
   useEffect(()=>{
     async function getStoryData(){
@@ -23,7 +23,7 @@ export function Story() {
       {Story && Story.map((item) => (
         <section key={item.id}>
           {item.title}
-          <button onClick={()=>{navigate(`/story/${item.id}`)}}>안쪽으로</button>
+          <button onClick={onNavigate(`/story/${item.id}`)}>안쪽으로</button>
         </section>
       ))
       }

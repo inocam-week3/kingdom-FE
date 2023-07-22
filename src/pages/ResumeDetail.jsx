@@ -4,7 +4,7 @@ import {useRoter} from "../hooks/commen"
 
 export function ResumeDetail() {
   const [ResumeDetailData, setResumeDetailData] = useState([]);
-  const {navigate, id} = useRoter();
+  const {onNavigate, id} = useRoter();
 
   useEffect(()=>{
     async function getResumeInfo() {
@@ -16,14 +16,14 @@ export function ResumeDetail() {
         console.log('구직자 상세 데이터를 불러오지 못 했습니다', error);
       }
     } getResumeInfo()
-  },[])
+  },[id])
 
   const onDeleteJob = (id) => async () => {
     try {
       const res = await axios.delete(`/api/resumes/${id}`);
       console.log(res);
       alert("삭제되었습니다.")
-      navigate(-1)
+      onNavigate(-1)()
     } catch (error) {
       console.log('데이터를 삭제하지 못했습니다', error);
     }
@@ -43,7 +43,7 @@ export function ResumeDetail() {
           {ResumeDetailData && ResumeDetailData.username}
           <button onClick={onDeleteJob(ResumeDetailData.id)}>삭제하기</button>
         <button onClick={onUpdateJob(ResumeDetailData.id)}>수정하기</button>
-      <button onClick={()=>{navigate('/')}}>홈으로</button>
+      <button onClick={onNavigate('/')}>홈으로</button>
 
     </div>
   )

@@ -6,7 +6,7 @@ import { getJobsDetailData, selectJobsDetail, updateJobsDetailData } from '../re
 
 export function JobDetail() {
   const JobDetailData = useSelector(selectJobsDetail)
-  const { navigate, id } = useRoter();
+  const { onNavigate, id } = useRoter();
   const dispatch = useDispatch()
   
   useEffect(()=>{
@@ -20,13 +20,11 @@ export function JobDetail() {
     } getJobInfo()
   },[])
 
-  const clickHandler = () => navigate('/');
-
   const onDeleteJob = (id) => async () => {
     try {
       await axios.delete(`/api/job/${id}`);
       alert("삭제되었습니다.")
-      navigate(-1)
+      onNavigate(-1)()
     } catch (error) {
       console.log('데이터를 삭제하지 못했습니다', error);
     }
@@ -49,7 +47,7 @@ export function JobDetail() {
         <button onClick={onDeleteJob(JobDetailData.id)}>삭제하기</button>
         <button onClick={onUpdateJob(JobDetailData.id)}>수정하기</button>
       </div>)}
-      <button onClick={()=>clickHandler}>홈으로</button>
+      <button onClick={onNavigate('/')}>홈으로</button>
     </div>
   )
 }

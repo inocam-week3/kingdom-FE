@@ -1,11 +1,11 @@
 import axios from 'axios'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import { useRoter } from '../hooks/commen';
 import { useDispatch, useSelector } from 'react-redux';
 import { getJobsData, selectJobsDate } from '../redux/modules/morkServer/morkJobsSlice';
 
 export function Job() {
-  const { navigate } = useRoter();
+  const { onNavigate } = useRoter();
   const dispatch = useDispatch()
   const jobDatas = useSelector(selectJobsDate)
   useEffect(()=>{
@@ -19,7 +19,7 @@ export function Job() {
       }
     }
     getJobInfo()
-  },[])
+  },[dispatch])
 
   return (
       <div>JobDatas
@@ -27,11 +27,11 @@ export function Job() {
           jobDatas && jobDatas.map((item)=>(
             <section key={item.id}>
               {item.title}
-              <button onClick={()=>{navigate(`/job/${item.id}`)}}>Detail</button>
+              <button onClick={onNavigate(`/job/${item.id}`)}>Detail</button>
             </section>
           ))
         }
-        <button onClick={()=>{navigate('/')}}>Home</button>
+        <button onClick={onNavigate('/')}>Home</button>
       </div>
   )
 }
