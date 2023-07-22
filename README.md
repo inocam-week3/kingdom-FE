@@ -81,3 +81,20 @@
 <details>
 <summary>(4) 트러블이슈 : 내용 (4)</summary>
 </details>
+
+
+## 프로젝트를 위한 회의 
+
+1. 
+    <details>
+    <summary>7월 22일(토요일) 프로젝트 2일차 회의</summary>
+
+    - 로그인 API연결
+    - Home -> 리덕스까지 확장 
+    - Jobs, resume, story -> 생성을 제외하고는 Morking API연결 -> 리덕스까지 확장 
+    - 전역 스타일 정리까지를 목표 
+        - max-width : 1070px
+        - 반응형 
+        - 공용 버튼 >> 이력서/공고 등록 색상만 다른데 > 이 버튼이 다른 곳에도 쓰이는지 
+        - 공용 인풋 
+    </details>

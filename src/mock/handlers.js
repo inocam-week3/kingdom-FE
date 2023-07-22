@@ -1,5 +1,7 @@
 import { rest } from "msw";
 import * as MockData from "./testData";
+import { useDispatch } from "react-redux";
+import { deleteJobsDate } from "../redux/modules/morkServer";
 
 export const handlers = [
   // login - 로그인 체크 (성공, 이메일 틀렸을 때, 비밀번호 틀렸을 때)
@@ -113,7 +115,6 @@ export const handlers = [
   // Job - JodDetatilData - DELETE
   rest.delete("/api/job/:id", async(req, res, ctx) => {
     const {id} = await req.params
-    // const findIndex = MockData.jobDetailMorkData.findIndex(jobs => jobs.id === +id)
     return res(
       ctx.status(200),
       ctx.json({
@@ -156,7 +157,7 @@ export const handlers = [
     // Resume - ResumeDetatil - GET
     rest.get("/api/resumes/:id", async(req, res, ctx) => {
       const {id} = await req.params
-      console.log("Resume - ResumeDetatil - GET", id)
+      // console.log("Resume - ResumeDetatil - GET", id)
       const find = MockData.resumeDetailData.find(jobs => jobs.id === +id)
       return res(
         ctx.status(200),
@@ -213,7 +214,7 @@ export const handlers = [
   // Stories - StoriesDetatil - GET
   rest.get("/api/stories/:id", async(req, res, ctx) => {
     const {id} = await req.params
-    console.log("Resume - ResumeDetatil - GET", id)
+    // console.log("Resume - ResumeDetatil - GET", id)
     const find = MockData.storyDetailData.find(jobs => jobs.id === +id)
     return res(
       ctx.status(200),
