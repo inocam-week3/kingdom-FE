@@ -21,8 +21,9 @@ function App() {
           <Route path="resumewrite" element={<Pages.ResumeWrite />} />
           <Route path="storywrite" element={<Pages.StoryWrite />} />
         </Route>
+        <Route path="*" element={<Pages.NotFound />} />
       </Route>
-      <Route path="*" element={<Pages.NotFound />} />
+      
     </Routes>
   );
 }

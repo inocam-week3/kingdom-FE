@@ -1,9 +1,23 @@
 import { createGlobalStyle, css, styled } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+  html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li, fieldset, form, label, legend, article,figure, figcaption, footer, header,nav, section {
+  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: none;
+	text-decoration: none;
+  font-size: 14px;
+  ol, ul {list-style:none};
+  
+  color: rgb(29, 29, 31);
+}
 
-`
-
+body {
+	width: 100%;
+	height: 100%;
+}
+`;
 
 export const Flex = css`
   display: flex;

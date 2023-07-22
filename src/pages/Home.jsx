@@ -12,8 +12,8 @@ export function Home() {
 
 
   return (
-    <div>
-      <p>HomeDataJobs</p>
+    <div style={{height:"200vh"}}> 
+      {/* <p>HomeDataJobs</p>
       {
         selectHomeJobs && selectHomeJobs.map((item)=> (
           <section key={item.id}>
@@ -28,7 +28,7 @@ export function Home() {
         selectHomeStories && selectHomeStories.map((item)=><div key={item.id}>
           {item.content}</div>
           )
-      }
+      } */}
     </div>
   )
 }

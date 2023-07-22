@@ -98,3 +98,56 @@
         - 공용 버튼 >> 이력서/공고 등록 색상만 다른데 > 이 버튼이 다른 곳에도 쓰이는지 
         - 공용 인풋 
     </details>
+
+- 헤더 살펴보기 
+    
+  ```jsx
+  /*
+    html, body 
+    margin: 0;
+    padding: 0;
+
+    body
+    font-size: 13px;
+    font-family: 'Malgun Gothic',-apple-system,BlinkMagSystemFont,'AppleGothicNeoSD','Microsoft NeoGothic','Droid sans',Sans-serif;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    background: #f7f7f7; 
+  */
+
+  // width, hegith, position
+
+  // ------------------------------------------------------------------ @media (min-width) : 700px, 보다 작아지면 display: none
+  <div /> 최상단 배너 : (미숙) 1260, 70px,relative
+    - 경로 : assets > img > homeTopNavBanner.png
+    - <div /> 이미지 담은 공간 -> <figure /> -> 그 위에 <a />  글자 색상을 투명으로 하고, 링크를 연결
+    - <a /> 7일간 보지 않기 
+  <div> 헤더1 Outline :
+  width : 100%, min-width : 1260
+  
+   logo : width : 151(px)
+    max-length : "20"
+
+     - <div> Inner : 1260 * 110 (px) , relative
+            - <h1> 로고 : , , absolute
+                <a =>'/'>
+                    <img>
+              경로 : assets > img > HeavenLogo.png
+            - <div> 검색어 500(px) , 
+            <input 355 (px)>, // 검색 BiSearch
+            - <ul> 연관검색어 650{px} , ,
+            - <ul> 로그인, 회원가입 , , absolute
+
+  <div> 헤더2 Outline : 100%, , relative   -> body.scroll => position:fixed
+    - <div> 헤더1 Inner : 1260, 56(px) , 
+        - <ul> 네비게이션 : , , , float:left
+        - <ul> 이력서 및 공고 등록 , , , float:right
+              -<li> float:left
+                    <a> height:36(px)
+
+  // ------------------------------------------------------------------ @media (max-width) : 700px, 보다 커지면 display: none
+  - 베너는 없고
+  <div> 헤더1
+  <div> 헤더2
+```  
+    
