@@ -70,7 +70,10 @@
 ### 3. 트러블 슈팅
 
 <details>
-<summary>(1) 트러블이슈 : 내용 (1)</summary>
+<summary>(1) 트러블이슈 : 내용 (1) github 파일에러  </summary>
+
+- 기존의 파일 변경시, github에서 대소문자 구분을 하지 못하여 반영되지 못하는 사레 
+- [참고][https://papababo.tistory.com/entry/git-은-폴더파일명의-대소문자를-개무시한다-그럼-우째]하여 문제 해결
 </details>
 <details>
 <summary>(2) 트러블이슈 : 내용 (2)</summary>
