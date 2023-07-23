@@ -6,6 +6,7 @@ import { HeaderNavBottom } from "./HeaderNavBottom";
 import { HeaderBanner } from "./HeaderBanner";
 import { PageLayout } from "../common";
 import { HeaderOutline } from "./headerStyle";
+import { Footer } from "../footer";
 
 export function Header() {
   return (
@@ -20,6 +21,7 @@ export function Header() {
           <HeaderNavBottom/>
         </HeaderOutline>
         <Outlet />
+        <Footer/>
       </PageLayout>
     </>
   );

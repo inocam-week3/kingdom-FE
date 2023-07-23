@@ -57,6 +57,7 @@ export function AuthLoginBody() {
               )}
             </Auth.LoginBox>
           </div>
+          {/* ** 로그인 관련 상세정보 **  */}
           <div
             className="loginBox"
             children={<LoginInfo $state={personal} />}

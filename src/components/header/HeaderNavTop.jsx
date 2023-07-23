@@ -30,13 +30,13 @@ export function HeaderNavTop() {
         />
         <Comm.AlbaIcons />
       </Comm.Form>
-      <Comm.CustomUl $type="headerAuth">
+      <Comm.CustomUl $type="bottomLine">
         <Comm.Customli
           $type="headerAuth"
           children={<div onClick={onNavigate("/login")}>로그인</div>}
         />
         <Comm.Customli
-          $type="headerAuth"
+          $type="bottomLine"
           $before="horizon"
           children={<p>회원가입</p>}
         />
