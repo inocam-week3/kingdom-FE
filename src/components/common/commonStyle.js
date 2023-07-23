@@ -169,7 +169,7 @@ const Customli = styled.li`
   }
   &:hover {
     ${({ $type }) =>
-      $type === "headerAuth" &&
+      $type === "bottomLine" &&
       css`
         div, p {
           border-bottom: 1px solid black;
@@ -187,6 +187,8 @@ const Customli = styled.li`
   &:hover .bottomLine {
     background-color: yellow;
   }
+
+  /* ${({$type}) => $type==="footer" && css`padding: 0 26px;`} */
 `;
 
 const Button = styled.div`
