@@ -26,8 +26,8 @@ jobs:
 
       - name: Build React app
         run: |
-          yarn install
-          yarn build   
+          npm install
+          npm build   
 
       - name: Deploy to S3 bucket
         run: |
