@@ -4,6 +4,9 @@ import { useRoter } from '../hooks/commen';
 import { useDispatch, useSelector } from 'react-redux';
 import { getJobsData, selectJobsDate } from '../redux/modules/morkServer/morkJobsSlice';
 
+import * as JS from '../components/job/jobStyle'
+import { JobInfo } from '../components/job/JobInfo';
+
 export function Job() {
   const { onNavigate } = useRoter();
   const dispatch = useDispatch()
@@ -20,19 +23,48 @@ export function Job() {
     }
     getJobInfo()
   },[dispatch])
+// JobDatas {
+//   jobDatas && jobDatas.map((item)=>(
+//     <section key={item.id}>
+//       {item.title}
+//       <button onClick={onNavigate(`/job/${item.id}`)}>Detail</button>
+//     </section>
+//   ))
+// }
 
   return (
-      <div>JobDatas
-        {
-          jobDatas && jobDatas.map((item)=>(
-            <section key={item.id}>
-              {item.title}
-              <button onClick={onNavigate(`/job/${item.id}`)}>Detail</button>
-            </section>
-          ))
-        }
-        <button onClick={onNavigate('/')}>Home</button>
-      </div>
+      <JS.JobBody $fd="column">
+        <JS.JobListTitle>
+          <strong>일반 채용정보</strong>
+          |
+          <span $before="horizon"> 총 <strong>{jobDatas.length}</strong> 건</span>
+        </JS.JobListTitle>
+        <JS.SortTypeList>정렬조건</JS.SortTypeList>
+        <JS.JobInfoTable>
+          <thead>
+            <tr>
+              <th>근무지</th>
+              <th>회사명/공고제목</th>
+              <th>급여</th>
+              <th>등록일</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              jobDatas && jobDatas.map((item)=>(
+                <JobInfo key={item.id}
+                  local={item.local}
+                  companyname={item.companyname}
+                  title={item.title}
+                  salary={item.salary}
+                  createAt={item.createAt}
+                  onClick={onNavigate(`/job/${item.id}`)}>
+                  {item.title}
+                </JobInfo>
+            ))}
+          </tbody>
+        </JS.JobInfoTable>
+      </JS.JobBody>
   )
 }
 
