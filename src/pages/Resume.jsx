@@ -1,6 +1,7 @@
-import axios from 'axios'
-import React, {useEffect, useState} from 'react'
-import { useRoter } from '../hooks/commen'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useRoter } from "../hooks/commen";
+import ResumeBanner from "../components/resume/ResumeBanner";
 
 export function Resume() {
   const {onNavigate} = useRoter()
@@ -19,7 +20,8 @@ export function Resume() {
   },[])
 
   return (
-    <div>Resume
+    <div>
+      <ResumeBanner />
       <button onClick={onNavigate(`/`)}>HOME</button>
       {
         resumes && resumes.map((item)=>
