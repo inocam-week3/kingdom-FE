@@ -1,10 +1,7 @@
-import React from "react";
-import { ResumeForm } from "../components/resume";
+import React from 'react'
 
 export function ResumeWrite() {
   return (
-    <>
-      <ResumeForm />
-    </>
-  );
+    <div>ResumeWrite</div>
+  )
 }

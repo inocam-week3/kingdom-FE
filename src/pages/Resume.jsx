@@ -1,38 +1,37 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useRoter } from "../hooks/commen";
+import axios from 'axios'
+import React, {useEffect, useState} from 'react'
+import { useRoter } from '../hooks/commen'
 
 export function Resume() {
-  const { onNavigate } = useRoter();
-  const [resumes, setResumes] = useState([]);
-  useEffect(() => {
-    async function getResumeData() {
-      try {
-        const res = await axios.get(`/api/resumes`);
-        setResumes(res.data.info);
-      } catch (error) {
-        console.log("데이터를 가져오지 못했습니다.");
+  const {onNavigate} = useRoter()
+  const [resumes, setResumes] = useState([])
+  useEffect(()=>{
+    async function getResumeData(){
+      try{
+        const res = await axios.get(`/api/resumes`)
+        setResumes(res.data.info)
+      }
+      catch (error) {
+        console.log("데이터를 가져오지 못했습니다.")
       }
     }
-    getResumeData();
-  }, []);
+    getResumeData()
+  },[])
 
   return (
-    <div>
-      Resume
+    <div>Resume
       <button onClick={onNavigate(`/`)}>HOME</button>
-      {resumes &&
-        resumes.map((item) => (
-          <section key={item.id} onClick={onNavigate(`/resume/${item.id}`)}>
-            <div>
-              {item.username}
-              <p>{item.gender}</p>
-            </div>
-            <div>
-              <h2>{item.content}</h2>
-            </div>
+      {
+        resumes && resumes.map((item)=>
+          <section key={item.id}
+            onClick={onNavigate(`/resume/${item.id}`)}>
+            {item.username}
           </section>
-        ))}
+        )
+      }
+
+
     </div>
-  );
+  )
 }
+

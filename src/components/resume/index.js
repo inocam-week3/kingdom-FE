@@ -1,2 +1,1 @@
-export * from "./resumeStyle";
-export * from "./ResumeForm";
+export * from './resumeStyle'
