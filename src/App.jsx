@@ -2,13 +2,13 @@ import React from "react";
 import * as Pages from "./pages";
 import { Header } from "./components/common";
 import { Route, Routes } from "react-router-dom";
+import { AuthSignupMain } from "./components/auth";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Header />}>
         <Route index element={<Pages.Home />} />
-        <Route path="signup" element={<Pages.Signup />} />
         <Route path="job" element={<Pages.Job />} />
         <Route path="resume" element={<Pages.Resume />} />
         <Route path="story" element={<Pages.Story />} />
@@ -23,7 +23,13 @@ function App() {
         </Route>
         <Route path="*" element={<Pages.NotFound />} />
       </Route>
-      <Route path="login" element={<Pages.Login />} />
+      <Route path="/login" element={<Pages.Login />} />
+      <Route path="/signup" element={<Pages.SignupHeader />} >
+        <Route index element={<AuthSignupMain />} />
+        <Route path="personal" element={<Pages.SignupPersonal />} />
+        <Route path="company" element={<Pages.SignupCompany />} />  
+      </Route>
+      
     </Routes>
   );
 }
