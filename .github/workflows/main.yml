@@ -6,6 +6,8 @@ on:
       - dev
 
 jobs:
+  env:
+    CI: ""
   deploy:
     runs-on: ubuntu-latest
     steps:
@@ -19,21 +21,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}  
           
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18.13.0'
-
       - name: Build
-        run: yarn build
-        env:
-          CI: ""
-#           npm install -g yarn
-#           yarn install --immutable
-          
-
-
-
+        run: |
+          npm install -g yarn
+          yarn install --immutable
+          yarn build
+        
       - name: Deploy to S3 bucket
         run: |
           aws s3 sync build/ s3://inocam-week6

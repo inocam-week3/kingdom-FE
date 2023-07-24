@@ -12,7 +12,7 @@ export function Story() {
         const res = await axios.get('/api/stories')
         setStory(res.data.info)
       } catch (error) {
-        console.log('알바썰을 가져오지 못 했습니다.',error)
+        console.log('error',error.response.data.info) // 서버 messgae가 아니라, 코드가? 
       }
     }
     getStoryData()
@@ -27,7 +27,6 @@ export function Story() {
         </section>
       ))
       }
-
     </div>
   )
 }
