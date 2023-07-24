@@ -8,10 +8,13 @@ import { BrowserRouter } from "react-router-dom";
 import { GlobalStyle, theme } from "./components/common";
 import { ThemeProvider } from "styled-components";
 
-if (process.env.NODE_ENV === "development") {
+// if (process.env.NODE_ENV === "development") {
+//   const { worker } = require("./mock/broswer");
+//   worker.start();
+// }
+
   const { worker } = require("./mock/broswer");
   worker.start();
-}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
