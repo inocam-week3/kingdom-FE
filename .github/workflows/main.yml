@@ -6,8 +6,8 @@ on:
       - dev
 
 jobs:
-  env:
-    CI: ""
+#   env:
+#     CI: ""
   deploy:
     runs-on: ubuntu-latest
     steps:
