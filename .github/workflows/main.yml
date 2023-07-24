@@ -28,7 +28,9 @@ jobs:
         run: |
           npm install -g yarn
           yarn install --immutable
-          yarn run build
+          yarn build
+            env:
+            CI: ""
 
 
       - name: Deploy to S3 bucket
