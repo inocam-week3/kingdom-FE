@@ -28,7 +28,7 @@ jobs:
         run: |
           npm install -g yarn
           yarn install
-          yarn delpoy
+          yarn deploy
 
 
 #       - name: Deploy to S3 bucket
