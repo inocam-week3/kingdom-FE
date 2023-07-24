@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import axios from 'axios';
-import { useRoter } from '../hooks/commen';
+import { useRouter } from '../hooks/commen';
 import { useDispatch, useSelector } from 'react-redux';
 import { getJobsDetailData, selectJobsDetail, updateJobsDetailData } from '../redux/modules/morkServer';
 
 export function JobDetail() {
   const JobDetailData = useSelector(selectJobsDetail)
-  const { onNavigate, id } = useRoter();
+  const { onNavigate, id } = useRouter();
   const dispatch = useDispatch()
   
   useEffect(()=>{

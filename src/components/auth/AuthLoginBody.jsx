@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import * as Comm from "../common";
 import * as Auth from "./authStyle";
-import { useAuthHeader, useRoter } from "../../hooks/commen";
+import { useAuthHeader, useRouter } from "../../hooks/commen";
 import { LoginInfo } from "./LoginInfo";
 import { AuthLoginForm } from "./AuthLoginForm";
 import { AuthLoginUtils } from "./AuthLoginUtils";
 
 export function AuthLoginBody() {
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
   const { snsLogin } = useAuthHeader();
   const [personal, setPorsonal] = useState(false);
+
+  
 
   return (
     <Comm.Selection>

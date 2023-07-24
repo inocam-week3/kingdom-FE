@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
-import { useRoter } from '../hooks/commen';
+import { useRouter } from '../hooks/commen';
 
 export function StoryDetail() {
-  const { onNavigate, id } = useRoter();
+  const { onNavigate, id } = useRouter();
   const [storyDetailData, setstoryDetailData] = useState([])
 
   useEffect(()=>{

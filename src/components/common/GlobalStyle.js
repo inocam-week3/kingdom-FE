@@ -51,6 +51,12 @@ export const Layout = css`
   margin: 0 auto;
 `;
 
+export const Grid = css`
+  display: grid;
+  grid-template-columns: ${({$gtc})=>$gtc ? $gtc : "1fr 1fr"};
+`
+
+
 /* About Div styled ---------------------------------------------- */
 const FlexBox = styled.div`
   ${Flex}

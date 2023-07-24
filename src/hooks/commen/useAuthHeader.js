@@ -12,7 +12,7 @@ export const useAuthHeader = () => {
     },
     {
       size: 16,
-      path: "story",
+      path: "stories/1",
       NavTitle: "알바스토리",
     },
   ];

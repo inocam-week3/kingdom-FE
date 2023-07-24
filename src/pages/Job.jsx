@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, {useEffect} from 'react'
-import { useRoter } from '../hooks/commen';
+import { useRouter } from '../hooks/commen';
 import { useDispatch, useSelector } from 'react-redux';
 import { getJobsData, selectJobsDate } from '../redux/modules/morkServer/morkJobsSlice';
 
@@ -8,7 +8,7 @@ import * as JS from '../components/job/jobStyle'
 import { JobInfo } from '../components/job/JobInfo';
 
 export function Job() {
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
   const dispatch = useDispatch()
   const jobDatas = useSelector(selectJobsDate)
   useEffect(()=>{
