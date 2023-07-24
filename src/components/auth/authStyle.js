@@ -166,6 +166,7 @@ const AuthSiguupLayout = styled(AuthLayout)`
   padding: 0 40px 60px;
   border: 1px solid #eaedf3;
   background: #fff;
+  font-family: "HakgyoansimWoojuR";
 `;
 
 const AuthSignupTitle = styled.h1`
@@ -231,6 +232,53 @@ const AuthSignupBottomBtn = styled.div`
   border-radius: 8px;
 `;
 
+const AuthSection = styled.div`
+  
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+`;
+
+const AuthInput = styled.input`
+  display: block;
+  outline: none;
+  width: 100%;
+  height: 54px;
+  margin: 0;
+  padding-left: 16px;
+  padding-top: 20px;
+
+  font-size: 14px;
+  color: #000;
+`;
+
+const AuthLabel = styled.label`
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  color: #9096a1;
+  font-size: 12px;
+  line-height: 1;
+`;
+
+const PasswordToggleBtn = styled.div`
+  ${cursor}
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 12px;
+  font-size: 20px;
+`;
+
+const ValidateInputMsg = styled.div`
+  color : ${({$color}) => $color ? "green" : "red"}
+`
+
+
 export {
   AuthLayout,
   AuthTitle,
@@ -246,4 +294,9 @@ export {
   AuthSignupTitle,
   AuthSignupType,
   AuthSignupBottomBtn,
+  AuthSection,
+  AuthInput,
+  AuthLabel,
+  PasswordToggleBtn,
+  ValidateInputMsg
 };

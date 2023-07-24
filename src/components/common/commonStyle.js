@@ -208,10 +208,9 @@ const Customli = styled.li`
 
 const Button = styled.div`
   ${cursor}
-
   border-radius: 6px;
 
-  ${({ $type, $state, $fcolor, $color }) =>
+  ${({ $type, $state, $fcolor, $color, theme }) =>
     $type === "header"
       ? css`
           font-weight: bold;
@@ -234,21 +233,36 @@ const Button = styled.div`
           ${Flex}
           width: 110px;
           height: 96px;
-          border: 1px solid #ffe000;
-          background-color: #fff230;
+          border: 1px solid ${theme.color.yellow};
+          background-color: ${theme.color.lightyellow};
           color: #222;
           font-size: 18px;
         `
-      : css`
+      : $type === "login" && !$state
+      ? css`
           ${Flex}
           width: 110px;
           height: 96px;
-          background-color: #3396fe;
-          border: 1px solid #2e89e5;
+          background-color: ${theme.color.blue};
+          border: 1px solid ${theme.color.lightblue};
           color: #fff;
           font-size: 18px;
+        `
+      : $type === "authSignup" &&
+        css`
+          ${Flex}
+          width: 100%;
+          border: 1px solid ${$color ? theme.color.yellow : theme.color.blue};
+          background-color: ${$color ? theme.color.lightyellow : theme.color.lightblue};
+          color: ${$color ? theme.color.black363 : theme.color.white};;
+          height: 50px;
+          font-size: 20px;
+          font-weight: 800;
+          line-height: 50px;
         `}
 `;
+
+//AuthSignup
 
 export {
   PageLayout,

@@ -2,6 +2,7 @@ import React from "react";
 import * as Pages from "./pages";
 import { Header } from "./components/common";
 import { Route, Routes } from "react-router-dom";
+import { AuthSignupMain } from "./components/auth";
 
 function App() {
   return (
@@ -23,8 +24,8 @@ function App() {
         <Route path="*" element={<Pages.NotFound />} />
       </Route>
       <Route path="/login" element={<Pages.Login />} />
-      <Route path="/signup">
-        <Route index element={<Pages.SignupHeader />} />
+      <Route path="/signup" element={<Pages.SignupHeader />} >
+        <Route index element={<AuthSignupMain />} />
         <Route path="personal" element={<Pages.SignupPersonal />} />
         <Route path="company" element={<Pages.SignupCompany />} />  
       </Route>
