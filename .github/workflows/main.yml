@@ -27,7 +27,7 @@ jobs:
       - name: Build React app
         run: |
           npm install
-          npm build   
+          npm run build   
 
       - name: Deploy to S3 bucket
         run: |
