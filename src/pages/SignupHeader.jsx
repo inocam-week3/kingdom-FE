@@ -2,6 +2,7 @@ import React from "react";
 import * as Comm from "../components/common";
 import { useAuthHeader, useRoter } from "../hooks/commen";
 import * as Auth from "../components/auth";
+import { Outlet } from "react-router-dom";
 
 export function SignupHeader() {
   const { signupNavLink } = useAuthHeader();
@@ -27,7 +28,7 @@ export function SignupHeader() {
         )}
       </Auth.AuthHeader>
       {/* ** Body **  */}
-      <Auth.AuthSignupBody />
+      <Outlet />
     </Comm.PageLayout>
   );
 }

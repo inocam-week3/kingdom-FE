@@ -5,7 +5,7 @@ import { SignupTypeIcons } from "./SignupTypeIcons";
 import { SignupSNSIcons } from "./SignupSNSIcons";
 import { useRoter } from "../../hooks/commen";
 
-export function AuthSignupBody() {
+export function AuthSignupMain() {
   const { onNavigate } = useRoter();
   return (
     <Comm.Selection>
