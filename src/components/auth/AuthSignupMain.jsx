@@ -3,10 +3,10 @@ import * as Comm from "../common";
 import * as Auth from "./authStyle";
 import { SignupTypeIcons } from "./SignupTypeIcons";
 import { SignupSNSIcons } from "./SignupSNSIcons";
-import { useRoter } from "../../hooks/commen";
+import { useRouter } from "../../hooks/commen";
 
 export function AuthSignupMain() {
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
   return (
     <Comm.Selection>
       <Auth.AuthSiguupLayout>

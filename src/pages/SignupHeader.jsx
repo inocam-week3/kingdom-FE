@@ -1,12 +1,12 @@
 import React from "react";
 import * as Comm from "../components/common";
-import { useAuthHeader, useRoter } from "../hooks/commen";
+import { useAuthHeader, useRouter } from "../hooks/commen";
 import * as Auth from "../components/auth";
 import { Outlet } from "react-router-dom";
 
 export function SignupHeader() {
   const { signupNavLink } = useAuthHeader();
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
   return (
     <Comm.PageLayout $width="820px">
       {/* ** Header **  */}
@@ -58,6 +58,6 @@ export function SignupHeader() {
 //   setInputValue({...inputValue, [name]:value})
 // }
 
-// const onClickLogin = (sns) => () => {
-//   window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=ca694ae46e22b997351afa5a92c6c63a&response_type=code&redirect_uri=http://localhost:8080/api/auth/${sns}`
-// }
+const onClickLogin = (sns) => () => {
+  window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=ca694ae46e22b997351afa5a92c6c63a&response_type=code&redirect_uri=http://localhost:8080/api/auth/${sns}`
+}

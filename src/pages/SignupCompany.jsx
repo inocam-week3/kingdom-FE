@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import * as Comm from "../components/common";
 import * as Auth from "../components/auth";
-import { useRoter } from "../hooks/commen";
+import { useRouter } from "../hooks/commen";
 
 export function SignupCompany() {
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
   const [showPW, setShowPw] = useState(false);
   const [gender, setGender] = useState("male");
 

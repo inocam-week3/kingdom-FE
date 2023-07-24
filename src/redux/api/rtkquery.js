@@ -6,14 +6,16 @@ const axiosBaseQuery =
   async ({ url, method, data, types }) => {
     try {
       switch (types) {
-        case "login":
+        case "Auth":
           const auth = await instance({ method, url, data });
+          console.log("로그인/회원가입 성공", auth);
           return { data: auth.data };
         default:
           const res = await instance({ method, url, data });
           return { data: res.data };
       }
     } catch (error) {
+      console.log("로그인/회원가입 실패", error.response);
       const serializedError = {
         message: error.message,
         name: error.name,
@@ -25,7 +27,7 @@ const axiosBaseQuery =
 
   export const heavenRTKQuery = createApi({
     baseQuery: axiosBaseQuery(),
-    tagTypes: ["POSTS"],
+    tagTypes: ["LOGIN"],
     endpoints: (builder) => ({
       // Login
       loginRTK: builder.mutation({
@@ -33,7 +35,17 @@ const axiosBaseQuery =
           url: "/api/auth/login",
           method: "post",
           data: payload,
-          types: "login",
+          types: "Auth",
+        }),
+      }),
+
+      // SignUp
+      signupRTK: builder.mutation({
+        query: (payload) => ({
+          url: "/api/auth/signup",
+          method: "post",
+          data: payload,
+          types: "Auth",
         }),
       }),
     }),
@@ -41,6 +53,7 @@ const axiosBaseQuery =
   
   export const {
     useLoginRTKMutation,
+    useSignupRTKMutation,
 
   } = heavenRTKQuery;
   

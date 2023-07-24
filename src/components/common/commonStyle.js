@@ -6,6 +6,9 @@ const PageLayout = styled.div`
   margin: 0 auto;
 `;
 
+
+
+
 const FigureImg = styled.figure`
   width: ${({ $width }) => ($width ? $width : "100%")};
   overflow: hidden;

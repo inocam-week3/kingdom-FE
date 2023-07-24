@@ -1,9 +1,9 @@
 import React from 'react'
-import { useRoter } from '../../hooks/commen';
+import { useRouter } from '../../hooks/commen';
 import * as Comm from '../common';
 
 export const HeaderWriteBtn = ({ color, fcolor, path, text }) => {
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
   return (
     <Comm.Button
       $type="header"
