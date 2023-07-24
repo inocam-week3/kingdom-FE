@@ -1,11 +1,11 @@
 import React from "react";
 import * as Comm from "../common";
 import { NavBotom } from "../header/headerStyle";
-import { useAuthLoginHeader, useRoter } from "../../hooks/commen";
+import { useRoter } from "../../hooks/commen";
 
-export function AuthHeader() {
+export function AuthHeader({children}) {
   const { onNavigate } = useRoter();
-  const { navLink } = useAuthLoginHeader();
+
   return (
     <NavBotom $color={Comm.theme.color.black363} $width="820px">
       <Comm.FlexBox $jc="space-between" style={{ width: "100%" }}>
@@ -22,16 +22,19 @@ export function AuthHeader() {
         />
 
         <Comm.CustomUl $type="login">
-          {navLink.map(({ size, path, NavTitle }) => (
-            <Comm.Customli key={NavTitle} size={size}>
-              <Comm.FlexBox onClick={onNavigate(`/${path}`)}>
-                <p>{NavTitle}</p>
-                <div className="bottomLine"></div>
-              </Comm.FlexBox>
-            </Comm.Customli>
-          ))}
+          {children}
         </Comm.CustomUl>
       </Comm.FlexBox>
     </NavBotom>
   );
 }
+
+
+// {navLink.map(({ size, path, NavTitle }) => (
+//   <Comm.Customli key={NavTitle} size={size}>
+//     <Comm.FlexBox onClick={onNavigate(`/${path}`)}>
+//       <p>{NavTitle}</p>
+//       <div className="bottomLine"></div>
+//     </Comm.FlexBox>
+//   </Comm.Customli>
+// ))}

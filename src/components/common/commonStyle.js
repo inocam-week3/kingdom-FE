@@ -6,7 +6,6 @@ const PageLayout = styled.div`
   margin: 0 auto;
 `;
 
-
 const FigureImg = styled.figure`
   width: ${({ $width }) => ($width ? $width : "100%")};
   overflow: hidden;
@@ -118,7 +117,18 @@ const SNSIcon = styled(AlbaIcon)`
   img {
     width: 210px;
   }
-`
+`;
+const SignupTypeIcon = styled(AlbaIcon)`
+  img {
+    width: 100px;
+  }
+`;
+
+const SignupSNSIcon = styled(AlbaIcon)`
+  img {
+    width: 160px;
+  }
+`;
 
 const CustomUl = styled.ul`
   ${Flex}
@@ -171,7 +181,8 @@ const Customli = styled.li`
     ${({ $type }) =>
       $type === "bottomLine" &&
       css`
-        div, p {
+        div,
+        p {
           border-bottom: 1px solid black;
         }
       `}
@@ -188,7 +199,11 @@ const Customli = styled.li`
     background-color: yellow;
   }
 
-  /* ${({$type}) => $type==="footer" && css`padding: 0 26px;`} */
+  /* ${({ $type }) =>
+    $type === "footer" &&
+    css`
+      padding: 0 26px;
+    `} */
 `;
 
 const Button = styled.div`
@@ -243,6 +258,8 @@ export {
   AlbaIcon,
   LoginIcon,
   SNSIcon,
+  SignupTypeIcon,
+  SignupSNSIcon,
   CustomUl,
   Customli,
   Button,

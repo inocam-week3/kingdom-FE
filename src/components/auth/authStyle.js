@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 import { Flex, cursor } from "../common";
 
 const AuthLayout = styled.div`
@@ -157,11 +157,79 @@ const SNSBtn = styled.div`
 
   p {
     text-align: center;
-    width: 50px
+    width: 50px;
   }
 `;
 
-//$type="loginWrite"
+const AuthSiguupLayout = styled(AuthLayout)`
+  margin: 40px auto 50px;
+  padding: 0 40px 60px;
+  border: 1px solid #eaedf3;
+  background: #fff;
+`;
+
+const AuthSignupTitle = styled.h1`
+  position: relative;
+  padding: 30px 0 16px;
+  margin: 0 auto 30px;
+  border-bottom: 1px solid #eaedf3;
+  font-family: "yg-jalnan";
+  font-size: 26px;
+  text-align: center;
+  letter-spacing: 0;
+  color: #222;
+`;
+
+const AuthSignupType = styled.div`
+  width: 100%;
+
+  .signupClickArea {
+    ${cursor}
+  }
+
+  .signupType {
+    ${Flex}
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid #e1e7f0;
+    padding: 32px 0;
+    border-bottom: 0;
+    border-radius: 8px 8px 0 0;
+
+    h3 {
+      font-family: "yg-jalnan";
+    }
+  }
+
+  .signupbtn {
+    ${Flex}
+    font-family: "yg-jalnan";
+    height: 50px;
+    font-size: 16px;
+    border: 1px solid;
+    border-radius: 0 0 8px 8px;
+
+    ${({ $signupbtnColor, theme }) =>
+      $signupbtnColor === "yellow"
+        ? css`
+            border-color: ${theme.color.yellow};
+            background: ${theme.color.lightyellow};
+          `
+        : $signupbtnColor === "blue" &&
+          css`
+            border-color: ${theme.color.blue};
+            background: ${theme.color.lightblue};
+            color: ${theme.color.white};
+          `}
+  }
+`;
+const AuthSignupBottomBtn = styled.div`
+  ${Flex}
+  overflow: hidden;
+  margin-top: 15px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+`;
 
 export {
   AuthLayout,
@@ -174,4 +242,8 @@ export {
   LogintypeBtn,
   SNSLogin,
   SNSBtn,
+  AuthSiguupLayout,
+  AuthSignupTitle,
+  AuthSignupType,
+  AuthSignupBottomBtn,
 };
