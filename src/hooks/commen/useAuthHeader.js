@@ -1,20 +1,33 @@
-export const useAuthLoginHeader = () => {
-  const navLink = [
+export const useAuthHeader = () => {
+  const loginNavLink = [
     {
       size: 16,
-      path: "/job",
+      path: "job",
       NavTitle: "사용정보",
     },
     {
       size: 16,
-      path: "/resume",
+      path: "resume",
       NavTitle: "인재정보",
     },
     {
       size: 16,
-      path: "/story",
+      path: "story",
       NavTitle: "알바스토리",
     },
+  ];
+
+  const signupNavLink = [
+    {
+      size: 16,
+      path: "",
+      NavTitle: "HOME",
+    },
+    {
+      size: 16,
+      path: "login",
+      NavTitle: "로그인",
+    }
   ];
 
   const snsLogin = [
@@ -44,6 +57,6 @@ export const useAuthLoginHeader = () => {
     }
   ]
 
-  return { navLink , snsLogin };
+  return { loginNavLink, signupNavLink, snsLogin };
 };
     
