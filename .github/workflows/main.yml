@@ -30,7 +30,7 @@ jobs:
           yarn install --immutable
           yarn build
             env:
-            CI: ""
+              CI: ""
 
 
       - name: Deploy to S3 bucket
