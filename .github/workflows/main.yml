@@ -26,9 +26,11 @@ jobs:
 
       - name: Build React app
         run: |
-          npm install
-          npm run build   
+          npm install -g yarn
+          yarn install
+          yarn delpoy
 
-      - name: Deploy to S3 bucket
-        run: |
-          aws s3 sync build/ s3://inocam-week6
+
+#       - name: Deploy to S3 bucket
+#         run: |
+#           aws s3 sync build/ s3://inocam-week6
