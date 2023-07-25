@@ -3,10 +3,13 @@ import * as Auth from "./authStyle";
 import * as Comm from "../common";
 import { useLoginRTKMutation } from "../../redux/api";
 import { useRouter } from "../../hooks/commen";
+import { useDispatch } from "react-redux";
+import { setDecodeToken } from "../../redux/modules/tokenSlice";
 
 export function AuthLoginForm({ personal }) {
   const [onGetLogin, { data, isError, isSuccess, error }] = useLoginRTKMutation()
   const { onNavigate } = useRouter();
+  const dispatch = useDispatch()
   const [loginValue, setLoginValue] = useState({
     email:"",
     password:""
@@ -18,20 +21,17 @@ export function AuthLoginForm({ personal }) {
   }
 
   const onSubmitLogin = (e) => {
-    console.log("동작? ")
     e.preventDefault();
     onGetLogin(loginValue)
   };
 
   useEffect(()=>{
     if (isSuccess) {
-      alert(data);
       onNavigate(-1)();
     } else {
-      console.log("회원가입 실패", error?.message);
+      console.log("회원가입 실패", error);
     }
-  },[data, isError, isSuccess, error])
-
+  },[onNavigate, data, isError, isSuccess, error])
 
   return (
     <Auth.LoginWriteLayout

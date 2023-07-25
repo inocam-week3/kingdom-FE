@@ -22,4 +22,4 @@ const tokenSlice = createSlice({
 
 export default tokenSlice.reducer
 export const selectToken = (state) => state.tokenSlice
-export const { setToken, deleteToken } = tokenSlice.actions
+export const { setDecodeToken, deleteToken } = tokenSlice.actions

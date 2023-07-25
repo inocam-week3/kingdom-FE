@@ -13,9 +13,6 @@ import { ThemeProvider } from "styled-components";
 //   worker.start();
 // }
 
-  // const { worker } = require("./mock/broswer");
-  // worker.start();
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThemeProvider theme={theme}>
