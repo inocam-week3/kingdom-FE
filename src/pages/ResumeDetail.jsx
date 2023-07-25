@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react"
 import axios from "axios";
-import {useRoter} from "../hooks/commen"
+import {useRouter} from "../hooks/commen"
 
 export function ResumeDetail() {
   const [ResumeDetailData, setResumeDetailData] = useState([]);
-  const {onNavigate, id} = useRoter();
+  const {onNavigate, id} = useRouter();
 
   useEffect(()=>{
     async function getResumeInfo() {

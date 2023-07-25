@@ -1,9 +1,9 @@
 import React from "react";
 import * as Comm from "../common";
-import { useRoter } from "../../hooks/commen";
+import { useRouter } from "../../hooks/commen";
 
 export function AuthLoginUtils() {
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
   return (
     <Comm.CustomUl style={{ marginTop: "30px" }}>
       <Comm.Customli size={16}>

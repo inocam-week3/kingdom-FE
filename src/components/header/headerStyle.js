@@ -15,7 +15,7 @@ const NavTop = styled.div`
 const NavBotom = styled.div`
   ${Flex}
   width: ${({ $width }) => ($width ? $width : "1260px")};
-
+  background-color: white;
   border-bottom: 2px solid
     ${({ $color, theme }) => ($color ? $color : theme.color.blackdada)};
   height: 56px;

@@ -1,10 +1,10 @@
 import React from "react";
 import * as Comm from "../common";
 import { NavBotom } from "../header/headerStyle";
-import { useRoter } from "../../hooks/commen";
+import { useRouter } from "../../hooks/commen";
 
 export function AuthHeader({children}) {
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
 
   return (
     <NavBotom $color={Comm.theme.color.black363} $width="820px">

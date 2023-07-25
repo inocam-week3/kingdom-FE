@@ -1,10 +1,10 @@
 import React from "react";
 import { NavTop } from "./headerStyle";
 import * as Comm from "../common";
-import { useRoter } from "../../hooks/commen";
+import { useRouter } from "../../hooks/commen";
 
 export function HeaderNavTop() {
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
   const onSubmitSearch = (e) => {
     e.preventDefault()
   } 

@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import * as Nav from "./headerStyle";
 import * as Comm from "../common";
-import { useHerder, useRoter } from "../../hooks/commen";
+import { useHerder, useRouter } from "../../hooks/commen";
 import { HeaderWriteBtn } from "./HeaderWriteBtn";
 
 export function HeaderNavBottom() {
   const { navLink, WriteBtn, headerRef, handleScroll } = useHerder();
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {

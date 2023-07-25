@@ -12,7 +12,8 @@ export function Home() {
 
 
   return (
-    <div style={{height:"200vh"}}> 
+    <div style={{height:"200vh"}}>
+      <p>CICD 테스트</p> 
       {/* <p>HomeDataJobs</p>
       {
         selectHomeJobs && selectHomeJobs.map((item)=> (

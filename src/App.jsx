@@ -8,21 +8,24 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Header />}>
+
         <Route index element={<Pages.Home />} />
         <Route path="job" element={<Pages.Job />} />
         <Route path="resume" element={<Pages.Resume />} />
-        <Route path="story" element={<Pages.Story />} />
+        <Route path="stories/:id" element={<Pages.Stories />} />
         <Route path="messenger" element={<Pages.Messenger />} />
         <Route element={<Pages.ProtectiveRouter />}>
           <Route path="job/:id" element={<Pages.JobDetail />} />
           <Route path="resume/:id" element={<Pages.ResumeDetail />} />
-          <Route path="story/:id" element={<Pages.StoryDetail />} />
+          <Route path="stories/:id/:id" element={<Pages.StoryDetail />} />
           <Route path="jobwrite" element={<Pages.JobWrite />} />
           <Route path="resumewrite" element={<Pages.ResumeWrite />} />
           <Route path="storywrite" element={<Pages.StoryWrite />} />
         </Route>
         <Route path="*" element={<Pages.NotFound />} />
+
       </Route>
+      
       <Route path="/login" element={<Pages.Login />} />
       <Route path="/signup" element={<Pages.SignupHeader />} >
         <Route index element={<AuthSignupMain />} />

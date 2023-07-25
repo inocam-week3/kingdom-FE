@@ -33,7 +33,7 @@ export const useHerder = () => {
     },
     {
       size: 16,
-      path: "/story",
+      path: "/stories/1",
       NavText: "알바스토리",
     },
   ];
