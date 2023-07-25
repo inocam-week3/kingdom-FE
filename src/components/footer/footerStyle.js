@@ -64,8 +64,8 @@ const FooterIcons = styled.div`
   height: 54px;
   overflow: hidden;
   img {
-    margin-left: ${props => props.left || 0};
-    margin-top: ${props => props.top || 0};
+    margin-left: ${props => props.$left || 0};
+    margin-top: ${props => props.$top || 0};
   }
 `
 
