@@ -23,7 +23,7 @@ export function Stories() {
       }
     }
     getStoryData();
-  }, [Story]);
+  }, []);
 
   return (
     <div>
@@ -57,6 +57,7 @@ export function Stories() {
             <FlexBox>{id}</FlexBox>
             <FlexBox
               $jc="flex-start"
+              style={{cursor:"pointer"}}
               onClick={onNavigate(`/stories/${paramsid}/${id}`)}
             >
               {title}

@@ -12,6 +12,7 @@ function Selection2() {
         <Comm.CustomUl
           children={selection2Lists.map(({ title, ...rest }) => (
             <Comm.Customli
+              key={title}
               $type="bottomLine"
               {...rest}
               children={<p>{title}</p>}
