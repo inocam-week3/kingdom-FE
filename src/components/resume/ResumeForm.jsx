@@ -8,7 +8,7 @@ import {
   InnerHeaders,
   InnerBody,
   SubmitBtn,
-} from "./resumeStyle";
+} from "./resumeFormeStyle";
 import * as Comm from "../common";
 
 export function ResumeForm() {
