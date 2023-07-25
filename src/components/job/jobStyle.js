@@ -85,7 +85,96 @@ const TableContentTd = styled.td`
 `
 const JobsSpan = styled.span`
   color: ${props => props.color || "black"};
-  font-size: ${props => props.size || "15px"};
+  font-size: ${props => props.size || "13px"};
+`
+const JobLocation = styled.div`
+  padding: 20px 0 10px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 24px;
+`
+const JobSubContent = styled.div`
+  ${Flex}
+  flex-direction: column;
+  width: 100%;
+`
+const RegistDate = styled.div`
+  width: 100%;
+  padding: 0 15px;
+  text-align: left;
+  margin-bottom: 15px;
+`
+const DetailInfoBody = styled.div`
+  width: 100%;
+  border-top: 2px solid #222;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+`
+const DetailHead = styled.div`
+  padding: 32px 40px 0;
+  border-bottom: 1px solid #eee;
+
+  p {
+    font-size: 18px;
+  }
+  strong {
+    max-width: 830px;
+    line-height: 80px;
+    font-size: 32px;
+    letter-spacing: -2.4px;
+    color: #222;
+  }
+`
+const DetailCondition = styled.div`
+  width: 100%;
+  display: table;
+  padding: 0 40px 0;
+`
+const ConditionTable =styled.div`
+  border-bottom: 1px solid #eee;
+  display: table-cell;
+  ${({ $type }) =>
+  $type === "left" 
+    ? css`
+      padding-right: 40px;
+      border-right: 1px solid #eee;
+    `
+    : css`
+    display: table-cell;
+    width: 500px;
+    padding: 0 0 30px 40px;
+    `
+  }
+  div{
+    padding: 25px 0 32px;
+    font-size: 15px;
+    letter-spacing: -0.8px;
+    border-bottom: 1px solid #eee;
+  }
+
+    h3 {
+      margin-bottom: 21px;
+      font-size: 26px;
+      letter-spacing: -1px;
+      color: #222;
+    }
+    strong {
+      font-size: 15px;
+      letter-spacing: -0.8px;
+      color: #222;
+    }
+    dl {
+      display: table;
+      dt{
+        display: table-cell;
+        width: 72px;
+        padding-right: 14px;
+        color: #999;
+      }
+      dd{
+        display: table-cell;
+        width: 501px;
+      }
+    }
 `
 export {
   JobBody,
@@ -93,5 +182,12 @@ export {
   SortTypeList,
   JobInfoTable,
   TableContentTd,
-  JobsSpan
+  JobsSpan,
+  JobLocation,
+  JobSubContent,
+  RegistDate,
+  DetailInfoBody,
+  DetailHead,
+  DetailCondition,
+  ConditionTable,
 }

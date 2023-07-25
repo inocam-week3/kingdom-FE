@@ -14,7 +14,7 @@ export function JobInfo({local, companyname, title, salary, createAt}) {
       case "연봉" :
         return "#8c6ae7";
       default :
-        return "#ddd"
+        return "#aaa"
     }
   }
   return(
@@ -26,7 +26,7 @@ export function JobInfo({local, companyname, title, salary, createAt}) {
         <JobsSpan size="17px">{title}</JobsSpan>
       </TableContentTd>
       <TableContentTd $type="salary">
-        <JobsSpan color={getSalaryColor("시급")}>시급</JobsSpan> <br/>
+        <JobsSpan color={getSalaryColor("")}>시급</JobsSpan> <br/>
         <JobsSpan>{salary}</JobsSpan>
       </TableContentTd>
       <TableContentTd $type="create">

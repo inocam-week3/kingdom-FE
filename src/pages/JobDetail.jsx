@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useRoter } from '../hooks/commen';
 import { useDispatch, useSelector } from 'react-redux';
 import { getJobsDetailData, selectJobsDetail, updateJobsDetailData } from '../redux/modules/morkServer';
+import * as JS from '../components/job/jobStyle'
+import { JobDetailContent } from '../components/job/JobDetailContent';
 
 export function JobDetail() {
   const JobDetailData = useSelector(selectJobsDetail)
@@ -40,14 +42,20 @@ export function JobDetail() {
   }
 
   return (
-    <div>Jobdetail
+    <div>
+      <JS.JobLocation>홈 &gt; 채용정보 &gt; <strong>상세정보</strong></JS.JobLocation>
+        <button onClick={onDeleteJob(JobDetailData.id)}>삭제하기</button>
+        <button onClick={onUpdateJob(JobDetailData.id)}>수정하기</button>
+      <JobDetailContent
+        createAt={JobDetailData.createAt}
+        title={JobDetailData.title}
+        companyname={JobDetailData.companyname}
+        salary={JobDetailData.salary}
+        ></JobDetailContent>
       {JobDetailData && (
       <div>
         {JobDetailData.title}
-        <button onClick={onDeleteJob(JobDetailData.id)}>삭제하기</button>
-        <button onClick={onUpdateJob(JobDetailData.id)}>수정하기</button>
       </div>)}
-      <button onClick={onNavigate('/')}>홈으로</button>
     </div>
   )
 }
