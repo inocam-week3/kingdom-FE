@@ -12,7 +12,7 @@ const ResumeFormLayout = styled.div`
   /* width: 90%; */
   padding: 20px 54px 60px;
   margin: 0 15px;
-  background: #fff;
+  background: ${({ $color, theme }) => ($color ? $color : theme.color.white)};
   border: 1px solid #eee;
 `;
 
@@ -30,7 +30,7 @@ const ResumeFormInner1 = styled.div`
     height: 26px;
     padding: 0 5px;
     font-size: 14px;
-    background: #fff;
+    background: #${({ $color, theme }) => ($color ? $color : theme.color.white)};
     border: 1px solid #bbb;
     ${cursor}
     &:hover {
@@ -67,7 +67,7 @@ const ResumeFormInner3 = styled.div`
     display: inline-block;
     width: 160px;
     height: 38px;
-    background-color: #fff;
+    background-color: #${({ $color, theme }) => ($color ? $color : theme.color.white)};
     border: 1px solid #3366cc;
     font-weight: bold;
     text-align: center;
