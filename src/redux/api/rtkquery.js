@@ -9,7 +9,7 @@ const axiosBaseQuery =
         case "Auth":
           const auth = await instance({ method, url, data });
           console.log("로그인/회원가입 성공", auth);
-          return { data: auth.data };
+          return { data: auth.headers.authorization };
         default:
           const res = await instance({ method, url, data });
           return { data: res.data };

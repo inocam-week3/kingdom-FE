@@ -1,17 +1,15 @@
-import React, { useState } from "react";
 import * as Comm from "../common";
 import * as Auth from "./authStyle";
-import { useAuthHeader, useRouter } from "../../hooks/commen";
+import React, { useState } from "react";
 import { LoginInfo } from "./LoginInfo";
 import { AuthLoginForm } from "./AuthLoginForm";
 import { AuthLoginUtils } from "./AuthLoginUtils";
+import { useAuthHeader, useRouter } from "../../hooks/commen";
 
 export function AuthLoginBody() {
   const { onNavigate } = useRouter();
-  const { snsLogin } = useAuthHeader();
+  const { snsLogin, onSNSLogin } = useAuthHeader();
   const [personal, setPorsonal] = useState(false);
-
-  
 
   return (
     <Comm.Selection>
@@ -49,8 +47,8 @@ export function AuthLoginBody() {
               {/* ** 소셜 로그인 **  */}
               {!personal && (
                 <Auth.SNSLogin>
-                  {snsLogin.map(({ title, ...rest }) => (
-                    <Auth.SNSBtn key={title}>
+                  {snsLogin.map(({ title, login, ...rest }) => (
+                    <Auth.SNSBtn key={title} onClick={onSNSLogin(login)}>
                       <Comm.SNSIcons {...rest} />
                       <p>{title}</p>
                     </Auth.SNSBtn>
@@ -69,19 +67,3 @@ export function AuthLoginBody() {
     </Comm.Selection>
   );
 }
-
-// const authLogin = async () => {
-//   try {
-//     const res = await axios.post(`/api/auth/login`, authinfo); // 로그인 성공
-//     // const res = await axios.post(`/api/auth/login`, {...authinfo, email:"asdf"}) // 이메일이 틀렸을 때
-//     // const res = await axios.post(`/api/auth/login`, {...authinfo, passward:"asdf"}) // 비밀번호가 틀렸을 때
-//     document.cookie = `accessToken=${res.headers.authorization} path=/`;
-//     // console.log(res.headers.authorization)
-//   } catch (error) {
-//     console.log(error.response.data.error);
-//   }
-// };
-
-// useEffect(() => {
-//   authLogin();
-// }, []);

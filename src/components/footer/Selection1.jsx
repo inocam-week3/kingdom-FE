@@ -18,7 +18,7 @@ function Selection1() {
     </Foot.Sec1first>
     <Foot.Sec1second>
       <Foot.FooterIconBox>
-        <Foot.FooterIcons left={"-60px"}>
+        <Foot.FooterIcons left={"-60px"}> {/* it looks like an unknown prop "left" is being sent through to the DOM '$' 달러표시 부탁해요 */}
           <img
             src={require("../../assets/images/footerIcons.png")}
             alt="FooterIcons"
@@ -35,8 +35,8 @@ function Selection1() {
         </Foot.FooterIcons>
         공고등록대행 문의
       </Foot.FooterIconBox>
-      <Foot.FooterIconBox>
-        <Foot.FooterIcons top={"-60px"}>
+      <Foot.FooterIconBox>{/* it looks like an unknown prop "left" is being sent through to the DOM '$' 달러표시 부탁해요 */}
+        <Foot.FooterIcons top={"-60px"}> {/* it looks like an unknown prop "top" is being sent through to the DOM '$' 달러표시 부탁해요 */}
           <img
             src={require("../../assets/images/footerIcons.png")}
             alt="FooterIcons"

@@ -23,7 +23,7 @@ export function Stories() {
       }
     }
     getStoryData();
-  }, [Story]);
+  }, []);
 
   return (
     <div>
