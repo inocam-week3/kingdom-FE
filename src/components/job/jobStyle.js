@@ -260,6 +260,14 @@ const WriteInputForm = styled.div`
         padding: 2px 10px;
         font-size: 15px;
       }
+      textarea {
+        resize: vertical;
+        border: 1px solid #eee;
+        width: 100%;
+        padding: 10px 10px;
+        font-size: 15px;
+        letter-spacing: -0.8px;
+      }
   }
 `
 const SubmitButton = styled.button`
