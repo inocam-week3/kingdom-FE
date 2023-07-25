@@ -9,8 +9,8 @@ export const useHerder = () => {
       setHeaderFixed(true);
     } else if (scrllPosition <= 180 && headerFixed) {
       setHeaderFixed(false);
-    }
-
+    } 
+    
     if (headerFixed && headerRef) {
       headerRef.current.style.position = "fixed";
       headerRef.current.style.top = "0";

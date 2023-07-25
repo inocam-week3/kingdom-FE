@@ -1,6 +1,5 @@
-// import axios from "axios";
-import React, { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import React, { useLayoutEffect } from "react";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import { HeaderNavTop } from "./HeaderNavTop";
 import { HeaderNavBottom } from "./HeaderNavBottom";
 import { HeaderBanner } from "./HeaderBanner";
@@ -11,6 +10,12 @@ import { useDispatch } from "react-redux";
 import { setDecodeToken } from "../../redux/modules/tokenSlice";
 
 export function Header() {
+
+  const {pathname} = useLocation()
+  useLayoutEffect(()=> {
+    window.scrollTo(0,0)
+  }, [pathname])
+
   const dispatch = useDispatch();
   useEffect(() => {
     const accessToken =
