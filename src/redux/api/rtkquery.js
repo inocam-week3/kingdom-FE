@@ -49,87 +49,87 @@ export const heavenRTKQuery = createApi({
       }),
     }),
 
-    // STORIES - GET
-    getStoriesRTK: builder.useQuery({
-      query: () => ({
-        url: "/api/stories",
-        method: "get",
-        providesTags: ["STORIES"],
-      }),
-    }),
-    // STORIES - POST
-    postStoriesRTK: builder.mutation({
-      query: (payload) => ({
-        url: "/api/stories",
-        data: payload,
-        method: "post",
-        providesTags: ["STORIES"],
-      }),
-    }),
-    // STORIES - DELETE
-    deleteStoriesRTK: builder.mutation({
-      query: ({ id, payload }) => ({
-        url: `/api/stories/${id}`,
-        data: payload,
-        method: "delete",
-        providesTags: ["STORIES"],
-      }),
-    }),
-    // STORIES - PATCH
-    patchStoriesRTK: builder.mutation({
-      query: ({ id, payload }) => ({
-        url: `/api/stories/${id}`,
-        data: payload,
-        method: "patch",
-        providesTags: ["STORIES"],
-      }),
-    }),
-    // STORIES - Like
-    postStoriesLikeRTK: builder.mutation({
-      query: ({ id, payload }) => ({
-        url: `/api/stories/${id}/like`,
-        method: "post",
-        providesTags: ["STORIES"],
-      }),
-    }),
+  //   // STORIES - GET
+  //   getStoriesRTK: builder.useQuery({
+  //     query: () => ({
+  //       url: "/api/stories",
+  //       method: "get",
+  //       providesTags: ["STORIES"],
+  //     }),
+  //   }),
+  //   // STORIES - POST
+  //   postStoriesRTK: builder.mutation({
+  //     query: (payload) => ({
+  //       url: "/api/stories",
+  //       data: payload,
+  //       method: "post",
+  //       providesTags: ["STORIES"],
+  //     }),
+  //   }),
+  //   // STORIES - DELETE
+  //   deleteStoriesRTK: builder.mutation({
+  //     query: ({ id, payload }) => ({
+  //       url: `/api/stories/${id}`,
+  //       data: payload,
+  //       method: "delete",
+  //       providesTags: ["STORIES"],
+  //     }),
+  //   }),
+  //   // STORIES - PATCH
+  //   patchStoriesRTK: builder.mutation({
+  //     query: ({ id, payload }) => ({
+  //       url: `/api/stories/${id}`,
+  //       data: payload,
+  //       method: "patch",
+  //       providesTags: ["STORIES"],
+  //     }),
+  //   }),
+  //   // STORIES - Like
+  //   postStoriesLikeRTK: builder.mutation({
+  //     query: ({ id, payload }) => ({
+  //       url: `/api/stories/${id}/like`,
+  //       method: "post",
+  //       providesTags: ["STORIES"],
+  //     }),
+  //   }),
 
-    // STORIES_COMMENTS & 상세조회
-    getStoriesCOmmentsRTK: builder.useQuery({
-      query: ({ id, payload }) => ({
-        url: `/api/stories/${id}`,
-        method: "get",
-        providesTags: ["COMMENTS"],
-      }),
-    }),
+  //   // STORIES_COMMENTS & 상세조회
+  //   getStoriesCOmmentsRTK: builder.useQuery({
+  //     query: ({ id, payload }) => ({
+  //       url: `/api/stories/${id}`,
+  //       method: "get",
+  //       providesTags: ["COMMENTS"],
+  //     }),
+  //   }),
 
-    // STORIES_COMMENTS - POST
-    postStoriesCOmmentsRTK: builder.mutation({
-      query: ({ id, payload }) => ({
-        url: `/api/stories/${id}/comments`,
-        data: payload,
-        method: "post",
-        providesTags: ["COMMENTS"],
-      }),
-    }),
+  //   // STORIES_COMMENTS - POST
+  //   postStoriesCOmmentsRTK: builder.mutation({
+  //     query: ({ id, payload }) => ({
+  //       url: `/api/stories/${id}/comments`,
+  //       data: payload,
+  //       method: "post",
+  //       providesTags: ["COMMENTS"],
+  //     }),
+  //   }),
 
-    // STORIES_COMMENTS - DELETE
-    deleteStoriesCOmmentsRTK: builder.mutation({
-      query: ({ postId, commentsId }) => ({
-        url: `/api/stories/${postId}/comments/${commentsId}`,
-        method: "delete",
-        providesTags: ["COMMENTS"],
-      }),
-    }),
+  //   // STORIES_COMMENTS - DELETE
+  //   deleteStoriesCOmmentsRTK: builder.mutation({
+  //     query: ({ postId, commentsId }) => ({
+  //       url: `/api/stories/${postId}/comments/${commentsId}`,
+  //       method: "delete",
+  //       providesTags: ["COMMENTS"],
+  //     }),
+  //   }),
 
-    // STORIES_COMMENTS - PATCH
-    patchStoriesCOmmentsRTK: builder.mutation({
-      query: ({ postId, commentsId, payload }) => ({
-        url: `/api/stories/${postId}/comments/${commentsId}`,
-        data: payload,
-        method: "patch",
-        providesTags: ["COMMENTS"],
-      }),
-    }),
+  //   // STORIES_COMMENTS - PATCH
+  //   patchStoriesCOmmentsRTK: builder.mutation({
+  //     query: ({ postId, commentsId, payload }) => ({
+  //       url: `/api/stories/${postId}/comments/${commentsId}`,
+  //       data: payload,
+  //       method: "patch",
+  //       providesTags: ["COMMENTS"],
+  //     }),
+  //   }),
   }),
 });
 
@@ -139,15 +139,15 @@ export const {
   useSignupRTKMutation,
 
   // STORIES
-  useGetStoriesRTKQuery,
-  usePostStoriesRTKMutation,
-  useDeleteStoriesRTKMutaion,
-  usePatchStoriesRTKMutation,
-  usePostStoriesLikeRTKMutaion,
+  // useGetStoriesRTKQuery,
+  // usePostStoriesRTKMutation,
+  // useDeleteStoriesRTKMutaion,
+  // usePatchStoriesRTKMutation,
+  // usePostStoriesLikeRTKMutaion,
 
   // STORIES_COMMENTS_DETAIL
-  useGetStoriesCOmmentsRTKQuery,
-  usePostStoriesCOmmentsRTKMutation,
-  useDeleteStoriesCOmmentsRTKMutation,
-  usePatchStoriesCOmmentsRTKMutation,
+  // useGetStoriesCOmmentsRTKQuery,
+  // usePostStoriesCOmmentsRTKMutation,
+  // useDeleteStoriesCOmmentsRTKMutation,
+  // usePatchStoriesCOmmentsRTKMutation,
 } = heavenRTKQuery;

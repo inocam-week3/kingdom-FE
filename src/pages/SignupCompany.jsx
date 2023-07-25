@@ -128,31 +128,3 @@ export function SignupCompany() {
     </Comm.Selection>
   );
 }
-
-/*
-From 
-  하나의 inupt 
-  selection
-    div
-      div 
-        inupt
-        label
-*/
-
-/*
-  // 이용약관에 전체 동의 하지 않음 
-  아이디
-  비빌번호 8~15자리, 영문/숫자 또는특수문자 조합
-  이름 - 유효성 검사
-  생련월일 - 유효성검사
-  이메일 - 유효성검사 
-  휴대폰 인증번호
-  가입하기 버튼
-
-  API
-  email: string,
-  passward: string,
-  username: string,
-  gender: string
-  enterprisecode : string
-*/
