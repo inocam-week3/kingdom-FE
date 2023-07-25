@@ -13,6 +13,10 @@ const StoriesTable = styled.div`
         css`
           border-bottom: 1px solid rgb(180, 180, 180);
         `}
+
+  .writeTitle {
+    background-color: #f8f8f8;
+  }
 `;
 
 const PageNationBtn = styled.div`
@@ -78,18 +82,91 @@ const StoryComment = styled.div`
   justify-content: flex-start;
   padding: 15px 20px;
   background: #fbfbfb;
-  border-bottom: 1px solid #d3dae6;
-`
+  border-bottom: ${({ $bottomLine }) =>
+    $bottomLine ? "1px solid #d3dae6" : "none"};
+`;
 const StoryCommtens = styled(StoryComment)`
   flex-direction: column;
   background: #fbfbfb;
-  border-bottom: none;
   p {
     display: flex;
     width: 100%;
     word-break: break-all;
-  } 
-`
+  }
+`;
+
+const StoryCommentText = styled.textarea`
+  display: block;
+  width: 100%;
+  height: 80px;
+  resize: none;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+`;
+
+const StoryCommentTextBtn = styled.div`
+  ${Flex}
+  ${cursor}
+  width: 150px;
+  height: 80px;
+  border-radius: 8px;
+  font-size: 20px;
+  background-color: white;
+  border: 1px solid #eee;
+`;
+
+const StorieIndexBtn = styled.div`
+  ${Flex}
+  ${cursor}
+  gap: 4px;
+  margin: 10px 0;
+  height: 40px;
+  padding: 4px 12px;
+  background-color: white;
+  border: 2px solid gray;
+
+  p {
+    font-size: 20px;
+  }
+
+  ${({ $type, theme }) =>
+    $type === "write" &&
+    css`
+      width: 150px;
+      background-color: ${theme.color.blue};
+
+      p {
+        color: ${theme.color.white};
+      }
+    `}
+`;
+
+const Input = styled.input`
+  display: block;
+  padding: 12px;
+  width: 100%;
+  height: 100%;
+  outline-style: none;
+`;
+
+const WriteBtn = styled.div`
+  margin: 10px 0;
+  ${Flex}
+  ${cursor}
+  font-size: 18px;
+  width: 80px;
+  height: 50px;
+  ${({ $check }) =>
+    $check
+      ? css`
+          background-color: black;
+          color: white;
+        `
+      : css`
+          border: 1px solid #dadada;
+        `}
+`;
 
 export {
   StoriesTable,
@@ -99,5 +176,10 @@ export {
   StoryDetailArtical,
   StoryDetailBtn,
   StoryComment,
-  StoryCommtens
+  StoryCommtens,
+  StoryCommentText,
+  StoryCommentTextBtn,
+  StorieIndexBtn,
+  Input,
+  WriteBtn,
 };

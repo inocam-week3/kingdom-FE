@@ -3,16 +3,17 @@ import axios from "axios";
 import { useRouter } from "../hooks/commen";
 import { CustomUl, Customli, Figure, FlexBox } from "../components/common";
 import * as Story from "../components/story/";
+import { BiListUl } from 'react-icons/bi'
 
 export function StoryDetail() {
   const { onNavigate, id } = useRouter();
   const [storyDetailData, setstoryDetailData] = useState([]);
+  const [comment, setComment] = useState("")
 
   useEffect(() => {
     async function getStoryDetails() {
       try {
         const res = await axios.get(`/api/stories/${id}`);
-        console.log(res.data.info);
         setstoryDetailData(res.data.info);
       } catch (error) {
         console.log("GET 실패");
@@ -42,6 +43,17 @@ export function StoryDetail() {
       console.log("데이터를 수정하지 못했습니다.", error);
     }
   };
+
+  const onChangeComment = (e) => {
+    const replace = e.target.value.replace("(?:\r\n|\r|\n)/g", <br/>)
+    setComment(replace)
+  }
+
+  const onSubmitComment = (e) => {
+    alert(comment)
+  }
+
+  // (?:\r\n|\r|\n)/g // textarea 줄바꿈처리 
 
   return (
     <div>
@@ -94,7 +106,7 @@ export function StoryDetail() {
             </Story.StoryDetailBtn>
           </FlexBox>
         </Story.StoryDetailArtical>
-      <Story.StoryComment>댓글 {storyDetailData.commentList?.length}</Story.StoryComment>
+      <Story.StoryComment $bottomLine={true}>댓글 {storyDetailData.commentList?.length}</Story.StoryComment>
         {Array.from({length:10}).map(comments => (
           <Story.StoryCommtens >
           <div style={{padding:"10px 0", width:"100%", borderBottom: "1px solid #dadada"}}>
@@ -122,35 +134,18 @@ export function StoryDetail() {
           </div>
           </Story.StoryCommtens>
         ))}
+        <Story.StoryComment $gap={10} style={{width:"100%"}}>
+          <Story.StoryCommentText 
+            value={comment}
+            onChange={onChangeComment} 
+            placeholder="광고성 글이나 근거없는 비방글 또는 계시판 성격과 맞지 않는 글은 삭제 후 이용제한 처리 됩니다."/>
+          <Story.StoryCommentTextBtn onClick={onSubmitComment} children="답글"/>
+        </Story.StoryComment>
+        <FlexBox $jc="space-between" style={{width:"100%", padding:"15px 20px"}}>
+          <Story.StorieIndexBtn onClick={onNavigate('/stories/1')}><BiListUl size={30}/><p>목록</p></Story.StorieIndexBtn>
+          <Story.StorieIndexBtn onClick={onNavigate('/storywrite')} $type="write"><p>글쓰기</p></Story.StorieIndexBtn>
+        </FlexBox>
       </Story.StoryDetailLayout>
     </div>
   );
 }
-
-// commentList
-// :
-// [{…}]
-// content
-// :
-// "롯데리아 3년 알바 후기"
-// createdAt
-// :
-// "XXXX-XX-XXT11:08:57.152015"
-// id
-// :
-// 1234
-// image
-// :
-// "https://cdn.ngetnews.com/news/photo/202210/411694_33543_4931.jpg"
-// like
-// :
-// 0
-// title
-// :
-// "후기 남김다 1"
-// username
-// :
-// "홍길동"
-// view
-// :
-// 0
