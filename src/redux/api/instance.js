@@ -1,5 +1,4 @@
 import axios from "axios";
-import jwtDecode from "jwt-decode";
 
 export const instance = axios.create({
   baseURL:  process.env.REACT_APP_SERVER_KEY
@@ -17,10 +16,6 @@ instance.interceptors.request.use((config) => {
 });
 
 instance.interceptors.response.use((config) => {
-  // console.log(config.headers.authorizatio);
-  const decode = jwtDecode(config.headers?.authorization);
-  console.log("decode", `${decode && JSON.stringify(decode)}`);  
-
   if (config.headers.authorization) {
     const expiresTime = new Date() // new Date(1690253395000).toUTCString()
     expiresTime.setMinutes(expiresTime.getMinutes()+30)

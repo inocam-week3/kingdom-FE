@@ -8,7 +8,7 @@ export const useSignupCompony = () => {
     password: "",
     pwchecked: "",
     username: "",
-    enterprisecode: "",
+    enterpriseCode: "",
   });
 
   // (2) 개인개인 유효성 검사를 위한 상태
@@ -16,13 +16,13 @@ export const useSignupCompony = () => {
     validteEmail: ["", false],
     validtepassword: ["", false],
     passwordChMsg: ["", false],
-    enterprisecode: ["", false],
+    enterpriseCode: ["", false],
   });
 
   // (2-1) 개인회원 유효성 검사를 위한 검증함수
   const handleInuptChange = (e) => {
     const { name, value } = e.target;
-    if (name === "enterprisecode") {
+    if (name === "enterpriseCode") {
       const replace = value.replace(/\D/g, "")
       setInputValue({ ...inputValue, [name]: replace })
 
@@ -78,13 +78,13 @@ export const useSignupCompony = () => {
             passwordChMsg: ["입력하신 비밀번호가 서로 다릅니다.", false],
           });
     }
-    if (name === "enterprisecode") {
-      console.log(inputValue.enterprisecode.length);
-      inputValue.enterprisecode.length === 0
-        ? setValiditeMse({ ...validiteMsg, enterprisecode: ["", false] })
-        : inputValue.enterprisecode.length <=8
-        ? setValiditeMse({ ...validiteMsg, enterprisecode: ["사업자번호 10자리를 입력해주세요.(하이븐 없이)", false] })
-        : setValiditeMse({ ...validiteMsg, enterprisecode: ["유효한 사업자번호입니다", true] })
+    if (name === "enterpriseCode") {
+      console.log(inputValue.enterpriseCode.length);
+      inputValue.enterpriseCode.length === 0
+        ? setValiditeMse({ ...validiteMsg, enterpriseCode: ["", false] })
+        : inputValue.enterpriseCode.length <=8
+        ? setValiditeMse({ ...validiteMsg, enterpriseCode: ["사업자번호 10자리를 입력해주세요.(하이븐 없이)", false] })
+        : setValiditeMse({ ...validiteMsg, enterpriseCode: ["유효한 사업자번호입니다", true] })
     }
   };
 
@@ -104,7 +104,7 @@ export const useSignupCompony = () => {
           email: inputValue.email,
           password: inputValue.password,
           username: inputValue.username,
-          enterprisecode: inputValue.enterprisecode,
+          enterpriseCode: inputValue.enterpriseCode,
         });
       }
     };

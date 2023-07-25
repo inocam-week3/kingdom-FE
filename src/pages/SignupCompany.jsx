@@ -27,6 +27,8 @@ export function SignupCompany() {
     }
   }, [data, isError, isSuccess, error, onNavigate]);
 
+  console.log(JSON.stringify(inputValue));
+
   return (
     <Auth.AuthSignupForm
       signupTpye="기업회원"
@@ -39,18 +41,18 @@ export function SignupCompany() {
         <Auth.AuthSection>
           <div style={{ position: "relative" }}>
             <Auth.AuthInput
-              id="enterprisecode"
+              id="enterpriseCode"
               type="text"
-              name="enterprisecode"
-              value={inputValue.enterprisecode}
+              name="enterpriseCode"
+              value={inputValue.enterpriseCode}
               placeholder="사업자번호, 하이픈 없이 숫자만 입력해주세요."
               onChange={handleInuptChange}
               maxLength={10}
             />
-            <Auth.AuthLabel htmlFor="enterprisecode">사업자번호</Auth.AuthLabel>
+            <Auth.AuthLabel htmlFor="enterpriseCode">사업자번호</Auth.AuthLabel>
           </div>
         </Auth.AuthSection>
-        <Auth.ValidateInputMsg $color={validiteMsg.enterprisecode[1]} children={validiteMsg.enterprisecode[0]}/>
+        <Auth.ValidateInputMsg $color={validiteMsg.enterpriseCode[1]} children={validiteMsg.enterpriseCode[0]}/>
       </div>
     </Auth.AuthSignupForm>
   );

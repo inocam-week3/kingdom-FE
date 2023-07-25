@@ -21,7 +21,6 @@ export function SignupPersonal() {
 
   useEffect(() => {
     if (isSuccess) {
-      alert(data);
       onNavigate("/login", { replace: true })();
     } else if (isError) {
       console.log("회원가입 실패", error?.message);

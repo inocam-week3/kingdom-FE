@@ -95,7 +95,7 @@ export const useSignupPersonal = () => {
         password: inputValue.password,
         username: inputValue.username,
         gender: inputValue.gender,
-        enterprisecode: 0,
+        enterpriseCode: 0,
       });
     }
   };
