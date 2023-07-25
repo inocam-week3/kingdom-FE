@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  ResumeFormOutline,
-  ResumeFormLayout,
-  ResumeFormInner1,
-  ResumeFormInner2,
-  ResumeFormInner3,
-  InnerHeaders,
-  InnerBody,
-  SubmitBtn,
-} from "./resumeFormeStyle";
+import * as ReForm from "./resumeFormeStyle";
 import * as Comm from "../common";
 
 export function ResumeForm() {
@@ -26,10 +17,10 @@ export function ResumeForm() {
   console.log(career);
 
   return (
-    <ResumeFormOutline>
-      <ResumeFormLayout>
-        <ResumeFormInner1>
-          <InnerHeaders>
+    <ReForm.ResumeFormOutline>
+      <ReForm.ResumeFormLayout>
+        <ReForm.ResumeFormInner1>
+          <ReForm.InnerHeaders>
             <h2>
               기본정보<span>*</span>
             </h2>
@@ -38,17 +29,17 @@ export function ResumeForm() {
               공개됩니다.
             </p>
             {/* <button $color={Comm.theme.color.blue}>회원정보 수정</button> */}
-          </InnerHeaders>
-          <InnerBody>
+          </ReForm.InnerHeaders>
+          <ReForm.InnerBody>
             <p>
               <strong>username</strong>
               gender
             </p>
             <span>이메일</span>
             email
-          </InnerBody>
-        </ResumeFormInner1>
-        <ResumeFormInner2>
+          </ReForm.InnerBody>
+        </ReForm.ResumeFormInner1>
+        <ReForm.ResumeFormInner2>
           <h2>
             이력서 제목<span>*</span>
           </h2>
@@ -58,13 +49,13 @@ export function ResumeForm() {
             required
             placeholder="나를 표현할 한마디를 적어보세요 (최대100자)"
           />
-        </ResumeFormInner2>
-        <ResumeFormInner3>
-          <InnerHeaders>
+        </ReForm.ResumeFormInner2>
+        <ReForm.ResumeFormInner3>
+          <ReForm.InnerHeaders>
             <h2>
               경력<span>*</span>
             </h2>
-          </InnerHeaders>
+          </ReForm.InnerHeaders>
           <strong>경력구분</strong>
           <label className={`btn ${career === "신입" ? "btn-selected" : ""}`}>
             <input
@@ -85,11 +76,14 @@ export function ResumeForm() {
             />
             경력
           </label>
-        </ResumeFormInner3>
-      </ResumeFormLayout>
-      <SubmitBtn $color={Comm.theme.color.yellow} onClick={onSubmitResume}>
+        </ReForm.ResumeFormInner3>
+      </ReForm.ResumeFormLayout>
+      <ReForm.SubmitBtn
+        $color={Comm.theme.color.yellow}
+        onClick={onSubmitResume}
+      >
         이력서 저장
-      </SubmitBtn>
-    </ResumeFormOutline>
+      </ReForm.SubmitBtn>
+    </ReForm.ResumeFormOutline>
   );
 }

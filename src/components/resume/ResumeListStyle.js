@@ -63,10 +63,11 @@ const ResumeListTable = styled.table`
   }
 `;
 
-const ResumeListth = styled.th`
+const ResumeListth = styled.td`
+  width: 100%;
   border-bottom: 1px solid #e4e4e4;
   font-size: 14px;
-  font-weight: 400;
+  text-align: center;
   padding: 10px 0 11px;
   ${({ $type }) =>
     $type === "name"
@@ -82,8 +83,11 @@ const ResumeListth = styled.th`
       : $type === "career"
       ? css`
           width: 166px;
-          font-size: 11px;
-          color: blue;
+          font-size: 12px;
+          strong {
+            color: blue;
+            font-weight: 400;
+          }
         `
       : $type === "createAt"
       ? css`

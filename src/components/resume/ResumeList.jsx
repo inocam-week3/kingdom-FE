@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRoter } from "../../hooks/commen";
-import {
-  ListOutline,
-  ListInline,
-  ResumeListTable,
-  ResumeListth,
-} from "./ResumeListStyle";
+import * as ReList from "./ResumeListStyle";
 
 export function ResumeList() {
   const [resumes, setResumes] = useState([]);
@@ -25,8 +20,8 @@ export function ResumeList() {
     getResumeData();
   }, []);
   return (
-    <ListOutline>
-      <ListInline>
+    <ReList.ListOutline>
+      <ReList.ListInline>
         <h2>
           일반<strong> 인재정보</strong>
         </h2>
@@ -48,7 +43,7 @@ export function ResumeList() {
             <option>50개씩 보기</option>
           </select>
         </div>
-        <ResumeListTable
+        <ReList.ResumeListTable
           cellSpacing={0}
           summary="오늘 등록된 인재의 이름, 이력서 제목, 경력, 등록일"
         >
@@ -63,7 +58,7 @@ export function ResumeList() {
           {resumes &&
             resumes.map((item) => (
               <tbody key={item.id} onClick={onNavigate(`/resume/${item.id}`)}>
-                <ResumeListth $type="name">
+                <ReList.ResumeListth $type="name">
                   {item.username.substring(0, 1) + anonymousName}
                   <p
                     $type="gender"
@@ -71,14 +66,20 @@ export function ResumeList() {
                   >
                     {item.gender}
                   </p>
-                </ResumeListth>
-                <ResumeListth $type="content">{item.content}</ResumeListth>
-                <ResumeListth $type="career">경력 : {item.career}</ResumeListth>
-                <ResumeListth $type="createAt">{item.createAt}</ResumeListth>
+                </ReList.ResumeListth>
+                <ReList.ResumeListth $type="content">
+                  {item.content}
+                </ReList.ResumeListth>
+                <ReList.ResumeListth $type="career">
+                  경력 : <strong>{item.career}</strong>
+                </ReList.ResumeListth>
+                <ReList.ResumeListth $type="createAt">
+                  {item.createAt}
+                </ReList.ResumeListth>
               </tbody>
             ))}
-        </ResumeListTable>
-      </ListInline>
-    </ListOutline>
+        </ReList.ResumeListTable>
+      </ReList.ListInline>
+    </ReList.ListOutline>
   );
 }
