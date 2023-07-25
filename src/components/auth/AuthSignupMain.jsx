@@ -14,7 +14,7 @@ export function AuthSignupMain() {
         <Comm.FlexBox $fd="column" $gap={40}>
           <Comm.FlexBox $fd="column" $gap={15} style={{ width: "100%" }}>
             <Auth.AuthSignupType $signupbtnColor="yellow">
-              <div className="signupClickArea" onClick={onNavigate('/signup/personal')}>
+              <div className="signupClickArea" onClick={onNavigate('/signup/personal', { replace: true })}>
                 <div className="signupType">
                   <SignupTypeIcons />
                   <h3>개인회원</h3>
@@ -33,7 +33,7 @@ export function AuthSignupMain() {
 
           <Comm.FlexBox $fd="column" $gap={15} style={{ width: "100%" }}>
             <Auth.AuthSignupType $signupbtnColor="blue">
-            <div className="signupClickArea" onClick={onNavigate('/signup/company')}>
+            <div className="signupClickArea" onClick={onNavigate('/signup/company',{ replace: true })}>
                 <div className="signupType">
                   <SignupTypeIcons left={-49}/>
                   <h3>기업회원</h3>

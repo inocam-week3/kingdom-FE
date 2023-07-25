@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "../hooks/commen";
 import axios from "axios";
 import { Figure, FlexBox } from "../components/common";
-import { PageNationBtn, StoriesTable } from "../components/story/storyStyle";
+import { PageNationBtn, StorieIndexBtn, StoriesTable } from "../components/story/storyStyle";
 import { useParams } from "react-router-dom";
 
 export function Stories() {
@@ -23,7 +23,7 @@ export function Stories() {
       }
     }
     getStoryData();
-  }, [Story]);
+  }, []);
 
   return (
     <div>
@@ -36,6 +36,9 @@ export function Stories() {
           />
         }
       />
+     <FlexBox $jc="flex-end">
+     <StorieIndexBtn onClick={onNavigate('/storywrite')} $type="write"><p>글쓰기</p></StorieIndexBtn>
+     </FlexBox>
       {/* 테이블 헤더 */}
       <StoriesTable $gtc="150px 1fr 100px 100px 100px 100px" $bottomLine="th">
         <FlexBox>글번호</FlexBox>
@@ -57,6 +60,7 @@ export function Stories() {
             <FlexBox>{id}</FlexBox>
             <FlexBox
               $jc="flex-start"
+              style={{cursor:"pointer"}}
               onClick={onNavigate(`/stories/${paramsid}/${id}`)}
             >
               {title}
@@ -200,5 +204,3 @@ export function Stories() {
     </div>
   );
 }
-
-// id, like, title, username, view, createdAt

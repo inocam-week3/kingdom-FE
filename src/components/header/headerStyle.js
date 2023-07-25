@@ -14,6 +14,8 @@ const NavTop = styled.div`
 
 const NavBotom = styled.div`
   ${Flex}
+  z-index: 10;
+  
   width: ${({ $width }) => ($width ? $width : "1260px")};
   background-color: white;
   border-bottom: 2px solid
