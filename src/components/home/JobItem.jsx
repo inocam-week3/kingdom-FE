@@ -1,8 +1,8 @@
-import { useRoter } from '../../hooks/commen';
+import { useRouter } from "../../hooks/commen";
 import {JobListSection, JobListLogo} from './homeStyle'
 
 export function JobItem({id, companyname, title}) {
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
 
   return (
     <JobListSection onClick={onNavigate(`/job/${id}`)}>

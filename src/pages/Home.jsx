@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { useHome } from '../hooks/home/useHome'
-import { useRoter } from '../hooks/commen';
+import { useRouter } from '../hooks/commen';
 import { JobItem } from '../components/home/JobItem'
 import {JobListWrapper} from '../components/home/homeStyle'
 
 
 export function Home() {
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
   const { selectHomeJobs , selectHomeStories, getJobInfo, getStoriesInfo } = useHome()
 
   useEffect(()=>{
