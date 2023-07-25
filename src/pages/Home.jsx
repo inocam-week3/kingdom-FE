@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
 import { useHome } from '../hooks/home/useHome'
-import { useRouter } from '../hooks/commen';
 import { JobItem } from '../components/home/JobItem'
 import {JobListWrapper} from '../components/home/homeStyle'
 
 
 export function Home() {
-  const { onNavigate } = useRouter();
   const { selectHomeJobs , selectHomeStories, getJobInfo, getStoriesInfo } = useHome()
 
   useEffect(()=>{
@@ -27,15 +25,7 @@ export function Home() {
               id={item.id}
               companyname={item.companyname}
               title={item.title}
-              />
-            ))
-        }
-        {
-          selectHomeJobs && selectHomeJobs.map((item)=> (
-            <JobItem 
-              id={item.id}
-              companyname={item.companyname}
-              title={item.title}
+              location={item.location}
               />
             ))
         }
