@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react'
 import { useHome } from '../hooks/home/useHome'
+import { useRoter } from '../hooks/commen';
+import { JobItem } from '../components/home/JobItem'
+import {JobListWrapper} from '../components/home/homeStyle'
 
 
 export function Home() {
+  const { onNavigate } = useRoter();
   const { selectHomeJobs , selectHomeStories, getJobInfo, getStoriesInfo } = useHome()
 
   useEffect(()=>{
@@ -14,10 +18,29 @@ export function Home() {
   return (
     <div style={{height:"200vh"}}>
       <p>CICD 테스트</p> 
-      {/* <p>HomeDataJobs</p>
-      {
-        selectHomeJobs && selectHomeJobs.map((item)=> (
-          <section key={item.id}>
+
+      <h3>최신 채용정보</h3>
+       <JobListWrapper>
+        {
+          selectHomeJobs && selectHomeJobs.map((item)=> (
+            <JobItem
+              id={item.id}
+              companyname={item.companyname}
+              title={item.title}
+              />
+            ))
+        }
+        {
+          selectHomeJobs && selectHomeJobs.map((item)=> (
+            <JobItem 
+              id={item.id}
+              companyname={item.companyname}
+              title={item.title}
+              />
+            ))
+        }
+       </JobListWrapper>
+           {/*<section key={item.id}>
             {item.companyname}
           </section>
         ))
@@ -28,8 +51,7 @@ export function Home() {
       {
         selectHomeStories && selectHomeStories.map((item)=><div key={item.id}>
           {item.content}</div>
-          )
-      } */}
+          ) */}
     </div>
   )
 }

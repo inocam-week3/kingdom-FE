@@ -18,7 +18,7 @@ function Selection1() {
     </Foot.Sec1first>
     <Foot.Sec1second>
       <Foot.FooterIconBox>
-        <Foot.FooterIcons left={"-60px"}>
+        <Foot.FooterIcons $left={"-60px"}>
           <img
             src={require("../../assets/images/footerIcons.png")}
             alt="FooterIcons"
@@ -36,7 +36,7 @@ function Selection1() {
         공고등록대행 문의
       </Foot.FooterIconBox>
       <Foot.FooterIconBox>
-        <Foot.FooterIcons top={"-60px"}>
+        <Foot.FooterIcons $top={"-60px"}>
           <img
             src={require("../../assets/images/footerIcons.png")}
             alt="FooterIcons"
