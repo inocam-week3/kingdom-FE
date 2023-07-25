@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { Outlet, useLocation, useParams } from "react-router-dom";
 import { HeaderNavTop } from "./HeaderNavTop";
 import { HeaderNavBottom } from "./HeaderNavBottom";
