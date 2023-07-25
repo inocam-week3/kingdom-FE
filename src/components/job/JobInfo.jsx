@@ -1,9 +1,9 @@
 import React from "react";
-import { useRoter } from '../../hooks/commen';
+import { useRouter } from '../../hooks/commen';
 import { TableContentTd, JobsSpan} from './jobStyle'
 
 export function JobInfo({id, local, companyname, title, salary, createAt}) {
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
 
   const when = createAt.split("T");
   const getSalaryColor = (type) => {
@@ -21,11 +21,10 @@ export function JobInfo({id, local, companyname, title, salary, createAt}) {
     }
   }
   return(
-    <tr>
+    <tr onClick={onNavigate(`/job/${id}`)}>
       <TableContentTd $type="local">
         <span>{local}</span></TableContentTd>
-      <TableContentTd $type="title"
-        onClick={onNavigate(`/job/${id}`)}>
+      <TableContentTd $type="title">
         <JobsSpan color="#0075ab" size="13px">
           {companyname}</JobsSpan>
         <JobsSpan size="17px">{title}</JobsSpan>

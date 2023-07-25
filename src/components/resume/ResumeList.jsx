@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useRoter } from "../../hooks/commen";
+import { useRouter } from "../../hooks/commen";
 import * as ReList from "./ResumeListStyle";
 
 export function ResumeList() {
   const [resumes, setResumes] = useState([]);
-  const { onNavigate } = useRoter();
+  const { onNavigate } = useRouter();
   const anonymousName = "OO";
 
   useEffect(() => {
