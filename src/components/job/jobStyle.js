@@ -176,6 +176,103 @@ const ConditionTable =styled.div`
       }
     }
 `
+const JobWriteBody = styled.div`
+  ${Flex}
+  flex-direction: column;
+  width: 100%;
+  flex-direction: column;
+  padding: 20px 120px;
+
+  h3 {
+    width: 100%;
+    text-align: left;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #ddd;
+
+    font-size: 15px;
+    letter-spacing: -0.8px;
+    color: #555;
+  }
+`
+const WriteSection = styled.div`
+  ${Flex}
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`
+const WriteTitle = styled.div`
+  ${Flex}
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: end;
+  letter-spacing: -0.8px;
+  padding: 10px 0;
+
+  strong {
+    color: #73f;
+    font-size: 22px;
+    padding-right: 20px;
+  }
+  p {
+    font-weight: bold;
+    color: #444;
+    font-size: 15px;
+  }
+`
+const WriteInputForm = styled.div`
+  ${Flex}
+  flex-direction: column;
+  width: 100%;
+  background-color: white;
+  border-radius: 15px;
+  border: 3px solid #eee;
+  padding: 10px 50px;
+  min-height: 100px;
+  
+  div {
+    ${Flex}
+    justify-content: flex-start;
+    width: 100%;
+    flex-direction: row;
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+      section {
+        ${Flex}
+        width: 200px;
+        justify-content: flex-start;
+        flex-direction: row;
+        align-items: flex-end;
+      strong {
+        font-size: 18px;
+        padding-right: 5px;
+      }
+      p {
+        font-size: 13px;
+        color: red;
+      }
+    }
+      input {
+        border: 1px solid #eee;
+        width: 100%;
+        height: 40px;
+        padding: 2px 10px;
+        font-size: 15px;
+      }
+  }
+`
+const SubmitButton = styled.button`
+  margin-top: 40px;
+  padding: 16px 50px;
+  border-radius: 20px;
+  border: none;
+  background-color: #73f;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+`
+
 export {
   JobBody,
   JobListTitle,
@@ -190,4 +287,9 @@ export {
   DetailHead,
   DetailCondition,
   ConditionTable,
+  JobWriteBody,
+  WriteSection,
+  WriteTitle,
+  WriteInputForm,
+  SubmitButton,
 }
