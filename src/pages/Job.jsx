@@ -53,12 +53,12 @@ export function Job() {
             {
               jobDatas && jobDatas.map((item)=>(
                 <JobInfo key={item.id}
+                  id={item.id}
                   local={item.local}
                   companyname={item.companyname}
                   title={item.title}
                   salary={item.salary}
-                  createAt={item.createAt}
-                  onClick={onNavigate(`/job/${item.id}`)}>
+                  createAt={item.createAt} >
                   {item.title}
                 </JobInfo>
             ))}

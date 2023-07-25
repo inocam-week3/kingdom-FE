@@ -43,7 +43,6 @@ const JobInfoTable = styled.table`
   }
   tbody tr{
     &:hover {
-      cursor: pointer;
       background-color: #f2fdff;
     }
   }
@@ -62,6 +61,7 @@ const TableContentTd = styled.td`
       `
       : $type === "title" 
       ? css`
+        cursor: pointer;
         padding: 20px 40px;
         ${Flex}
         flex-direction: column;
