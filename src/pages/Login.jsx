@@ -1,6 +1,6 @@
 import React from "react";
-import * as Comm from "../components/common";
 import * as Auth from "../components/auth";
+import * as Comm from "../components/common";
 import { useAuthHeader, useRouter } from "../hooks/commen";
 
 export function Login() {
