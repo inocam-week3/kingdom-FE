@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useRouter } from "../../hooks/commen";
 import * as ReList from "./ResumeListStyle";
-import { instance } from "../../redux/api/instance";
+import { instance } from "../../redux";
+import { useDispatch } from "react-redux";
 
 export function ResumeList() {
   const [resumes, setResumes] = useState([]);
   const { onNavigate } = useRouter();
+  const dispatch = useDispatch();
   const anonymousName = "OO";
 
   useEffect(() => {
     async function getResumeData() {
       try {
-        // const res = await instance.get(`/api/resumes`); // api/stories?page=${pageNum}&size=40
-        const res = await instance.get(`/api/resumes?page=1&size=40`);
-        setResumes(res.data.info.content);
+        const res = await instance.get(`/api/resumes?page=1&size=20`);
+        setResumes(res.data.info);
       } catch (error) {
-        console.log("데이터를 가져오지 못했습니다.");
+        console.log("데이터를 가져오지 못했습니다.", error);
       }
     }
     getResumeData();
-  }, []);
+  }, [dispatch]);
+
   return (
     <ReList.ListOutline>
       <ReList.ListInline>
         <h2>
           일반<strong> 인재정보</strong>
         </h2>
-        <span> {/* $before="horizon" 스타일드 컴포넌트에서만 props */}
-          | 총 <strong></strong> 건
+
+        <span>
+          | 총 <strong>{resumes.length}</strong> 건
         </span>
         <div>
           <select>
