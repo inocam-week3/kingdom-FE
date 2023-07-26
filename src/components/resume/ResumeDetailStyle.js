@@ -55,6 +55,43 @@ const ResumeDetailConfirm = styled.div`
     font-weight: 400;
   }
 `;
+
+const ResumeUpdateInput = styled.input`
+  width: 500px;
+  height: 50px;
+  font-size: 1.5rem;
+  background-color: rgba(0, 136, 250, 0.1);
+`;
+
+const ResumeUpdateCareerBtn = styled.div`
+  label.btn-selected {
+    display: inline-block;
+    width: 160px;
+    height: 38px;
+    background-color: #${({ $color, theme }) => ($color ? $color : theme.color.white)};
+    border: 1px solid #3366cc;
+    font-weight: bold;
+    text-align: center;
+    line-height: 36px;
+    font-size: 16px;
+    color: #3366cc;
+  }
+  input {
+    visibility: hidden;
+    margin: -10px;
+  }
+  label {
+    display: inline-block;
+    width: 160px;
+    height: 38px;
+    background-color: #fbfbfb;
+    border: 1px solid #ddd;
+    text-align: center;
+    line-height: 36px;
+    font-size: 16px;
+  }
+`;
+
 const ResumeDetailBtn = styled.div`
   width: 210px;
   strong {
@@ -113,4 +150,6 @@ export {
   ResumeDetailUpdateBtn,
   ResumeDetailDeleteBtn,
   ResumeDetailIcon,
+  ResumeUpdateInput,
+  ResumeUpdateCareerBtn,
 };

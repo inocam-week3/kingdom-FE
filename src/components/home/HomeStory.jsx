@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as ManSt from "../home/homestorystyle";
+import { instance } from "../../redux";
+import { useNavigate } from "react-router-dom";
 
 export function HomeStory() {
+  const [homestories, setHomestories] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function getResumeData() {
+      try {
+        const res = await instance.get(`/api/homestories`);
+        setHomestories(res.data.info);
+        console.log(res);
+      } catch (error) {
+        console.log("데이터를 가져오지 못했습니다.", error);
+      }
+    }
+    getResumeData();
+    // dispatch(__getResumeThunk());
+  }, []);
   return (
     <>
       <ManSt.MainStoryOutline>
@@ -17,32 +35,16 @@ export function HomeStory() {
                   alt="btn_more"
                 />
               </ManSt.MainStoryContainerInner>
-              <div>
-                <strong>
-                  단기내에 돈벌고 싶은분들 주목
-                  <p>
-                    홍길동 | <span>4분전</span>
-                  </p>
-                </strong>
-                <strong>
-                  단기내에 돈벌고 싶은분들 주목
-                  <p>
-                    홍길동<span>4분전</span>
-                  </p>
-                </strong>
-                <strong>
-                  단기내에 돈벌고 싶은분들 주목
-                  <p>
-                    홍길동<span>4분전</span>
-                  </p>
-                </strong>
-                <strong>
-                  단기내에 돈벌고 싶은분들 주목
-                  <p>
-                    홍길동<span>4분전</span>
-                  </p>
-                </strong>
-              </div>
+              {homestories &&
+                homestories.slice(0, 5).map((item) => (
+                  <div onClick={() => navigate(`${item.storyDetailUrl}`)}>
+                    <strong>
+                      {item.content}
+                      <p>{item.username}</p>
+                      <span>{item.createAt.slice(0, 10)}</span>
+                    </strong>
+                  </div>
+                ))}
             </ManSt.MainStoryContainer1>
             <ManSt.MainStoryContainer1>
               <ManSt.MainStoryContainerInner>
@@ -52,32 +54,16 @@ export function HomeStory() {
                   alt="btn_more"
                 />
               </ManSt.MainStoryContainerInner>
-              <div>
-                <strong>
-                  단기내에 돈벌고 싶은분들 주목
-                  <p>
-                    홍길동<span>4분전</span>
-                  </p>
-                </strong>
-                <strong>
-                  단기내에 돈벌고 싶은분들 주목
-                  <span>
-                    홍길동<p>4분전</p>
-                  </span>
-                </strong>
-                <strong>
-                  단기내에 돈벌고 싶은분들 주목
-                  <p>
-                    홍길동<span>4분전</span>
-                  </p>
-                </strong>
-                <strong>
-                  단기내에 돈벌고 싶은분들 주목
-                  <p>
-                    홍길동<span>4분전</span>
-                  </p>
-                </strong>
-              </div>
+              {homestories &&
+                homestories.slice(5, 10).map((item) => (
+                  <div onClick={() => navigate(`${item.storyDetailUrl}`)}>
+                    <strong>
+                      {item.content}
+                      <p>{item.username}</p>
+                      <span>{item.createAt.slice(0, 10)}</span>
+                    </strong>
+                  </div>
+                ))}
             </ManSt.MainStoryContainer1>
             {/* </ManSt.MainStoryWrapper> */}
             <ManSt.MainStoryContainer2>
