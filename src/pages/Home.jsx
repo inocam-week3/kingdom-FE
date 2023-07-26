@@ -1,14 +1,11 @@
-import React, { useEffect } from "react";
-import { useHome } from "../hooks/home/useHome";
-import { useRouter } from "../hooks/commen";
-import { JobItem } from "../components/home/JobItem";
-import { JobListWrapper } from "../components/home/homeStyle";
-import { HomeStory } from "../components/home";
+import React, { useEffect } from 'react'
+import { useHome } from '../hooks/home/useHome'
+import { JobItem } from '../components/home/JobItem'
+import {JobListWrapper} from '../components/home/homeStyle'
+
 
 export function Home() {
-  const { onNavigate } = useRouter();
-  const { selectHomeJobs, selectHomeStories, getJobInfo, getStoriesInfo } =
-    useHome();
+  const { selectHomeJobs , selectHomeStories, getJobInfo, getStoriesInfo } = useHome()
 
   useEffect(() => {
     getJobInfo();
@@ -24,21 +21,16 @@ export function Home() {
         {selectHomeJobs &&
           selectHomeJobs.map((item) => (
             <JobItem
+              key={item.id}
               id={item.id}
               companyname={item.companyname}
               title={item.title}
-            />
-          ))}
-        {selectHomeJobs &&
-          selectHomeJobs.map((item) => (
-            <JobItem
-              id={item.id}
-              companyname={item.companyname}
-              title={item.title}
-            />
-          ))}
-      </JobListWrapper>
-      {/*<section key={item.id}>
+              location={item.location}
+              />
+            ))
+        }
+       </JobListWrapper>
+           {/*<section key={item.id}>
             {item.companyname}
           </section>
         ))
