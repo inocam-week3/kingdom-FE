@@ -13,8 +13,8 @@ export function Stories() {
   const { onNavigate } = useRouter();
   const { StoriesTableTitle } = useStories();
   const { isLoading, data } = useGetStoriesRTKQuery(paramsid);
-  // data && console.log("data", data);
 
+  
   if (isLoading) return <IsLoadingPage />;
   return (
     <div>

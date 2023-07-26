@@ -23,7 +23,6 @@ const axiosBaseQuery =
           return { data: multipart.data };  
         default:
           const res = await instance({ method, url, data });
-          console.log(res);
           return { data: res.data.info };
       }
     } catch (error) {
@@ -95,26 +94,27 @@ export const heavenRTKQuery = createApi({
         url: `/api/stories/${id}`,
         method: "delete",
       }),
-      invalidatesTags: ["STORIES"],
+      invalidatesTags: ["COMMENTS", "STORIES"],
     }),
     // STORIES - PATCH
     patchStoriesRTK: builder.mutation({
-      query: ({ id, payload }) => ({
-        url: `/api/stories/${id}`,
+      query: ({ postId, payload }) => ({
+        url: `/api/stories/${postId}`,
         data: payload,
         method: "patch",
         types: "multipart",
       }),
-      invalidatesTags: ["STORIES"],
+      invalidatesTags: ["COMMENTS", "STORIES"],
     }),
-  //   // STORIES - Like
-  //   postStoriesLikeRTK: builder.mutation({
-  //     query: ({ id, payload }) => ({
-  //       url: `/api/stories/${id}/like`,
-  //       method: "post",
-  //       providesTags: ["STORIES"],
-  //     }),
-  //   }),
+
+    // STORIES - Like
+    postStoriesLikeRTK: builder.mutation({
+      query: (postId) => ({
+        url: `/api/stories/${postId}/like`,
+        method: "post",
+      }),
+      invalidatesTags: ["COMMENTS", "STORIES"],
+    }),
 
     // STORIES_COMMENTS & 상세조회
     getStoriesCOmmentsRTK: builder.query({
@@ -135,24 +135,24 @@ export const heavenRTKQuery = createApi({
       invalidatesTags: ["COMMENTS"],
     }),
 
-  //   // STORIES_COMMENTS - DELETE
-  //   deleteStoriesCOmmentsRTK: builder.mutation({
-  //     query: ({ postId, commentsId }) => ({
-  //       url: `/api/stories/${postId}/comments/${commentsId}`,
-  //       method: "delete",
-  //       providesTags: ["COMMENTS"],
-  //     }),
-  //   }),
+    // STORIES_COMMENTS - DELETE
+    deleteStoriesCommentsRTK: builder.mutation({
+      query: ({ postId, commentsId }) => ({
+        url: `/api/stories/${postId}/comments/${commentsId}`,
+        method: "delete",
+      }),
+      invalidatesTags: ["COMMENTS"],
+    }),
 
-  //   // STORIES_COMMENTS - PATCH
-  //   patchStoriesCOmmentsRTK: builder.mutation({
-  //     query: ({ postId, commentsId, payload }) => ({
-  //       url: `/api/stories/${postId}/comments/${commentsId}`,
-  //       data: payload,
-  //       method: "patch",
-  //       providesTags: ["COMMENTS"],
-  //     }),
-  //   }),
+    // STORIES_COMMENTS - PATCH
+    patchStoriesCommentsRTK: builder.mutation({
+      query: ({ postId, commentsId, payload }) => ({
+        url: `/api/stories/${postId}/comments/${commentsId}`,
+        data: payload,
+        method: "patch",
+      }),
+      invalidatesTags: ["COMMENTS"],
+    }),
   }),
 });
 
@@ -167,11 +167,11 @@ export const {
   usePostStoriesRTKMutation,
   useDeleteStoriesRTKMutation,
   usePatchStoriesRTKMutation,
-  // usePostStoriesLikeRTKMutaion,
+  usePostStoriesLikeRTKMutation,
 
   // STORIES_COMMENTS_DETAIL
   useGetStoriesCOmmentsRTKQuery,
   usePostStoriesCOmmentsRTKMutation,
-  // useDeleteStoriesCOmmentsRTKMutation,
-  // usePatchStoriesCOmmentsRTKMutation,
+  useDeleteStoriesCommentsRTKMutation,
+  usePatchStoriesCommentsRTKMutation,
 } = heavenRTKQuery;

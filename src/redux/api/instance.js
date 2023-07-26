@@ -11,7 +11,14 @@ instance.interceptors.request.use((config) => {
       .split(";")
       .filter((cookies) => cookies.includes("accessToken"))[0]
       ?.split("=")[1];
+  const refreshToken =
+      document.cookie &&
+      document.cookie
+        .split(";")
+        .filter((cookies) => cookies.includes("refreshToken"))[0]
+        ?.split("=")[1];    
   if (accessToken) config.headers.authorization = accessToken;
+  if (!accessToken && refreshToken) config.headers.refreshtoken = refreshToken;
   return config;
 });
 

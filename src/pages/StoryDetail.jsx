@@ -3,12 +3,7 @@ import { useRouter } from "../hooks/commen";
 import { CustomUl, Customli, Figure, FlexBox } from "../components/common";
 import * as Story from "../components/story/";
 import { BiListUl } from "react-icons/bi";
-import {
-  useDeleteStoriesRTKMutation,
-  useGetStoriesCOmmentsRTKQuery,
-  usePatchStoriesRTKMutation,
-  usePostStoriesCOmmentsRTKMutation,
-} from "../redux";
+import { useGetStoriesCOmmentsRTKQuery, usePostStoriesCOmmentsRTKMutation } from "../redux";
 import { IsLoadingPage } from "./IsLoadingPage";
 import { useSelector } from "react-redux";
 import { selectToken } from "../redux/modules/tokenSlice";
@@ -17,36 +12,17 @@ export function StoryDetail() {
   const { onNavigate, id } = useRouter();
   const [comment, setComment] = useState("");
   const { isLoading, data } = useGetStoriesCOmmentsRTKQuery(id);
-  const [deleteStoriesRTK] = useDeleteStoriesRTKMutation();
   const { nickname } = useSelector(selectToken);
-
-  const onDeleteJob = (id) => async () => {
-    deleteStoriesRTK(id);
-    onNavigate(-1)();
-  };
-
-  const [onPatchStories] = usePatchStoriesRTKMutation();
-  const onUpdateJob = (id) => async () => {
-    const formData = new FormData();
-    formData.append(
-      "data",
-      new Blob([JSON.stringify({ title: "수정하기", content: "수정하기" })], {
-        type: "application/json",
-      })
-    );
-    onPatchStories({ id, payload: formData });
-    console.log("수정하기");
-  };
-
   const onChangeComment = (e) => {
     const replace = e.target.value.replace("(?:\r\n|\r|\n)/g", <br />); // (?:\r\n|\r|\n)/g // textarea 줄바꿈처리
     setComment(replace);
   };
+
   const [postStoriesCommentRTK] = usePostStoriesCOmmentsRTKMutation();
   const onSubmitComment = (e) => {
     postStoriesCommentRTK({ id, payload: { content: comment } });
   };
-
+  
   if (isLoading) return <IsLoadingPage />;
   
   return (
@@ -89,70 +65,44 @@ export function StoryDetail() {
         </Story.StoryDetailTitle>
         <Story.StoryDetailArtical>
           <Figure
-            width="200px"
+            width="150px"
             children={<img src={data?.image} alt="Detailimgs" />}
           />
-          <FlexBox $gap={5}>
-            <Story.StoryDetailBtn onClick={onDeleteJob(data.id)}>
-              좋아요
-            </Story.StoryDetailBtn>
-            {nickname === data.username && (
-              <>
-                <Story.StoryDetailBtn onClick={onUpdateJob(data.id)}>
-                  수정하기
-                </Story.StoryDetailBtn>
-                <Story.StoryDetailBtn onClick={onDeleteJob(data.id)}>
-                  삭제하기
-                </Story.StoryDetailBtn>
-              </>
-            )}
-          </FlexBox>
+          <p>{data.content}</p>
+          {nickname === data.username && (<Story.StoriesEdit title={data.title} userLikes={data.userLikes} postId={data.id} content={data.content}/>)}
         </Story.StoryDetailArtical>
         {/* 테이블 Footer - COMMENTS */}
         <Story.StoryComment $bottomLine={true}>
           댓글 {data.length}
         </Story.StoryComment>
         {data.commentList.map((comments) => (
-          <Story.StoryCommtens key={comments.id}>
+          <Story.StoryCommtens key={comments.id} >
             <div
               style={{
                 padding: "10px 0",
                 width: "100%",
                 borderBottom: "1px solid #dadada",
+                position:"relative"
               }}
             >
               <FlexBox $jc="space-between" style={{ width: "100%" }}>
                 <CustomUl>
                   <Customli
                     style={{ paddingLeft: "0" }}
-                    children={data.username}
+                    children={comments.username}
                   />
                   <Customli
                     $before="horizon"
-                    children={data.createdAt?.split("T")[0]}
-                  />
-                </CustomUl>
-                <CustomUl>
-                  <Customli children={`조회수 ${data.view}`} />
-                  <Customli
-                    style={{ paddingRight: "0" }}
-                    $before="horizon"
-                    children={`좋아요 ${data.like}`}
+                    children={comments.createdAt?.split("T")[0]}
                   />
                 </CustomUl>
               </FlexBox>
               <p>
-                댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글
+                {comments.content}
               </p>
-              {nickname === data.username && (
-              <FlexBox $jc="flex-start">
-                <Story.StoryDetailBtn >
-                  수정하기
-                </Story.StoryDetailBtn>
-                <Story.StoryDetailBtn >
-                  삭제하기
-                </Story.StoryDetailBtn>
-              </FlexBox>)}
+              {nickname === comments.username && (
+              <Story.StoriesCommentsEdit postId={id} commentsId={comments.id} commentText={comments.content}/>
+              )}
             </div>
           </Story.StoryCommtens>
         ))}
