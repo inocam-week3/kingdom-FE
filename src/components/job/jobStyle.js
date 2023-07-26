@@ -2,8 +2,6 @@ import { css,styled } from "styled-components";
 import {Flex} from '../common'
 
 const JobBody = styled.div`
-margin-top: 50px;
-max-height: 1400px;
   ${Flex}
 `
 const JobListTitle = styled.div`
@@ -109,7 +107,25 @@ const DetailInfoBody = styled.div`
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
 `
+const DetailInfoContent = styled.div`
+  ${Flex}
+  padding: 50px;
+  flex-direction: column;
+  width: 100%;
+  gap: 30px;
+  
+  img{
+    width: 80%;
+  }
+
+  p{
+    font-size: 20px;
+  }
+`
 const DetailHead = styled.div`
+  ${Flex}
+  justify-content: space-between;
+  flex-direction: row;
   padding: 32px 40px 0;
   border-bottom: 1px solid #eee;
 
@@ -122,6 +138,11 @@ const DetailHead = styled.div`
     font-size: 32px;
     letter-spacing: -2.4px;
     color: #222;
+  }
+  img {
+    height: 120px;
+    margin-top: -35px;;
+    position: relative;
   }
 `
 const DetailCondition = styled.div`
@@ -319,6 +340,21 @@ const SubmitButton = styled.button`
   font-weight: bold;
 `
 
+const PagenationButtons = styled.div`
+  padding: 20px 0;
+  button {
+    margin: 5px;
+    width: 35px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    &:hover {
+      background-color: #2e89e5;
+      color: white;
+    }
+  }
+`
+
 export {
   JobBody,
   JobListTitle,
@@ -330,6 +366,7 @@ export {
   JobSubContent,
   RegistDate,
   DetailInfoBody,
+  DetailInfoContent,
   DetailHead,
   DetailCondition,
   ConditionTable,
@@ -339,4 +376,5 @@ export {
   WriteInputForm,
   ImageUploadForm,
   SubmitButton,
+  PagenationButtons
 }

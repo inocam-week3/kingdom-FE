@@ -1,8 +1,10 @@
 import { useState, React, useRef, useEffect } from 'react'
 import * as JS from '../components/job/jobStyle'
 import { instance } from '../redux/api/instance';
+import { useRouter } from '../hooks/commen';
 
 export function JobWrite() {
+  const { onNavigate } = useRouter();
   const logoRef = useRef(null);
   const infraRef = useRef(null);
   const [writeContent, setWriteContent] = useState({});
@@ -15,17 +17,39 @@ export function JobWrite() {
     setNowDate();
     const formData = new FormData();
 
-    for (const [key, value] of Object.entries(writeContent)) {
-      formData.append(key, value);
-    }
+    // for (const [key, value] of Object.entries(writeContent)) {
+    //   formData.append(key, value);
+    // }
+
+    formData.append("data", new Blob(
+      [
+        JSON.stringify({
+          title : writeContent.title,
+          content : writeContent.content,
+          companyname : writeContent.companyname,
+          location : writeContent.location,
+          salary : writeContent.salary,
+          recruitmentStartPeriod : writeContent.recruitmentStartPeriod,
+          recruitmentEndPeriod : writeContent.recruitmentEndPeriod,
+          recruitmentPersonNum : writeContent.recruitmentPersonNum,
+          managerName : writeContent.manegerName,
+          managerEmail : writeContent.managerEmail,
+        }),
+      ],
+      { type: "application/json" }
+    ))
     if (logoRef.current && logoRef.current.files.length > 0) {
-      formData.append('logoImage', logoRef.current.files[0]);
+      formData.append('file', logoRef.current.files[0]);
     }
     if (infraRef.current && infraRef.current.files.length > 0) {
-      formData.append('infraImage', infraRef.current.files[0]);
+      formData.append('file2', infraRef.current.files[0]);
     }
 
-    instance.post(`/api/job`, formData) 
+    instance.post(`/api/job`, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    },formData) 
       .then((response) => {
         if (response.status === 200) {
           console.log('공고 등록 성공!');
@@ -87,8 +111,6 @@ export function JobWrite() {
       setWorkImgUrl(null);
     }
   };
-
-
 
   return (
     <JS.JobWriteBody>
@@ -260,7 +282,9 @@ export function JobWrite() {
       </form>
       <JS.SubmitButton
         type='submit'
-        onClick={()=>postJobWrite()}><p>공고 등록하기</p></JS.SubmitButton>
+        onClick={()=>{
+          onNavigate(`/job`);
+        }}><p>공고 등록하기</p></JS.SubmitButton>
     </JS.JobWriteBody>
   )
 }

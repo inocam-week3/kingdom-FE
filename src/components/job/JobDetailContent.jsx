@@ -1,16 +1,19 @@
 import * as JS from './jobStyle'
 
-export function JobDetailContent({createAt,title,companyname,salary}) {
+export function JobDetailContent({createAt,title,companyname,salary,recruitmentPersonNum,logoimage,recruitendperiod,managername,manageremail,content,workinfraimage}) {
 
   return (
     <JS.JobSubContent>
       <JS.RegistDate>
-        <p>등록일: {createAt}</p>
+        <p>등록일: {createAt && createAt.split("T")[0]}</p>
       </JS.RegistDate>
       <JS.DetailInfoBody>
         <JS.DetailHead>
-          <p>{companyname}</p>
-          <strong>{title}</strong>
+          <div>
+            <p>{companyname}</p>
+            <strong>{title}</strong>
+          </div>
+          <img src={logoimage}></img>
         </JS.DetailHead>
         <JS.DetailCondition>
           <JS.ConditionTable $type={"left"}>
@@ -22,39 +25,42 @@ export function JobDetailContent({createAt,title,companyname,salary}) {
               </dl>
               <dl>
                 <dt>모집인원</dt>
-                <dd>recruitmentPersonNum</dd>
+                <dd>{recruitmentPersonNum}명</dd>
               </dl>
             </div>
-            <div>
+            <div style={{border:"none"}}>
               <h3>근무조건</h3>
               <dl>
                 <dt>급여</dt>
-                <dd>{salary}</dd>
+                <dd>시급 {salary}원</dd>
               </dl>
             </div>
           </JS.ConditionTable>
           <JS.ConditionTable $type={"right"}>
             <div>
-              <button>온라인지원</button>
+              {/* <button>온라인지원</button> */}
               <h3>모집마감일</h3>
-              <strong>recruitmentStartPeriod ~ recruitmentEndPeriod</strong>
+              <strong>{recruitendperiod &&recruitendperiod.split("T")[0]}</strong>
             </div>
-            <div>
+            <div style={{border:"none"}}>
               <h3>채용담당자정보</h3>
               <dl>
                 <dt>담당자명</dt>
-                <dd>?</dd>
+                <dd>{managername}</dd>
               </dl>
               <dl>
                 <dt>연락처</dt>
                 <dd>
-                  <p>메일</p>
+                  <p>{manageremail}</p>
                 </dd>
               </dl>
             </div>
           </JS.ConditionTable>
         </JS.DetailCondition>
-          <div>냐호</div>
+        <JS.DetailInfoContent>
+          <img src={workinfraimage}></img>
+          <p>{content}</p>
+        </JS.DetailInfoContent>
       </JS.DetailInfoBody>
     </JS.JobSubContent>
   )
