@@ -17,14 +17,16 @@ instance.interceptors.request.use((config) => {
 
 instance.interceptors.response.use((config) => {
   if (config.headers.authorization) {
+    console.log("config", config.headers.authorization);
     const expiresTime = new Date() // new Date(1690253395000).toUTCString()
     expiresTime.setMinutes(expiresTime.getMinutes()+30)
-    document.cookie = `accessToken=${config.headers.authorization}; expires=${expiresTime.toUTCString()} path=/;`
+    document.cookie = `accessToken=${config.headers.authorization}; expires=${expiresTime.toUTCString()}; path=/;`
   } 
   if (config.headers.refreshtoken) {
+    console.log("config", config.headers.authorization);
     const expiresTime = new Date()
     expiresTime.setDate(expiresTime.getDate()+3)
-    document.cookie = `refreshtoken=${config.headers.refreshtoken}; expires=${expiresTime.toUTCString()} path=/;`
+    document.cookie = `refreshtoken=${config.headers.refreshtoken}; expires=${expiresTime.toUTCString()}; path=/;`
   }
   return config;
 });

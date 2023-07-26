@@ -9,7 +9,7 @@ export function JobItem({id, companyname, title}) {
       <JobListLogo>로고 이미지</JobListLogo>
       <div>
         <p>{companyname}</p>
-        <storng>{title}</storng>
+        <strong>{title}</strong>
       </div>
     </JobListSection>
   )

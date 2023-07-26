@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect } from "react";
-import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { HeaderNavTop } from "./HeaderNavTop";
 import { HeaderNavBottom } from "./HeaderNavBottom";
 import { HeaderBanner } from "./HeaderBanner";
@@ -18,14 +18,14 @@ export function Header() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    const accessToken =
+    const refreshtoken =
       document.cookie &&
       document.cookie
         .split(";")
-        .filter((cookies) => cookies.includes("accessToken"))[0]
+        .filter((cookies) => cookies.includes("refreshtoken"))[0]
         ?.split("=")[1];
-    if (!!accessToken) {
-      dispatch(setDecodeToken(accessToken));
+    if (!!refreshtoken) {
+      dispatch(setDecodeToken(refreshtoken));
     }
   }, [dispatch]);
 

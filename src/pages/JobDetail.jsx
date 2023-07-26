@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getJobsDetailData, selectJobsDetail, updateJobsDetailData } from '../redux/modules/morkServer';
 import * as JS from '../components/job/jobStyle'
 import { JobDetailContent } from '../components/job/JobDetailContent';
+import { instance } from '../redux/api/instance';
 
 export function JobDetail() {
   const JobDetailData = useSelector(selectJobsDetail)
@@ -14,7 +15,7 @@ export function JobDetail() {
   useEffect(()=>{
     async function getJobInfo() {
       try {
-        const res = await axios.get(`/api/job/${id}`);
+        const res = await instance.get(`/api/job/${id}`);
         dispatch(getJobsDetailData(res.data.info))
       } catch (error) {
         console.log('데이터를 불러오지 못 했습니다', error);

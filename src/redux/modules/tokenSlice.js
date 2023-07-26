@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import jwt_decode from 'jwt-decode'
 
 const initialState = {
-  decodeToken : null
+  decodeToken : {}
 }
 
 
@@ -14,8 +14,8 @@ const tokenSlice = createSlice({
       const decodeToken = jwt_decode(action.payload)
       return state = {...decodeToken}
     },
-    deleteToken : () => {
-      return null
+    deleteToken : (state) => {
+      return state = {}
     }
   }
 })

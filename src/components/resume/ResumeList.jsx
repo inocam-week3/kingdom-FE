@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "../../hooks/commen";
 import * as ReList from "./ResumeListStyle";
+import { instance } from "../../redux/api/instance";
 
 export function ResumeList() {
   const [resumes, setResumes] = useState([]);
@@ -11,8 +12,9 @@ export function ResumeList() {
   useEffect(() => {
     async function getResumeData() {
       try {
-        const res = await axios.get(`/api/resumes`);
-        setResumes(res.data.info);
+        // const res = await instance.get(`/api/resumes`); // api/stories?page=${pageNum}&size=40
+        const res = await instance.get(`/api/resumes?page=1&size=40`);
+        setResumes(res.data.info.content);
       } catch (error) {
         console.log("데이터를 가져오지 못했습니다.");
       }
@@ -25,12 +27,12 @@ export function ResumeList() {
         <h2>
           일반<strong> 인재정보</strong>
         </h2>
-        <span $before="horizon">
+        <span> {/* $before="horizon" 스타일드 컴포넌트에서만 props */}
           | 총 <strong></strong> 건
         </span>
         <div>
           <select>
-            <option selected>업데이트 순</option>
+            <option defaultValue>업데이트 순</option>
             <option>이력서완성도순</option>
             <option>구직활동순</option>
             <option>경력순</option>
@@ -38,7 +40,7 @@ export function ResumeList() {
           </select>
 
           <select>
-            <option selected>20개씩 보기</option>
+            <option defaultValue>20개씩 보기</option>
             <option>30개씩 보기</option>
             <option>50개씩 보기</option>
           </select>

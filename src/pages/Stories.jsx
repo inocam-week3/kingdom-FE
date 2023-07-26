@@ -1,32 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useRouter } from "../hooks/commen";
-import axios from "axios";
 import { Figure, FlexBox } from "../components/common";
-import { PageNationBtn, StorieIndexBtn, StoriesTable } from "../components/story/storyStyle";
+import * as Story from "../components/story/storyStyle";
 import { useParams } from "react-router-dom";
+import { useGetStoriesRTKQuery } from "../redux/api";
+import { IsLoadingPage } from "./IsLoadingPage";
+import { useStories } from "../hooks/stories/useStories";
+import { StoriesTableBody } from "../components/story";
 
 export function Stories() {
-  const { id:paramsid } = useParams();
+  const { id: paramsid } = useParams();
   const { onNavigate } = useRouter();
-  const [Story, setStory] = useState([]);
-  console.log(+paramsid);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [postsPerPage, setPostsPerPage] = useState(20);
+  const { StoriesTableTitle } = useStories();
+  const { isLoading, data } = useGetStoriesRTKQuery(paramsid);
+  // data && console.log("data", data);
 
-  useEffect(() => {
-    async function getStoryData() {
-      try {
-        const res = await axios.get("/api/stories");
-        setStory(res.data.info);
-      } catch (error) {
-        console.log("error", error.response.data.info); // 서버 messgae가 아니라, 코드가?
-      }
-    }
-    getStoryData();
-  }, []);
-
+  if (isLoading) return <IsLoadingPage />;
   return (
     <div>
+      {/* 알바스토리 부분 헤더 이미지 */}
       <Figure
         style={{ marginTop: "50px", marginBottom: "25px" }}
         children={
@@ -36,170 +28,39 @@ export function Stories() {
           />
         }
       />
-     <FlexBox $jc="flex-end">
-     <StorieIndexBtn onClick={onNavigate('/storywrite')} $type="write"><p>글쓰기</p></StorieIndexBtn>
-     </FlexBox>
+      <FlexBox $jc="flex-end">
+        <Story.StorieIndexBtn
+          onClick={onNavigate("/storieswrite")}
+          $type="write"
+          children={<p>글쓰기</p>}
+        />
+      </FlexBox>
       {/* 테이블 헤더 */}
-      <StoriesTable $gtc="150px 1fr 100px 100px 100px 100px" $bottomLine="th">
-        <FlexBox>글번호</FlexBox>
-        <FlexBox>제목</FlexBox>
-        <FlexBox>글쓴이</FlexBox>
-        <FlexBox>날짜</FlexBox>
-        <FlexBox>조회</FlexBox>
-        <FlexBox>좋아요</FlexBox>
-      </StoriesTable>
-
+      <Story.StoriesTable
+        $gtc="150px 1fr 100px 100px 100px 100px"
+        $bottomLine="th"
+      >
+        {StoriesTableTitle.map((title) => (
+          <FlexBox key={title} children={title} />
+        ))}
+      </Story.StoriesTable>
       {/* 테이블 본문 */}
-      {Story &&
-        Story.map(({ id, like, title, username, view, createdAt }) => (
-          <StoriesTable
-            key={id}
-            $gtc="150px 1fr 100px 100px 100px 100px"
-            $bottomLine="td"
-          >
-            <FlexBox>{id}</FlexBox>
-            <FlexBox
-              $jc="flex-start"
-              style={{cursor:"pointer"}}
-              onClick={onNavigate(`/stories/${paramsid}/${id}`)}
-            >
-              {title}
-            </FlexBox>
-            <FlexBox>{username}</FlexBox>
-            <FlexBox>{createdAt.split("T")[0]}</FlexBox>
-            <FlexBox>조회 {view}</FlexBox>
-            <FlexBox>좋아요 {like}</FlexBox>
-          </StoriesTable>
+      {data &&
+        data.content.map((data) => (
+          <StoriesTableBody key={data.id} paramsid={paramsid} onNavigate={onNavigate} {...data} />
         ))}
-      {Story &&
-        Story.map(({ id, like, title, username, view, createdAt }) => (
-          <StoriesTable
-            key={id}
-            $gtc="150px 1fr 100px 100px 100px 100px"
-            $bottomLine="td"
-          >
-            <FlexBox>{id}</FlexBox>
-            <FlexBox
-              onClick={onNavigate(`/stories/${paramsid}/${id}`)}
-              $jc="flex-start"
-            >
-              {title}
-            </FlexBox>
-            <FlexBox>{username}</FlexBox>
-            <FlexBox>{createdAt.split("T")[0]}</FlexBox>
-            <FlexBox>조회 {view}</FlexBox>
-            <FlexBox>좋아요 {like}</FlexBox>
-          </StoriesTable>
-        ))}
-      {Story &&
-        Story.map(({ id, like, title, username, view, createdAt }) => (
-          <StoriesTable
-            key={id}
-            $gtc="150px 1fr 100px 100px 100px 100px"
-            $bottomLine="td"
-          >
-            <FlexBox>{id}</FlexBox>
-            <FlexBox
-              onClick={onNavigate(`/stories/${paramsid}/${id}`)}
-              $jc="flex-start"
-            >
-              {title}
-            </FlexBox>
-            <FlexBox>{username}</FlexBox>
-            <FlexBox>{createdAt.split("T")[0]}</FlexBox>
-            <FlexBox>조회 {view}</FlexBox>
-            <FlexBox>좋아요 {like}</FlexBox>
-          </StoriesTable>
-        ))}
-      {Story &&
-        Story.map(({ id, like, title, username, view, createdAt }) => (
-          <StoriesTable
-            key={id}
-            $gtc="150px 1fr 100px 100px 100px 100px"
-            $bottomLine="td"
-          >
-            <FlexBox>{id}</FlexBox>
-            <FlexBox
-              onClick={onNavigate(`/stories/${paramsid}/${id}`)}
-              $jc="flex-start"
-            >
-              {title}
-            </FlexBox>
-            <FlexBox>{username}</FlexBox>
-            <FlexBox>{createdAt.split("T")[0]}</FlexBox>
-            <FlexBox>조회 {view}</FlexBox>
-            <FlexBox>좋아요 {like}</FlexBox>
-          </StoriesTable>
-        ))}
-      {Story &&
-        Story.map(({ id, like, title, username, view, createdAt }) => (
-          <StoriesTable
-            key={id}
-            $gtc="150px 1fr 100px 100px 100px 100px"
-            $bottomLine="td"
-          >
-            <FlexBox>{id}</FlexBox>
-            <FlexBox
-              onClick={onNavigate(`/stories/${paramsid}/${id}`)}
-              $jc="flex-start"
-            >
-              {title}
-            </FlexBox>
-            <FlexBox>{username}</FlexBox>
-            <FlexBox>{createdAt.split("T")[0]}</FlexBox>
-            <FlexBox>조회 {view}</FlexBox>
-            <FlexBox>좋아요 {like}</FlexBox>
-          </StoriesTable>
-        ))}
-      {Story &&
-        Story.map(({ id, like, title, username, view, createdAt }, index) =>
-          index + 1 === Story.length ? (
-            <StoriesTable key={id} $gtc="150px 1fr 100px 100px 100px 100px" $bottomLine="th">
-              <FlexBox>{id}</FlexBox>
-              <FlexBox
-                onClick={onNavigate(`/stories/${paramsid}/${id}`)}
-                $jc="flex-start"
-              >
-                {title}
-              </FlexBox>
-              <FlexBox>{username}</FlexBox>
-              <FlexBox>{createdAt.split("T")[0]}</FlexBox>
-              <FlexBox>조회 {view}</FlexBox>
-              <FlexBox>좋아요 {like}</FlexBox>
-            </StoriesTable>
-          ) : (
-            <StoriesTable
-              key={id}
-              $gtc="150px 1fr 100px 100px 100px 100px"
-              $bottomLine="td"
-            >
-              <FlexBox>{id}</FlexBox>
-              <FlexBox
-                onClick={onNavigate(`/stories/${paramsid}/${id}`)}
-                $jc="flex-start"
-              >
-                {title}
-              </FlexBox>
-              <FlexBox>{username}</FlexBox>
-              <FlexBox>{createdAt.split("T")[0]}</FlexBox>
-              <FlexBox>조회 {view}</FlexBox>
-              <FlexBox>좋아요 {like}</FlexBox>
-            </StoriesTable>
-          )
-        )}
-
       {/* 테이블 푸터 */}
-      <FlexBox $gap={20} style={{height:"80px"}}>
-        {Array.from({ length: 10 }, (_, index) => index).map((num) => {
-          return (
-            <PageNationBtn
+      <FlexBox $gap={20} style={{ height: "80px" }}>
+        {Array.from({ length: data.totalPages }, (_, index) => index).map(
+          (num) => (
+            <Story.PageNationBtn
+              key={num}
               $pageNum={+paramsid === num + 1}
               onClick={onNavigate(`/stories/${num + 1}`)}
-            >
-              {num + 1}
-            </PageNationBtn>
-          );
-        })}
+              children={num + 1}
+            />
+          )
+        )}
       </FlexBox>
     </div>
   );
