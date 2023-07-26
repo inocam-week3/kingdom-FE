@@ -28,6 +28,7 @@ export function ResumeList() {
         <h2>
           일반<strong> 인재정보</strong>
         </h2>
+
         <span>
           | 총 <strong>{resumes.length}</strong> 건
         </span>

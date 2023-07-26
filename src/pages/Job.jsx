@@ -6,6 +6,7 @@ import { getJobsData, selectJobsDate } from '../redux/modules/morkServer/morkJob
 
 import * as JS from '../components/job/jobStyle'
 import { JobInfo } from '../components/job/JobInfo';
+import { instance } from '../redux/api/instance';
 
 export function Job() {
   const { onNavigate } = useRouter();
@@ -14,7 +15,7 @@ export function Job() {
   useEffect(()=>{
     async function getJobInfo(){
       try{
-        const res = await axios.get(`/api/job`)
+        const res = await instance.get(`/api/job`)
         dispatch(getJobsData(res.data.info))
       }
       catch(error){
@@ -37,7 +38,7 @@ export function Job() {
         <JS.JobListTitle>
           <strong>일반 채용정보</strong>
           |
-          <span $before="horizon"> 총 <strong>{jobDatas.length}</strong> 건</span>
+          <span> 총 <strong>{jobDatas.length}</strong> 건</span>
         </JS.JobListTitle>
         <JS.SortTypeList>정렬조건</JS.SortTypeList>
         <JS.JobInfoTable>

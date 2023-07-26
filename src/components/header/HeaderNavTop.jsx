@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteToken, selectToken } from "../../redux/modules/tokenSlice";
 
 export function HeaderNavTop() {
-  const { auth } = useSelector(selectToken); // auth, email, userName // 변수 이름으로 -> 
+  const auth = useSelector(selectToken); // auth, email, userName // 변수 이름으로 -> 
   const { onNavigate } = useRouter();
   const dispatch = useDispatch()
   const onSubmitSearch = (e) => {
@@ -45,7 +45,7 @@ export function HeaderNavTop() {
         />
         <Comm.AlbaIcons />
       </Comm.Form>
-      {auth ? (
+      {auth.sub ? (
         <Comm.CustomUl
           $type="bottomLine"
           style={{ position: "absolute", top: 0, right: "-20px" }}

@@ -5,7 +5,7 @@ import { TableContentTd, JobsSpan} from './jobStyle'
 export function JobInfo({id, local, companyname, title, salary, createAt}) {
   const { onNavigate } = useRouter();
 
-  const when = createAt.split("T");
+  const when = createAt?.split("T");
   const getSalaryColor = (type) => {
     switch (type){
       case "시급" :
@@ -34,8 +34,8 @@ export function JobInfo({id, local, companyname, title, salary, createAt}) {
         <JobsSpan>{salary}</JobsSpan>
       </TableContentTd>
       <TableContentTd $type="create">
-        <JobsSpan>{when[0]}</JobsSpan> <br/>
-        <JobsSpan>{when[1]}</JobsSpan>
+        <JobsSpan>{when&&when[0]}</JobsSpan> <br/>
+        <JobsSpan>{when&&when[1]}</JobsSpan>
       </TableContentTd>
     </tr>
   )
