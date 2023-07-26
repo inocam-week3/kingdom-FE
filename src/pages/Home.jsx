@@ -7,20 +7,19 @@ import {JobListWrapper} from '../components/home/homeStyle'
 export function Home() {
   const { selectHomeJobs , selectHomeStories, getJobInfo, getStoriesInfo } = useHome()
 
-  useEffect(()=>{
-    getJobInfo()
-    getStoriesInfo()
-  },[])
-
+  useEffect(() => {
+    getJobInfo();
+    getStoriesInfo();
+  }, []);
 
   return (
-    <div style={{height:"200vh"}}>
-      <p>CICD 테스트</p> 
+    <div style={{ height: "200vh" }}>
+      <p>CICD 테스트</p>
 
       <h3>최신 채용정보</h3>
-       <JobListWrapper>
-        {
-          selectHomeJobs && selectHomeJobs.map((item)=> (
+      <JobListWrapper>
+        {selectHomeJobs &&
+          selectHomeJobs.map((item) => (
             <JobItem
               key={item.id}
               id={item.id}
@@ -43,6 +42,7 @@ export function Home() {
         selectHomeStories && selectHomeStories.map((item)=><div key={item.id}>
           {item.content}</div>
           ) */}
+      <HomeStory />
     </div>
-  )
+  );
 }

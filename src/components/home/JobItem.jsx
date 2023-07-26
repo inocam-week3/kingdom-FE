@@ -13,5 +13,5 @@ export function JobItem({id, companyname, title, location}) {
       </JobListContent>
       <p>{location}</p>
     </JobListSection>
-  )
+  );
 }
