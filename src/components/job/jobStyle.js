@@ -253,6 +253,18 @@ const WriteInputForm = styled.div`
         color: red;
       }
     }
+    div {
+      padding: 0;
+      input {
+      height: 25px;
+      width: 25px;
+    }
+    span{
+      font-size: 13px;
+      padding: 0 10px;
+      width: 150px;
+    }
+  }
       input {
         border: 1px solid #eee;
         width: 100%;
@@ -268,6 +280,32 @@ const WriteInputForm = styled.div`
         font-size: 15px;
         letter-spacing: -0.8px;
       }
+  }
+`
+const ImageUploadForm = styled.table`
+  ${Flex}
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 5px;
+  text-align: left;
+  border-left: 1px solid #eee;
+  border-top: 1px solid #eee;
+
+  tr{
+    width: 100%;
+    th{
+      height: inherit;
+      border-right: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      p{
+        width: 120px;
+        font-size: 15px;
+        padding-left: 10px;
+      }
+      input{
+        border: none;
+      }
+    }
   }
 `
 const SubmitButton = styled.button`
@@ -299,5 +337,6 @@ export {
   WriteSection,
   WriteTitle,
   WriteInputForm,
+  ImageUploadForm,
   SubmitButton,
 }
