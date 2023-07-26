@@ -115,7 +115,10 @@ const DetailInfoContent = styled.div`
   gap: 30px;
   
   img{
-    width: 80%;
+    min-width: 40%;
+    max-width: 80%;
+    min-height: 100px;
+    max-height: 600px;
   }
 
   p{
