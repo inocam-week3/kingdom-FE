@@ -45,18 +45,19 @@ export function JobDetail() {
   return (
     <div>
       <JS.JobLocation>홈 &gt; 채용정보 &gt; <strong>상세정보</strong></JS.JobLocation>
-        <button onClick={onDeleteJob(JobDetailData.id)}>삭제하기</button>
-        <button onClick={onUpdateJob(JobDetailData.id)}>수정하기</button>
       <JobDetailContent
-        createAt={JobDetailData.createAt}
+        createAt={JobDetailData.createdAt}
         title={JobDetailData.title}
         companyname={JobDetailData.companyname}
         salary={JobDetailData.salary}
+        recruitmentPersonNum={JobDetailData.recruitpersonnum}
+        logoimage={JobDetailData.logoimage}
+        recruitendperiod={JobDetailData.recruitendperiod}
+        managername={JobDetailData.managername}
+        manageremail={JobDetailData.manageremail}
+        content={JobDetailData.content}
+        workinfraimage={JobDetailData.workinfraimage}
         ></JobDetailContent>
-      {JobDetailData && (
-      <div>
-        {JobDetailData.title}
-      </div>)}
     </div>
   )
 }

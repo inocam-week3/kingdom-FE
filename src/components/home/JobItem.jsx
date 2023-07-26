@@ -1,17 +1,20 @@
 import { useRouter } from "../../hooks/commen";
 import {JobListSection, JobListLogo, JobListContent} from './homeStyle'
 
-export function JobItem({id, companyname, title, location}) {
+export function JobItem({id, companyname, title, location, salary, logoImage}) {
   const { onNavigate } = useRouter();
 
   return (
     <JobListSection onClick={onNavigate(`/job/${id}`)}>
-      <JobListLogo><p>로고 이미지</p></JobListLogo>
+      {logoImage&& <JobListLogo><img src={logoImage}></img></JobListLogo>}
       <JobListContent>
         <p>{companyname}</p>
-        <storng>{title}</storng>
+        <strong>{title}</strong>
       </JobListContent>
-      <p>{location}</p>
+      <section>
+        <p>{location}</p>
+        <p>시급 {salary}원</p>
+      </section>
     </JobListSection>
   );
 }
