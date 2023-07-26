@@ -22,6 +22,7 @@ export function Home() {
         {
           selectHomeJobs && selectHomeJobs.map((item)=> (
             <JobItem
+              key={item.id}
               id={item.id}
               companyname={item.companyname}
               title={item.title}
