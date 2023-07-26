@@ -1,14 +1,42 @@
 import { useState, React, useRef, useEffect } from 'react'
 import * as JS from '../components/job/jobStyle'
+import { instance } from '../redux/api/instance';
 
 export function JobWrite() {
-  const logoRef = useRef();
-  const workRef = useRef();
+  const logoRef = useRef(null);
+  const infraRef = useRef(null);
   const [writeContent, setWriteContent] = useState({});
   const [isEnd, setIsEnd] = useState(true);
-  const [pnum, setPnum] = useState("")
-  const [logoImg, setLogoImg] = useState("");
-  const [workImg, setWorkImg] = useState("");
+  const [pnum, setPnum] = useState("");
+  const [logoImgUrl, setLogoImgUrl] = useState(null);
+  const [workImgUrl, setWorkImgUrl] = useState(null);
+ 
+  const postJobWrite = () => {
+    setNowDate();
+    const formData = new FormData();
+
+    for (const [key, value] of Object.entries(writeContent)) {
+      formData.append(key, value);
+    }
+    if (logoRef.current && logoRef.current.files.length > 0) {
+      formData.append('logoImage', logoRef.current.files[0]);
+    }
+    if (infraRef.current && infraRef.current.files.length > 0) {
+      formData.append('infraImage', infraRef.current.files[0]);
+    }
+
+    instance.post(`/api/job`, formData) 
+      .then((response) => {
+        if (response.status === 200) {
+          console.log('공고 등록 성공!');
+        } else {
+          console.error('공고 등록 실패:', response);
+        }
+      })
+      .catch((error) => {
+        console.error('네트워크 오류:', error);
+      });
+  };
   const setWC = (key, value) => {
     const newWrite = {...writeContent};
     newWrite[key] = value;
@@ -22,34 +50,49 @@ export function JobWrite() {
     setPnum(value);
     setWC('recruitmentPersonNum',value);
   }
-  const saveLogoImgFile = () => {
-    const file = logoRef.current.files[0];
+  const setNowDate = () => {
+    const month = {Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
+    let d = new Date();
+    d = String(d).split(" ");
+    const dArray = [d[3], month[d[1]], d[2]];
+    const startDay = dArray.join('-');
+    setWC('recruitmentStartPeriod', startDay);
+  }
+  const handleLogoImageChange = (e) => {
+    const file = e.target.files[0];
     const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setLogoImgUrl(reader.result);
+    };
+
+    if (file) {
       reader.readAsDataURL(file);
-      reader.onloadend = () => {
-          setLogoImg(reader.result);
-          setWC('logoImage',reader.result);
-       };
-  };
-  const saveWorkImgFile = () => {
-    const file = workRef.current.files[0];
-    const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-          setWorkImg(reader.result);
-          setWC('workInfraImage',reader.result);
-       };
+    } else {
+      setLogoImgUrl(null);
+    }
   };
 
-  useEffect(()=>{
-    writeContent.id ? 
-      alert("공고 등록이 완료되었습니다.")
-    : console.log("공고 등록 안 됨");
-    console.log(writeContent);
-  },[writeContent.id])
+  const handleInfraImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setWorkImgUrl(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      setWorkImgUrl(null);
+    }
+  };
+
+
 
   return (
     <JS.JobWriteBody>
+      <form>
       <h3>구인공고 작성</h3>
       <JS.WriteSection>
         <JS.WriteTitle>
@@ -80,6 +123,16 @@ export function JobWrite() {
               placeholder='공고 내용을 입력해 주세요.'
               onChange={(e)=>setWC('content',e.target.value)}
               ></textarea>
+          </div>
+          <div>
+            <section>
+              <strong>급여</strong>
+            </section>
+            <input
+              value={writeContent.salary||0}
+              type='number'
+              onChange={(e)=>setWC('salary',e.target.value)}
+              ></input>
           </div>
           <div>
             <section>
@@ -159,24 +212,16 @@ export function JobWrite() {
                   }>
                     <th style={{backgroundColor: "#fcfcfc"}}><p>근무지 로고</p></th>
                     <th style={{width:"300px", textAlign:"center"}}>
-                      <img style={{height:"110px", overflow: "hidden"}} src={logoImg ? logoImg : null} alt='로고이미지를 등록하세요.' />
+                    {logoImgUrl && <img style={{ height: "110px", overflow: "hidden" }} src={logoImgUrl} alt='로고이미지를 등록하세요.' />}
                     </th>
-                    <th><input
-                  accept='image/*'
-                  multiple type='file'
-                  onChange={saveLogoImgFile}
-                  ref={logoRef}/></th>
+                    <th><input accept='image/*' type='file' onChange={handleLogoImageChange} ref={logoRef} /></th>
                   </tr>
                   <tr style={{height:"200px"}}>
                     <th style={{backgroundColor: "#fcfcfc"}}><p>근무환경</p></th>
                     <th style={{width:"300px", textAlign:"center"}}>
-                      <img style={{height:"190px", overflow: "hidden"}} src={workImg ? workImg : null} alt='근무환경 사진을 등록하세요.' />
+                    {workImgUrl && <img style={{ height: "190px", overflow: "hidden" }} src={workImgUrl} alt='근무환경 사진을 등록하세요.' />}
                     </th>
-                    <th><input
-                      accept='image/*'
-                      multiple type='file'
-                      onChange={saveWorkImgFile}
-                      ref={workRef}/></th>
+                    <th><input accept='image/*' type='file' onChange={handleInfraImageChange} ref={infraRef} /></th>
                   </tr>
                   </tbody>
               </JS.ImageUploadForm>
@@ -200,7 +245,7 @@ export function JobWrite() {
               onChange={(e)=>setWC('managerName',e.target.value)}
               ></input>
             </div>
-            <div>
+            <div style={{border: "none"}}>
             <section>
               <strong>이메일</strong>
               <p>필수</p>
@@ -210,20 +255,12 @@ export function JobWrite() {
             onChange={(e)=>setWC('managerEmail',e.target.value)}
             ></input>
           </div>
-          <div style={{border: "none"}}>
-            <section>
-              <strong>전화번호</strong>
-            </section>
-          <input
-            type='tel'
-            ></input>
-          </div>
         </JS.WriteInputForm>
       </JS.WriteSection>
+      </form>
       <JS.SubmitButton
-        onClick={()=>{
-          setWC('id',Date.now())
-        }}><p>공고 등록하기</p></JS.SubmitButton>
+        type='submit'
+        onClick={()=>postJobWrite()}><p>공고 등록하기</p></JS.SubmitButton>
     </JS.JobWriteBody>
   )
 }

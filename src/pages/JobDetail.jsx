@@ -35,7 +35,7 @@ export function JobDetail() {
 
   const onUpdateJob = (id) => async () => {
     try {
-      const res = await axios.patch(`/api/job/${id}`, {title:"수정하기"});
+      const res = await instance.patch(`/api/job/${id}`, {title:"수정하기"});
       dispatch(updateJobsDetailData(res.data.info))
     } catch (error) {
       console.log('데이터를 수정하지 못했습니다.', error);

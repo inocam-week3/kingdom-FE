@@ -9,7 +9,6 @@ import { JobInfo } from '../components/job/JobInfo';
 import { instance } from '../redux/api/instance';
 
 export function Job() {
-  const { onNavigate } = useRouter();
   const dispatch = useDispatch()
   const jobDatas = useSelector(selectJobsDate)
   useEffect(()=>{
@@ -24,14 +23,6 @@ export function Job() {
     }
     getJobInfo()
   },[dispatch])
-// JobDatas {
-//   jobDatas && jobDatas.map((item)=>(
-//     <section key={item.id}>
-//       {item.title}
-//       <button onClick={onNavigate(`/job/${item.id}`)}>Detail</button>
-//     </section>
-//   ))
-// }
 
   return (
       <JS.JobBody $fd="column">
