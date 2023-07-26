@@ -1,5 +1,4 @@
 import { css, styled } from "styled-components";
-import { Flex } from "../common";
 
 const ListOutline = styled.div`
   width: 100%;
@@ -21,12 +20,7 @@ const ListInline = styled.div`
     }
   }
   div {
-    ${Flex}
-    justify-content: space-between
-  }
-  div {
     width: 100%;
-    border-top: 2px solid #222;
     select {
       width: 120px;
       height: 26px;
@@ -36,66 +30,70 @@ const ListInline = styled.div`
   }
 `;
 
-const ResumeListTable = styled.table`
-  width: 100%;
+const ResumeListGrid = styled.div`
+  width: 1260px;
+  display: grid;
+  grid-template-columns: 236px 675px 220px 130px;
+  grid-column-gap: 0;
+  /* gap: 10px 0; */
   margin: 10px 0;
+`;
 
-  thead {
-    background-color: #f2f2f2;
-    width: 100%;
-    height: 33px;
-    th {
-      border-top: 2px solid #ccc;
-      font-weight: 600;
-      font-size: 13px;
-    }
-  }
-  tbody {
-    width: 100%;
-    height: 66px;
-    padding: 12px 0 10px;
-    &:hover {
-      background-color: #eefcff;
-    }
-    p {
-      border: none;
-    }
+const ResumeListBox = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 0;
+  /* gap: 10px 0; */
+  margin: 10px 0;
+  &:hover {
+    background-color: rgba(0, 136, 250, 0.1);
   }
 `;
 
-const ResumeListth = styled.td`
-  width: 100%;
-  border-bottom: 1px solid #e4e4e4;
+const ResumeListTitle = styled.div`
+  border-top: 2px solid #ccc;
+  background-color: #f2f2f2;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+`;
+
+const ResumeListCell = styled.div`
   font-size: 14px;
   text-align: center;
-  padding: 10px 0 11px;
+  padding: 20px 0 11px;
+  border-bottom: 1px solid #e4e4e4;
+
   ${({ $type }) =>
     $type === "name"
       ? css`
-          width: 180px;
           font-size: 1rem;
-        `
-      : $type === "content"
-      ? css`
-          width: 515px;
-          text-align: left;
         `
       : $type === "career"
       ? css`
-          width: 166px;
           font-size: 12px;
           strong {
             color: blue;
             font-weight: 400;
           }
         `
-      : $type === "createAt"
+      : $type === "createdAt"
       ? css`
-          width: 100px;
+          text-align: center;
         `
       : css`
-          padding: 10px;
+          text-align: left;
+          cursor: pointer;
         `}
 `;
 
-export { ListOutline, ListInline, ResumeListTable, ResumeListth };
+export {
+  ListOutline,
+  ListInline,
+  ResumeListGrid,
+  ResumeListTitle,
+  ResumeListBox,
+  ResumeListCell,
+};

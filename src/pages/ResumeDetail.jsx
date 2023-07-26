@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "../hooks/commen";
 import * as DetailSt from "../components/resume/ResumeDetailStyle";
+import { instance } from "../redux";
 
 export function ResumeDetail() {
   const [ResumeDetailData, setResumeDetailData] = useState([]);
+  const [isEdit, setIsEdit] = useState(false);
+  const [updatetitle, setUpdatetitle] = useState("");
+  const [updatecareer, setUpdatecareer] = useState("");
   const { onNavigate, id } = useRouter();
+  const inputRef = useRef(null);
 
   useEffect(() => {
     async function getResumeInfo() {
       try {
-        const res = await axios.get(`/api/resumes/${id}`);
+        const res = await instance.get(`/api/resumes/${id}`);
         console.log(res);
         setResumeDetailData(res.data.info);
       } catch (error) {
@@ -22,7 +26,7 @@ export function ResumeDetail() {
 
   const onDeleteJob = (id) => async () => {
     try {
-      const res = await axios.delete(`/api/resumes/${id}`);
+      const res = await instance.delete(`/api/resumes/${id}`);
       console.log(res);
       alert("삭제되었습니다.");
       onNavigate(-1)();
@@ -31,14 +35,26 @@ export function ResumeDetail() {
     }
   };
 
-  const onUpdateJob = (id) => async () => {
+  const onCompleteJob = (postId) => async () => {
     try {
-      const res = await axios.patch(`/api/resumes/${id}`, {
-        username: "수정하기",
+      const res = await instance.patch(`/api/resumes/${postId}`, {
+        content: updatetitle,
+        career: updatecareer,
       });
       setResumeDetailData(res.data.info);
+      setIsEdit(false);
     } catch (error) {
       console.log("데이터를 수정하지 못했습니다.", error);
+    }
+  };
+
+  const onUpdateJob = () => {
+    setIsEdit(true);
+    setUpdatetitle(ResumeDetailData.content);
+    setUpdatecareer(ResumeDetailData.career);
+    if (inputRef.current !== null) {
+      inputRef.current.disabled = false;
+      inputRef.current.focus();
     }
   };
 
@@ -46,12 +62,56 @@ export function ResumeDetail() {
     <DetailSt.ResumeDetailOutline>
       <DetailSt.ResumeDetailLayout>
         <DetailSt.ResumeDetailInner>
-          <h2>{ResumeDetailData && ResumeDetailData.content}</h2>
-          <h3>
-            {ResumeDetailData && ResumeDetailData.username}
-            <span>{ResumeDetailData && ResumeDetailData.gender}</span>
-          </h3>
-          <h2>{ResumeDetailData && ResumeDetailData.career}</h2>
+          {ResumeDetailData && (
+            <div>
+              {isEdit ? (
+                <DetailSt.ResumeUpdateInput
+                  value={updatetitle}
+                  onChange={(e) => setUpdatetitle(e.target.value)}
+                  ref={inputRef}
+                />
+              ) : (
+                <h2>{ResumeDetailData.content}</h2>
+              )}
+
+              <h3>
+                {ResumeDetailData.username}
+                <span>{ResumeDetailData.gender}</span>
+              </h3>
+              {isEdit ? (
+                <DetailSt.ResumeUpdateCareerBtn>
+                  <label
+                    className={`btn ${
+                      updatecareer === "신입" ? "btn-selected" : ""
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      value="신입"
+                      checked={updatecareer === "신입"}
+                      onChange={() => setUpdatecareer("신입")}
+                    />
+                    신입
+                  </label>
+                  <label
+                    className={`btn ${
+                      updatecareer === "경력" ? "btn-selected" : ""
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      value="경력"
+                      checked={updatecareer === "경력"}
+                      onChange={() => setUpdatecareer("경력")}
+                    />
+                    경력
+                  </label>
+                </DetailSt.ResumeUpdateCareerBtn>
+              ) : (
+                <h2>{ResumeDetailData.career}</h2>
+              )}
+            </div>
+          )}
         </DetailSt.ResumeDetailInner>
         <DetailSt.ResumeDetailConfirm>
           <img
@@ -61,7 +121,7 @@ export function ResumeDetail() {
           <h4>
             <strong>
               <span>작성일 : </span>
-              {ResumeDetailData && ResumeDetailData.createAt}
+              {ResumeDetailData?.createdAt?.slice(0, 10)}
             </strong>
             <strong>
               <span>작성자 : </span>
@@ -71,14 +131,18 @@ export function ResumeDetail() {
         </DetailSt.ResumeDetailConfirm>
       </DetailSt.ResumeDetailLayout>
       <DetailSt.ResumeDetailBtn>
-        <DetailSt.ResumeDetailUpdateBtn
-          onClick={onUpdateJob(ResumeDetailData.id)}
-        >
-          이력서 수정
-        </DetailSt.ResumeDetailUpdateBtn>
-        <strong>
-          최종수정일 : {ResumeDetailData && ResumeDetailData.createAt}
-        </strong>
+        {isEdit ? (
+          <DetailSt.ResumeDetailUpdateBtn
+            onClick={onCompleteJob(ResumeDetailData.id)}
+          >
+            이력서 수정완료
+          </DetailSt.ResumeDetailUpdateBtn>
+        ) : (
+          <DetailSt.ResumeDetailUpdateBtn onClick={onUpdateJob}>
+            이력서 수정
+          </DetailSt.ResumeDetailUpdateBtn>
+        )}
+        <strong>최종작성일 :{ResumeDetailData?.createdAt?.slice(0, 10)}</strong>
         <DetailSt.ResumeDetailDeleteBtn
           onClick={onDeleteJob(ResumeDetailData.id)}
         >
@@ -91,7 +155,6 @@ export function ResumeDetail() {
           <span>이력서 삭제</span>
         </DetailSt.ResumeDetailDeleteBtn>
       </DetailSt.ResumeDetailBtn>
-      {/* <button onClick={onNavigate("/")}>홈으로</button> */}
     </DetailSt.ResumeDetailOutline>
   );
 }

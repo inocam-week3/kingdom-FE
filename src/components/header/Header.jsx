@@ -8,13 +8,14 @@ import { HeaderOutline } from "./headerStyle";
 import { Footer } from "../footer";
 import { useDispatch } from "react-redux";
 import { setDecodeToken } from "../../redux/modules/tokenSlice";
+import { useHerder } from "../../hooks/commen";
 
 export function Header() {
-
-  const {pathname} = useLocation()
-  useLayoutEffect(()=> {
-    window.scrollTo(0,0)
-  }, [pathname])
+  // const { pathname } = useLocation();
+  // useLayoutEffect(() => {
+  //   handleScroll();
+  //   window.scrollTo(0, 0);
+  // }, [pathname]);
 
   const dispatch = useDispatch();
   useEffect(() => {

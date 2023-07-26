@@ -3,9 +3,10 @@ import { useRouter } from "../../hooks/commen";
 import * as ReList from "./ResumeListStyle";
 import { instance } from "../../redux";
 import { useDispatch } from "react-redux";
+import { __getResumeThunk } from "../../redux/resumeSlice";
 
 export function ResumeList() {
-  const [resumes, setResumes] = useState([]);
+  const [resumes, setResumes] = useState("");
   const { onNavigate } = useRouter();
   const dispatch = useDispatch();
   const anonymousName = "OO";
@@ -14,13 +15,17 @@ export function ResumeList() {
     async function getResumeData() {
       try {
         const res = await instance.get(`/api/resumes?page=1&size=20`);
-        setResumes(res.data.info);
+        setResumes(res.data.info.content);
+        console.log(res);
       } catch (error) {
         console.log("데이터를 가져오지 못했습니다.", error);
       }
     }
     getResumeData();
+    // dispatch(__getResumeThunk());
   }, [dispatch]);
+
+  const onNavigateDetail = (id) => onNavigate(`/resume/${id}`);
 
   return (
     <ReList.ListOutline>
@@ -47,42 +52,40 @@ export function ResumeList() {
             <option>50개씩 보기</option>
           </select>
         </div>
-        <ReList.ResumeListTable
-          cellSpacing={0}
-          summary="오늘 등록된 인재의 이름, 이력서 제목, 경력, 등록일"
-        >
-          <thead>
-            <tr>
-              <th>이름</th>
-              <th>이력서 제목</th>
-              <th>경력</th>
-              <th>등록일</th>
-            </tr>
-          </thead>
+        <ReList.ResumeListGrid>
+          <ReList.ResumeListTitle>이름</ReList.ResumeListTitle>
+          <ReList.ResumeListTitle>이력서 제목</ReList.ResumeListTitle>
+          <ReList.ResumeListTitle>경력</ReList.ResumeListTitle>
+          <ReList.ResumeListTitle>등록일</ReList.ResumeListTitle>
           {resumes &&
             resumes.map((item) => (
-              <tbody key={item.id} onClick={onNavigate(`/resume/${item.id}`)}>
-                <ReList.ResumeListth $type="name">
+              <>
+                <ReList.ResumeListCell $type="name" key={item.id}>
                   {item.username.substring(0, 1) + anonymousName}
                   <p
-                    $type="gender"
-                    style={{ color: item.gender === "male" ? "blue" : "red" }}
+                    type="gender"
+                    style={{
+                      color: item.gender === "male" ? "blue" : "red",
+                    }}
                   >
                     {item.gender}
                   </p>
-                </ReList.ResumeListth>
-                <ReList.ResumeListth $type="content">
+                </ReList.ResumeListCell>
+                <ReList.ResumeListCell
+                  $type="content"
+                  onClick={onNavigateDetail(item.id)}
+                >
                   {item.content}
-                </ReList.ResumeListth>
-                <ReList.ResumeListth $type="career">
+                </ReList.ResumeListCell>
+                <ReList.ResumeListCell $type="career">
                   경력 : <strong>{item.career}</strong>
-                </ReList.ResumeListth>
-                <ReList.ResumeListth $type="createAt">
-                  {item.createAt}
-                </ReList.ResumeListth>
-              </tbody>
+                </ReList.ResumeListCell>
+                <ReList.ResumeListCell $type="createdAt">
+                  {item.createdAt?.slice(0, 10)}
+                </ReList.ResumeListCell>
+              </>
             ))}
-        </ReList.ResumeListTable>
+        </ReList.ResumeListGrid>
       </ReList.ListInline>
     </ReList.ListOutline>
   );
