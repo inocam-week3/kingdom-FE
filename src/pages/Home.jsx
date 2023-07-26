@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useHome } from '../hooks/home/useHome'
 import { JobItem } from '../components/home/JobItem'
 import {JobListWrapper} from '../components/home/homeStyle'
-
+import { HomeStory } from "../components/home";
 
 export function Home() {
   const { selectHomeJobs , selectHomeStories, getJobInfo, getStoriesInfo } = useHome()
