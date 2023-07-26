@@ -14,8 +14,7 @@ export function Job() {
   useEffect(()=>{
     async function getJobInfo(){
       try{
-        const res = await instance.get(`/api/job?page=1&size=20`);
-        console.log(res);
+        const res = await instance.get(`/api/job`)
         dispatch(getJobsData(res.data.info))
       }
       catch(error){

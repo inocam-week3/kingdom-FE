@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect } from "react";
-import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { HeaderNavTop } from "./HeaderNavTop";
 import { HeaderNavBottom } from "./HeaderNavBottom";
 import { HeaderBanner } from "./HeaderBanner";
@@ -8,24 +8,25 @@ import { HeaderOutline } from "./headerStyle";
 import { Footer } from "../footer";
 import { useDispatch } from "react-redux";
 import { setDecodeToken } from "../../redux/modules/tokenSlice";
+import { useHerder } from "../../hooks/commen";
 
 export function Header() {
-
-  const {pathname} = useLocation()
-  useLayoutEffect(()=> {
-    window.scrollTo(0,0)
-  }, [pathname])
+  // const { pathname } = useLocation();
+  // useLayoutEffect(() => {
+  //   handleScroll();
+  //   window.scrollTo(0, 0);
+  // }, [pathname]);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    const accessToken =
+    const refreshtoken =
       document.cookie &&
       document.cookie
         .split(";")
-        .filter((cookies) => cookies.includes("accessToken"))[0]
+        .filter((cookies) => cookies.includes("refreshtoken"))[0]
         ?.split("=")[1];
-    if (!!accessToken) {
-      dispatch(setDecodeToken(accessToken));
+    if (!!refreshtoken) {
+      dispatch(setDecodeToken(refreshtoken));
     }
   }, [dispatch]);
 

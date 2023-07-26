@@ -1,3 +1,5 @@
+import { useLoginSNSRTKMutation } from "../../redux";
+
 export const useAuthHeader = () => {
   const loginNavLink = [
     {
@@ -61,10 +63,18 @@ export const useAuthHeader = () => {
     }
   ]
 
-  const onSNSLogin = (sns) => () => {
-    sns === "kakao" && (window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=ca694ae46e22b997351afa5a92c6c63a&response_type=code&redirect_uri=http://44.211.246.195/api/auth/${sns}`)
+  const [postLoginSNS] = useLoginSNSRTKMutation()
+  const onSNSLogin = (sns) => async () => {
+    let res;
+    if (sns === "kakao") {
+      res = (window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=ca694ae46e22b997351afa5a92c6c63a&response_type=code&redirect_uri=http://localhost:3000/api/auth/${sns}`)
+      console.log(res);
+      await postLoginSNS(res)
+    }
+    console.log(res);
   }
 
   return { loginNavLink, signupNavLink, snsLogin, onSNSLogin };
 };
     
+// http://localhost:3000/api/auth/kakao?code=Hnt_hBKhb8XVUcTkx1SlYmd3LGFVxV9k222E_Io5sJiygmjTkSuJ9pP5wQ94iARTKbqaIAo9cxcAAAGJkM-Qqw

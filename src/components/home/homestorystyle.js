@@ -32,6 +32,7 @@ const MainStoryContainer1 = styled.div`
     display: inline-block;
     border-bottom: 1px solid #eee;
     width: 100%;
+    height: 60px;
     padding: 20px 0;
     font-weight: normal;
     &:hover {

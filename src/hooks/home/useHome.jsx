@@ -9,7 +9,7 @@ export const useHome = () => {
 
   async function getJobInfo() {
     try{
-      const res = await axios.get(`/api/homejobs`)
+      const res = await redux.instance.get(`/api/homejobs`)
       dispatch(redux.getHomeMorkDataJobs(res.data.info))
     }
     catch (error){
@@ -18,7 +18,7 @@ export const useHome = () => {
   }
   async function getStoriesInfo() {
     try {
-      const res = await axios.get(`/api/homestories`)
+      const res = await redux.instance.get(`/api/homestories`)
       dispatch(redux.getHomeMorkDataStories(res.data.info))
 
     } catch (error) {
