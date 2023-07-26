@@ -1,7 +1,7 @@
 import { useRouter } from "../../hooks/commen";
-import {JobListSection, JobListLogo} from './homeStyle'
+import { JobListSection, JobListLogo } from "./homeStyle";
 
-export function JobItem({id, companyname, title}) {
+export function JobItem({ id, companyname, title }) {
   const { onNavigate } = useRouter();
 
   return (
@@ -9,8 +9,8 @@ export function JobItem({id, companyname, title}) {
       <JobListLogo>로고 이미지</JobListLogo>
       <div>
         <p>{companyname}</p>
-        <storng>{title}</storng>
+        <strong>{title}</strong>
       </div>
     </JobListSection>
-  )
+  );
 }
