@@ -17,23 +17,7 @@ export function JobDetailContent({createAt,title,companyname,salary}) {
             <div>
               <h3>모집조건</h3>
               <dl>
-                <dt>성별</dt>
-                <dd>?</dd>
-              </dl>
-              <dl>
-                <dt>연령</dt>
-                <dd>?</dd>
-              </dl>
-              <dl>
-                <dt>학력</dt>
-                <dd>?</dd>
-              </dl>
-              <dl>
                 <dt>모집직종</dt>
-                <dd>?</dd>
-              </dl>
-              <dl>
-                <dt>고용형태</dt>
                 <dd>?</dd>
               </dl>
               <dl>
@@ -46,18 +30,6 @@ export function JobDetailContent({createAt,title,companyname,salary}) {
               <dl>
                 <dt>급여</dt>
                 <dd>{salary}</dd>
-              </dl>
-              <dl>
-                <dt>근무기간</dt>
-                <dd>?</dd>
-              </dl>
-              <dl>
-                <dt>근무요일</dt>
-                <dd>?</dd>
-              </dl>
-              <dl>
-                <dt>근무시간</dt>
-                <dd>?</dd>
               </dl>
             </div>
           </JS.ConditionTable>
@@ -76,7 +48,6 @@ export function JobDetailContent({createAt,title,companyname,salary}) {
               <dl>
                 <dt>연락처</dt>
                 <dd>
-                  <p>번호</p>
                   <p>메일</p>
                 </dd>
               </dl>
