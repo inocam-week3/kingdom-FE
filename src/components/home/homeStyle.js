@@ -23,6 +23,7 @@ const JobListSection = styled.section`
   width: 240px;
   padding: 15px;
   border: 2px solid #fb0;
+  height: 200px;
 
   section {
     width: 100%;
@@ -50,7 +51,11 @@ const JobListContent = styled.div`
 const JobListLogo = styled.div`
   width: 100%;
   height: 80px;
-  border: 1px solid;
+  overflow: hidden;
+  text-align: center;
+  img {
+    height: 80px;
+  }
 `
 
 export {
