@@ -51,7 +51,7 @@ export function Stories() {
         ))}
       {/* 테이블 푸터 */}
       <FlexBox $gap={20} style={{ height: "80px" }}>
-        {Array.from({ length: data.totalPages }, (_, index) => index).map(
+        {data?.totalPages && Array.from({ length: data.totalPages }, (_, index) => index).map(
           (num) => (
             <Story.PageNationBtn
               key={num}

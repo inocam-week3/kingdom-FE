@@ -1,5 +1,5 @@
-import React, { useEffect, useLayoutEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import { HeaderNavTop } from "./HeaderNavTop";
 import { HeaderNavBottom } from "./HeaderNavBottom";
 import { HeaderBanner } from "./HeaderBanner";
@@ -8,15 +8,8 @@ import { HeaderOutline } from "./headerStyle";
 import { Footer } from "../footer";
 import { useDispatch } from "react-redux";
 import { setDecodeToken } from "../../redux/modules/tokenSlice";
-import { useHerder } from "../../hooks/commen";
 
 export function Header() {
-  // const { pathname } = useLocation();
-  // useLayoutEffect(() => {
-  //   handleScroll();
-  //   window.scrollTo(0, 0);
-  // }, [pathname]);
-
   const dispatch = useDispatch();
   useEffect(() => {
     const refreshtoken =
@@ -47,5 +40,3 @@ export function Header() {
     </>
   );
 }
-
-// !! 변수에 대한 accessToken -> "boolean" -> 값이 있으면 true or False (빈배열, 빈객체, "", 0)

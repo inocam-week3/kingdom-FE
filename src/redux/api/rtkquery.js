@@ -8,10 +8,10 @@ const axiosBaseQuery =
       switch (types) {
         case "login":
           const auth = await instance({ method, url, data });
-          console.log("로그인 성공", auth);
+          alert("로그인 성공", auth);
           return { data: auth.headers.authorization };
         case "multipart":
-          console.log("Payload 확인", data);
+          alert("Payload 확인", data);
           const multipart = await instance({
             method,
             url,

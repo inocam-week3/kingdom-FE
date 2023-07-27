@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "../hooks/commen";
 import * as DetailSt from "../components/resume/ResumeDetailStyle";
 import { instance } from "../redux";
@@ -15,10 +15,9 @@ export function ResumeDetail() {
     async function getResumeInfo() {
       try {
         const res = await instance.get(`/api/resumes/${id}`);
-        console.log(res);
         setResumeDetailData(res.data.info);
       } catch (error) {
-        console.log("구직자 상세 데이터를 불러오지 못 했습니다", error);
+        alert("구직자 상세 데이터를 불러오지 못 했습니다", error);
       }
     }
     getResumeInfo();
@@ -26,12 +25,11 @@ export function ResumeDetail() {
 
   const onDeleteJob = (id) => async () => {
     try {
-      const res = await instance.delete(`/api/resumes/${id}`);
-      console.log(res);
+      await instance.delete(`/api/resumes/${id}`);
       alert("삭제되었습니다.");
       onNavigate(-1)();
     } catch (error) {
-      console.log("데이터를 삭제하지 못했습니다", error);
+      alert("데이터를 삭제하지 못했습니다", error);
     }
   };
 
@@ -44,7 +42,7 @@ export function ResumeDetail() {
       setResumeDetailData(res.data.info);
       setIsEdit(false);
     } catch (error) {
-      console.log("데이터를 수정하지 못했습니다.", error);
+      alert("데이터를 수정하지 못했습니다.", error);
     }
   };
 

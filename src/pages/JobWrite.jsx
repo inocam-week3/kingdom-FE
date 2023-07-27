@@ -1,6 +1,6 @@
-import { useState, React, useRef, useEffect } from 'react'
+import { useState, React, useRef } from 'react'
 import * as JS from '../components/job/jobStyle'
-import { instance } from '../redux/api/instance';
+// import { instance } from '../redux/api/instance';
 import { useRouter } from '../hooks/commen';
 
 export function JobWrite() {
@@ -13,54 +13,51 @@ export function JobWrite() {
   const [logoImgUrl, setLogoImgUrl] = useState(null);
   const [workImgUrl, setWorkImgUrl] = useState(null);
  
-  const postJobWrite = () => {
-    setNowDate();
-    const formData = new FormData();
+  // const postJobWrite = () => {
+  //   setNowDate();
+  //   const formData = new FormData();
 
-    // for (const [key, value] of Object.entries(writeContent)) {
-    //   formData.append(key, value);
-    // }
+  //   formData.append("data", new Blob(
+  //     [
+  //       JSON.stringify({
+  //         title : writeContent.title,
+  //         content : writeContent.content,
+  //         companyname : writeContent.companyname,
+  //         location : writeContent.location,
+  //         salary : writeContent.salary,
+  //         recruitmentStartPeriod : writeContent.recruitmentStartPeriod,
+  //         recruitmentEndPeriod : writeContent.recruitmentEndPeriod,
+  //         recruitmentPersonNum : writeContent.recruitmentPersonNum,
+  //         managerName : writeContent.manegerName,
+  //         managerEmail : writeContent.managerEmail,
+  //       }),
+  //     ],
+  //     { type: "application/json" }
+  //   ))
+  //   if (logoRef.current && logoRef.current.files.length > 0) {
+  //     formData.append('file', logoRef.current.files[0]);
+  //   }
+  //   if (infraRef.current && infraRef.current.files.length > 0) {
+  //     formData.append('file2', infraRef.current.files[0]);
+  //   }
 
-    formData.append("data", new Blob(
-      [
-        JSON.stringify({
-          title : writeContent.title,
-          content : writeContent.content,
-          companyname : writeContent.companyname,
-          location : writeContent.location,
-          salary : writeContent.salary,
-          recruitmentStartPeriod : writeContent.recruitmentStartPeriod,
-          recruitmentEndPeriod : writeContent.recruitmentEndPeriod,
-          recruitmentPersonNum : writeContent.recruitmentPersonNum,
-          managerName : writeContent.manegerName,
-          managerEmail : writeContent.managerEmail,
-        }),
-      ],
-      { type: "application/json" }
-    ))
-    if (logoRef.current && logoRef.current.files.length > 0) {
-      formData.append('file', logoRef.current.files[0]);
-    }
-    if (infraRef.current && infraRef.current.files.length > 0) {
-      formData.append('file2', infraRef.current.files[0]);
-    }
+  //   instance.post(`/api/job`, {
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   },formData) 
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         alert('공고 등록 성공!');
+  //       } else {
+  //         console.error('공고 등록 실패:', response);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error('네트워크 오류:', error);
+  //     });
+  // };
 
-    instance.post(`/api/job`, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    },formData) 
-      .then((response) => {
-        if (response.status === 200) {
-          console.log('공고 등록 성공!');
-        } else {
-          console.error('공고 등록 실패:', response);
-        }
-      })
-      .catch((error) => {
-        console.error('네트워크 오류:', error);
-      });
-  };
   const setWC = (key, value) => {
     const newWrite = {...writeContent};
     newWrite[key] = value;
@@ -74,14 +71,16 @@ export function JobWrite() {
     setPnum(value);
     setWC('recruitmentPersonNum',value);
   }
-  const setNowDate = () => {
-    const month = {Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
-    let d = new Date();
-    d = String(d).split(" ");
-    const dArray = [d[3], month[d[1]], d[2]];
-    const startDay = dArray.join('-');
-    setWC('recruitmentStartPeriod', startDay);
-  }
+  
+  // const setNowDate = () => {
+  //   const month = {Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
+  //   let d = new Date();
+  //   d = String(d).split(" ");
+  //   const dArray = [d[3], month[d[1]], d[2]];
+  //   const startDay = dArray.join('-');
+  //   setWC('recruitmentStartPeriod', startDay);
+  // }
+
   const handleLogoImageChange = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();

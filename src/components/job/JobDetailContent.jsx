@@ -13,7 +13,7 @@ export function JobDetailContent({createAt,title,companyname,salary,recruitmentP
             <p>{companyname}</p>
             <strong>{title}</strong>
           </div>
-          <img src={logoimage}></img>
+          <img src={logoimage} alt='logoImage'></img>
         </JS.DetailHead>
         <JS.DetailCondition>
           <JS.ConditionTable $type={"left"}>
@@ -58,7 +58,7 @@ export function JobDetailContent({createAt,title,companyname,salary,recruitmentP
           </JS.ConditionTable>
         </JS.DetailCondition>
         <JS.DetailInfoContent>
-          <img src={workinfraimage}></img>
+          <img src={workinfraimage} alt='workinfraimage'></img>
           <p>{content}</p>
         </JS.DetailInfoContent>
       </JS.DetailInfoBody>

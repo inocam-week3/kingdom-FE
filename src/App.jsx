@@ -12,7 +12,7 @@ function App() {
         <Route path="job" element={<Pages.Job />} />
         <Route path="resume" element={<Pages.Resume />} />
         <Route path="stories/:id" element={<Pages.Stories />} />
-        <Route path="stories/:id/:id" element={<Pages.StoryDetail />} />
+        <Route path="story/:id" element={<Pages.StoryDetail />} />
         <Route path="messenger" element={<Pages.Messenger />} />
         
         <Route path="job/:id" element={<Pages.JobDetail />} />

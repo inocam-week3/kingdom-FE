@@ -12,9 +12,8 @@ export function HomeStory() {
       try {
         const res = await instance.get(`/api/homestories`);
         setHomestories(res.data.info);
-        //console.log(res);
       } catch (error) {
-        console.log("데이터를 가져오지 못했습니다.", error);
+        alert("데이터를 가져오지 못했습니다.", error);
       }
     }
     getResumeData();
@@ -37,7 +36,7 @@ export function HomeStory() {
               </ManSt.MainStoryContainerInner>
               {homestories &&
                 homestories.slice(0, 5).map((item) => (
-                  <div key={item.id} onClick={() => navigate(`${item.storyDetailUrl}`)}>
+                  <div key={item.id} onClick={() => navigate(`story/${item.id}`)}>
                     <strong>
                       {item.content}
                       <p>{item.username}</p>

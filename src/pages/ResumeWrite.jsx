@@ -25,11 +25,9 @@ export function ResumeWrite() {
         career,
       };
 
-      const response = await instance.post("/api/resumes/write", formData);
-      console.log("데이터 전송에 성공했습니다", response.data.info);
+      await instance.post("/api/resumes/write", formData);
       alert("이력서 등록을 완료했습니다.");
     } catch (error) {
-      console.log("데이터 전송에 실패했습니다.", error);
       alert("이력서 등록에 실패했습니다. 로그인 상태를 확인해주세요.");
     }
     onNavigate(`/resume`);

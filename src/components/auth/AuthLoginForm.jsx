@@ -27,7 +27,7 @@ export function AuthLoginForm({ personal }) {
     if (isSuccess) {
       onNavigate(-1)();
     } else if (isError) {
-      console.log("회원가입 실패", error);
+      alert("회원가입 실패", error);
     }
   }, [onNavigate, data, isError, isSuccess, error]);
 

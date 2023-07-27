@@ -22,9 +22,8 @@ export function ResumeList() {
         );
         setResumes(res.data.info.content);
         setPages(res.data.info.totalPages);
-        console.log(res.data.info);
       } catch (error) {
-        console.log("데이터를 가져오지 못했습니다.", error);
+        alert("데이터를 가져오지 못했습니다.", error);
       }
     }
     getResumeData();

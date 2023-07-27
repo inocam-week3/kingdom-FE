@@ -79,7 +79,6 @@ export const useSignupCompony = () => {
           });
     }
     if (name === "enterpriseCode") {
-      console.log(inputValue.enterpriseCode.length);
       inputValue.enterpriseCode.length === 0
         ? setValiditeMse({ ...validiteMsg, enterpriseCode: ["", false] })
         : inputValue.enterpriseCode.length <=8

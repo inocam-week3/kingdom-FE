@@ -1,6 +1,4 @@
-import axios from 'axios'
 import React, {useEffect, useState} from 'react'
-import { useRouter } from '../hooks/commen';
 import { useDispatch, useSelector } from 'react-redux';
 import { getJobsData, selectJobsDate } from '../redux/modules/morkServer/morkJobsSlice';
 
@@ -24,7 +22,7 @@ export function Job() {
         setPages(res.data.info.totalPages)
       }
       catch(error){
-        console.log("데이터를 불러오지 못함")
+        alert("데이터를 불러오지 못함")
       }
     }
     getJobInfo()

@@ -23,7 +23,7 @@ export function SignupPersonal() {
     if (isSuccess) {
       onNavigate("/login", { replace: true })();
     } else if (isError) {
-      console.log("회원가입 실패", error?.message);
+      alert("회원가입 실패", error?.message);
     }
   }, [data, isError, isSuccess, error, onNavigate]);
 

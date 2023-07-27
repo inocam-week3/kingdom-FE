@@ -34,7 +34,7 @@ export function StoryWrite() {
       });
       return compressFile;
     } catch (e) {
-      console.log(e.message);
+      alert(e.message);
     }
   };
 

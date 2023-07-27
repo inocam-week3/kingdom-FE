@@ -2,7 +2,7 @@ import React from 'react'
 import { StoriesTable } from './storyStyle'
 import { FlexBox } from '../common'
 
-export function StoriesTableBody( {paramsid, onNavigate, id, like, title, username, viewCount, createdAt, liked }) {
+export function StoriesTableBody( {onNavigate, id, title, username, viewCount, createdAt, liked }) {
 
   return (
     <StoriesTable
@@ -14,7 +14,7 @@ export function StoriesTableBody( {paramsid, onNavigate, id, like, title, userna
     <FlexBox
       $jc="flex-start"
       style={{cursor:"pointer"}}
-      onClick={onNavigate(`/stories/${paramsid}/${id}`)}
+      onClick={onNavigate(`/story/${id}`)}
     >
       {title}
     </FlexBox>

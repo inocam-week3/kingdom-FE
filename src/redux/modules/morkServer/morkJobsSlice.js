@@ -8,7 +8,6 @@ const morkJobsSlice = createSlice({
       return [...action.payload]
     },
     deleteJobsDate : (state, action) => {
-      console.log(action.payload)
       return [...state.filter(job => job.id !== +action.payload)]
     }
   }

@@ -6,7 +6,7 @@ export function JobItem({id, companyname, title, location, salary, logoImage}) {
 
   return (
     <JobListSection onClick={onNavigate(`/job/${id}`)}>
-      {logoImage&& <JobListLogo><img src={logoImage}></img></JobListLogo>}
+      {logoImage&& <JobListLogo><img src={logoImage} alt="logoImage"/></JobListLogo>}
       <JobListContent>
         <p>{companyname}</p>
         <strong>{title}</strong>

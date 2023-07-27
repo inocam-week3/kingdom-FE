@@ -157,7 +157,6 @@ export const handlers = [
     // Resume - ResumeDetatil - GET
     rest.get("/api/resumes/:id", async(req, res, ctx) => {
       const {id} = await req.params
-      // console.log("Resume - ResumeDetatil - GET", id)
       const find = MockData.resumeDetailData.find(jobs => jobs.id === +id)
       return res(
         ctx.status(200),
@@ -214,7 +213,6 @@ export const handlers = [
   // Stories - StoriesDetatil - GET
   rest.get("/api/stories/:id", async(req, res, ctx) => {
     const {id} = await req.params
-    // console.log("Resume - ResumeDetatil - GET", id)
     const find = MockData.storyDetailData.find(jobs => jobs.id === +id)
     return res(
       ctx.status(200),

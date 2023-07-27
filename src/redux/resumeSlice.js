@@ -6,10 +6,9 @@ const __getResumeThunk = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       let res = await instance.get(`/api/resumes?page=1`); // 서버상태를 바꾸고요
-      console.log(res);
       return thunkAPI.fulfillWithValue(res.data.info);
     } catch (error) {
-      console.log("error", error.message);
+      alert("error", error.message);
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -22,7 +21,7 @@ const __postResumeThunk = createAsyncThunk(
       await instance.post(`/api/resumes/write`, payload); // 서버상태를 바꾸고요
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
-      console.log("error", error.message);
+      alert("error", error.message);
       return thunkAPI.rejectWithValue(error);
     }
   }

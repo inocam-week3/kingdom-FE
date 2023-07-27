@@ -68,10 +68,8 @@ export const useAuthHeader = () => {
     let res;
     if (sns === "kakao") {
       res = (window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=ca694ae46e22b997351afa5a92c6c63a&response_type=code&redirect_uri=http://localhost:3000/api/auth/${sns}`)
-      console.log(res);
       await postLoginSNS(res)
     }
-    console.log(res);
   }
 
   return { loginNavLink, signupNavLink, snsLogin, onSNSLogin };
