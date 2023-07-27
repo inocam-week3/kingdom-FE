@@ -24,30 +24,6 @@
 |react-icons|@4.10.1|리액트에서 제공하는 아이콘 라이브러리|
 |react-router-dom|@6.14.2|SPA기반 리액트에서 라우팅을 설정하는 라이브러리|
 |styled-components|@6.0.4|Css in Js를 위한 스타일 라이브러리|   
-
-- MSW 라이브러리 사용법 
-    ```javascript 
-    // MSW 만들기
-    export const handlers = [
-    rest.get("/api/auth/login", async(req, res, ctx) => {
-        return res(
-            ctx.status(200),
-            ctx.json({messsge:}),
-            ctx.set("authorization", headers),
-            ctx.set("messsge", "Success")
-        )
-        }),
-    ]  
-
-    // 컴포넌트에서는 실제 서버와 통신하듯이 입력하면 됩니다.
-    useEffect(()=> {
-    async function authLogin () {
-        const res = await axios.get(`/api/auth/login`)
-        console.log(res.headers.authorization)
-    }
-    authLogin()
-    },[])
-    ```
 </details>
 
 <details>
@@ -102,7 +78,7 @@
 </details>
 
 <details>
-<summary>(3) Styled-Components를 활용한 전역상태의 디자인통일성</summary>
+<summary>(4) Styled-Components를 활용한 전역상태의 디자인통일성</summary>
 
 - ThemeProvider를 활용하여, 프로젝트 전반에 걸친 색상의 제어를 마련
 - css메소드를 통해서 공용 태그의 확장을 통해 코드의 재사용성을 추구함 
@@ -110,7 +86,7 @@
 </details>
 
 <details>
-<summary>(4) Redux(createAsyncThunk)-RTKquery-Axios</summary>
+<summary>(5) Redux(createAsyncThunk)-RTKquery-Axios</summary>
 
 - 전역상태 관리를 위해 Redux를 도입하였고
 - 비동기통신을 위해 reduxjs/toolkit의 createAsyncThunk와 RTKquery를 활용하여 redux 안에서 유지보수가 간결한 체계를 도입하였음
@@ -118,7 +94,7 @@
 </details>
 
 <details>
-<summary>(5) Github-Actions를 활용한 프로젝트 파일의 CD(지속적 배포)를 마련</summary>
+<summary>(6) Github-Actions를 활용한 프로젝트 파일의 CD(지속적 배포)를 마련</summary>
 
 - 프로젝트에 .yml 파일을 통해, github와 S3 사이의 파이프라인을 구축하고
 - dev 브랜치가 변경되면, 이에 대응하여 Github-Actions이 파일을 S3로 빌드하게 함으로 DX(개발자환경) 측면을 향상
