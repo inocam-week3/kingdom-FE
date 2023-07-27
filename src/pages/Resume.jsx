@@ -7,12 +7,6 @@ export function Resume() {
     <>
       <ResumeBanner />
       <ResumeList />
-      {/* {resumes &&
-        resumes.map((item) => (
-          <section key={item.id} onClick={onNavigate(`/resume/${item.id}`)}>
-            {item.username}
-          </section>
-        ))} */}
     </>
   );
 }
