@@ -70,7 +70,10 @@
 ### 3. 트러블 슈팅
 
 <details>
-<summary>(1) 트러블이슈 : 내용 (1)</summary>
+<summary>(1) 트러블이슈 : 내용 (1) github 파일에러  </summary>
+
+- 기존의 파일 변경시, github에서 대소문자 구분을 하지 못하여 반영되지 못하는 사레 
+- [참고][https://papababo.tistory.com/entry/git-은-폴더파일명의-대소문자를-개무시한다-그럼-우째]하여 문제 해결
 </details>
 <details>
 <summary>(2) 트러블이슈 : 내용 (2)</summary>
@@ -81,3 +84,73 @@
 <details>
 <summary>(4) 트러블이슈 : 내용 (4)</summary>
 </details>
+
+
+## 프로젝트를 위한 회의 
+
+1. 
+    <details>
+    <summary>7월 22일(토요일) 프로젝트 2일차 회의</summary>
+
+    - 로그인 API연결
+    - Home -> 리덕스까지 확장 
+    - Jobs, resume, story -> 생성을 제외하고는 Morking API연결 -> 리덕스까지 확장 
+    - 전역 스타일 정리까지를 목표 
+        - max-width : 1070px
+        - 반응형 
+        - 공용 버튼 >> 이력서/공고 등록 색상만 다른데 > 이 버튼이 다른 곳에도 쓰이는지 
+        - 공용 인풋 
+    </details>
+
+- 헤더 살펴보기 
+    
+  ```jsx
+  /*
+    html, body 
+    margin: 0;
+    padding: 0;
+
+    body
+    font-size: 13px;
+    font-family: 'Malgun Gothic',-apple-system,BlinkMagSystemFont,'AppleGothicNeoSD','Microsoft NeoGothic','Droid sans',Sans-serif;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    background: #f7f7f7; 
+  */
+
+  // width, hegith, position
+
+  // ------------------------------------------------------------------ @media (min-width) : 700px, 보다 작아지면 display: none
+  <div /> 최상단 배너 : (미숙) 1260, 70px,relative
+    - 경로 : assets > img > homeTopNavBanner.png
+    - <div /> 이미지 담은 공간 -> <figure /> -> 그 위에 <a />  글자 색상을 투명으로 하고, 링크를 연결
+    - <a /> 7일간 보지 않기 
+  <div> 헤더1 Outline :
+  width : 100%, min-width : 1260
+  
+   logo : width : 151(px)
+    max-length : "20"
+
+     - <div> Inner : 1260 * 110 (px) , relative
+            - <h1> 로고 : , , absolute
+                <a =>'/'>
+                    <img>
+              경로 : assets > img > HeavenLogo.png
+            - <div> 검색어 500(px) , 
+            <input 355 (px)>, // 검색 BiSearch
+            - <ul> 연관검색어 650{px} , ,
+            - <ul> 로그인, 회원가입 , , absolute
+
+  <div> 헤더2 Outline : 100%, , relative   -> body.scroll => position:fixed
+    - <div> 헤더1 Inner : 1260, 56(px) , 
+        - <ul> 네비게이션 : , , , float:left
+        - <ul> 이력서 및 공고 등록 , , , float:right
+              -<li> float:left
+                    <a> height:36(px)
+
+  // ------------------------------------------------------------------ @media (max-width) : 700px, 보다 커지면 display: none
+  - 베너는 없고
+  <div> 헤더1
+  <div> 헤더2
+```  
+    

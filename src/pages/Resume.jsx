@@ -1,8 +1,12 @@
-import React from 'react'
+import React from "react";
+import { ResumeBanner } from "../components/resume";
+import { ResumeList } from "../components/resume";
 
 export function Resume() {
   return (
-    <div>Resume</div>
-  )
+    <>
+      <ResumeBanner />
+      <ResumeList />
+    </>
+  );
 }
-
