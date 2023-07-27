@@ -63,7 +63,7 @@ const ResumeListTitle = styled.div`
 const ResumeListCell = styled.div`
   font-size: 14px;
   text-align: center;
-  padding: 25px 0 11px;
+  padding: 20px 0 11px;
   border-bottom: 1px solid #e4e4e4;
 
   ${({ $type }) =>
@@ -89,22 +89,6 @@ const ResumeListCell = styled.div`
         `}
 `;
 
-const PageBtn = styled.div`
-  padding: 20px 0;
-  text-align: center;
-  button {
-    margin: 5px;
-    width: 35px;
-    height: 40px;
-    border-radius: 10px;
-    border: none;
-    &:hover {
-      background-color: ${({ $color, theme }) =>
-        $color ? $color : theme.color.yellow};
-    }
-  }
-`;
-
 export {
   ListOutline,
   ListInline,
@@ -112,5 +96,4 @@ export {
   ResumeListTitle,
   ResumeListBox,
   ResumeListCell,
-  PageBtn,
 };

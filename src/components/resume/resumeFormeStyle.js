@@ -9,6 +9,7 @@ const ResumeFormOutline = styled.form`
   background-color: #f7f7f7;
 `;
 const ResumeFormLayout = styled.div`
+  /* width: 90%; */
   padding: 20px 54px 60px;
   margin: 0 15px;
   background: ${({ $color, theme }) => ($color ? $color : theme.color.white)};
@@ -29,28 +30,12 @@ const ResumeFormInner1 = styled.div`
     height: 26px;
     padding: 0 5px;
     font-size: 14px;
-    background: ${({ $color, theme }) => ($color ? $color : theme.color.white)};
+    background: #${({ $color, theme }) => ($color ? $color : theme.color.white)};
     border: 1px solid #bbb;
     ${cursor}
     &:hover {
       color: blue;
     }
-  }
-`;
-
-const InnerBody = styled.div`
-  p {
-    height: 38px;
-  }
-  strong {
-    margin-right: 15px;
-    font-size: 22px;
-  }
-  span {
-    width: 75px;
-    font-size: 15px;
-    font-weight: bold;
-    margin-right: 72px;
   }
 `;
 
@@ -62,7 +47,6 @@ const ResumeFormInner2 = styled.div`
     width: 972.8px;
     height: 32px;
     padding-left: 10px;
-    border: 1px solid #eee;
   }
   h2 {
     font-size: 23px;
@@ -84,12 +68,12 @@ const ResumeFormInner3 = styled.div`
     width: 160px;
     height: 38px;
     background-color: #${({ $color, theme }) => ($color ? $color : theme.color.white)};
-    border: 1px solid #36c;
+    border: 1px solid #3366cc;
     font-weight: bold;
     text-align: center;
     line-height: 36px;
     font-size: 16px;
-    color: #36c;
+    color: #3366cc;
   }
   input {
     visibility: hidden;
@@ -111,8 +95,8 @@ const InnerHeaders = styled.div`
   width: 100%;
   height: 40px;
   ${Flex}
-  /* justify-content: space-between; */
-
+  justify-content: flex-start;
+  padding-bottom: 10px;
   margin-bottom: 16px;
   border-bottom: 2px solid #222;
   h2 {
@@ -125,6 +109,22 @@ const InnerHeaders = styled.div`
   p {
     margin: 0 0 -20px 20px;
     color: #9b9b9b;
+  }
+`;
+
+const InnerBody = styled.div`
+  p {
+    height: 38px;
+  }
+  strong {
+    margin-right: 15px;
+    font-size: 22px;
+  }
+  span {
+    width: 75px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 72px;
   }
 `;
 
