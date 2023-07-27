@@ -9,7 +9,7 @@ export function ResumeDetail() {
   const [updatetitle, setUpdatetitle] = useState("");
   const [updatecareer, setUpdatecareer] = useState("");
   const { onNavigate, id } = useRouter();
-  const inputRef = useRef(null);
+  // const inputRef = useRef(null);
 
   useEffect(() => {
     async function getResumeInfo() {
@@ -52,10 +52,10 @@ export function ResumeDetail() {
     setIsEdit(true);
     setUpdatetitle(ResumeDetailData.content);
     setUpdatecareer(ResumeDetailData.career);
-    if (inputRef.current !== null) {
-      inputRef.current.disabled = false;
-      inputRef.current.focus();
-    }
+    // if (inputRef.current !== null) {
+    //   inputRef.current.disabled = false;
+    //   inputRef.current.focus();
+    // }
   };
 
   return (
@@ -68,7 +68,7 @@ export function ResumeDetail() {
                 <DetailSt.ResumeUpdateInput
                   value={updatetitle}
                   onChange={(e) => setUpdatetitle(e.target.value)}
-                  ref={inputRef}
+                  // ref={inputRef}
                 />
               ) : (
                 <h2>{ResumeDetailData.content}</h2>
