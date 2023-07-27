@@ -10,7 +10,7 @@ export function Home() {
   useEffect(() => {
     getJobInfo();
     getStoriesInfo();
-  }, [getJobInfo, getStoriesInfo]);
+  }, []);
 
   return (
     <div>
