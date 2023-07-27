@@ -111,7 +111,7 @@ const InnerHeaders = styled.div`
   width: 100%;
   height: 40px;
   ${Flex}
-  /* justify-content: space-between; */
+  justify-content: space-between;
 
   margin-bottom: 16px;
   border-bottom: 2px solid #222;
